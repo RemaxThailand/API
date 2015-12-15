@@ -97,7 +97,8 @@ exports.checkApiKey = function(req, res, data) {
 exports.callApi = function(req, res, data) {	
 	var fs = require('fs');
 
-	var url = req.headers.uri.split('/');
+	//var url = req.headers.uri.split('/');
+	var url = req.url.split('/');
 	url = url.filter(function(n){ return n !== ''; });
 	if ( url.length >= 2 ) {
 		var control = url[0];
