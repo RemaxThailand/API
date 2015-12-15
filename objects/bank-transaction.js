@@ -19,6 +19,7 @@ exports.action = function(req, res, data) {
 					 && typeof req.body.transactionType != 'undefined' && req.body.transactionType != ''
 					 && typeof req.body.withdrawal != 'undefined' && req.body.withdrawal != ''
 					 && typeof req.body.deposit != 'undefined' && req.body.deposit != ''
+					 && typeof req.body.balance != 'undefined' && req.body.balance != ''
 					) {
 					data.json.return = false;
 					req.body.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
@@ -26,7 +27,7 @@ exports.action = function(req, res, data) {
 					var bankType = req.body.key.substr(8,2);
 					var accNo = req.body.key.substr(10);
 					data.command = 'EXEC sp_WalletUpdateBankTransaction \''+req.body.apiKey+'\', \''+req.body.ip+'\', \''+shop+'\', \''+bankType+'\', \''+accNo+
-						'\', \''+req.body.transactionDate+'\', \''+req.body.transactionType+'\', \''+req.body.channel+'\', '+req.body.withdrawal+', '+req.body.deposit+
+						'\', \''+req.body.transactionDate+'\', \''+req.body.transactionType+'\', \''+req.body.channel+'\', '+req.body.withdrawal+', '+req.body.deposit+', '+req.body.balance+
 						', \''+req.body.accountNo+'\', \''+req.body.details+'\', \''+req.body.comment+'\'';
 					data.util.query(req, res, data)
 				}
