@@ -23,7 +23,7 @@ exports.action = function(req, res, data) {
 //## Internal Method ##//
 exports.update = function(req, res, data) {
 	var Client = require('svn-spawn');
-	var client = new Client({ cwd: '/var/www/remaxthailand/'+req.body.path+'/' });
+	var client = new Client({ cwd: '/var/www/remaxthailand.co.th/'+req.body.path+'/' });
 
 	client.update(function(error, result) {
 		if(!error){
