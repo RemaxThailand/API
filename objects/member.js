@@ -1,8 +1,7 @@
 exports.action = function(req, res, data) {	
 	try {
 		if (data.action == 'register'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.type != 'undefined' && req.body.type != '' &&
+			if (typeof req.body.type != 'undefined' && req.body.type != '' &&
 				typeof req.body.value != 'undefined' && req.body.value != '') {
 				var type = '|Web|Desktop|Android|iOS|Facebook|Google|Microsoft|'; // ชื่อ type ที่สามารถเพิ่มข้อมูลได้
 				if ( type.indexOf('|'+req.body.type+'|') == -1 ) { // ถ้าชื่อ type ไม่ถูกต้อง
@@ -117,7 +116,7 @@ exports.registerWeb = function(req, res, data) {
 	}
 	else {	
 		data.json.return = false;
-		data.command = 'EXEC sp_MemberRegister \''+req.body.shop+'\', \''+data.jsonPost.username+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.username.toLowerCase())+'\', \''+data.jsonPost.mobile+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.mobile.toLowerCase())+'\', \''+data.jsonPost.email+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.email.toLowerCase())+'\'';
+		data.command = 'EXEC sp_MemberRegister \''+data.jsonPost.username+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.username.toLowerCase())+'\', \''+data.jsonPost.mobile+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.mobile.toLowerCase())+'\', \''+data.jsonPost.email+'\', \''+data.util.encrypt(data.jsonPost.password, data.jsonPost.email.toLowerCase())+'\'';
 		data.util.query(req, res, data);
 	}
 };
@@ -128,10 +127,10 @@ exports.register = function(req, res, data) {
 		data.json.error = 'MBR0031';
 		data.json.errorMessage = 'Username already exists';
 	}
-	else if( data.result[0].result == 'shop does not exist' ) {
+	/*else if( data.result[0].result == 'shop does not exist' ) {
 		data.json.error = 'MBR0041';
 		data.json.errorMessage = 'Shop does not exist';
-	}
+	}*/
 	else if( data.result[0].result == 'mobile already exists' ) {
 		data.json.error = 'MBR0051';
 		data.json.errorMessage = 'Mobile phone number already exists';
@@ -141,6 +140,9 @@ exports.register = function(req, res, data) {
 		data.json.errorMessage = 'Email already exists';
 	}
 	else {
+		var jwt = require('jsonwebtoken');
+		data.token.memberId = data.result[0].memberId;
+		data.json.token = jwt.sign(data.token, config.secretKey);
 		data.json.success = true;
 	}
 	data.util.responseJson(req, res, data.json);

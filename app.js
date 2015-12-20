@@ -91,6 +91,20 @@ app.post('*', function(req, res) {
 	var json = {};
 	json.success = false;
 
+	var token = {};
+	
+	if (typeof req.body.token != 'undefined' && req.body.token != '') {
+		var jwt = require('jsonwebtoken');
+		try {
+		  var token = jwt.verify(req.body.token, config.publicKey);
+		  req.body.apiKey = token.apiKey;
+		} catch(err) {
+			json.error = 'API0010';
+			json.errorMessage = 'Invalid Parameter token';
+			res.json(json);
+		}
+	}
+
 	if (typeof req.body.apiKey == 'undefined' || req.body.apiKey == '') {
 		json.error = 'API0001';
 		json.errorMessage = 'Missing Parameter apiKey';
@@ -103,6 +117,8 @@ app.post('*', function(req, res) {
 		data.action = 'checkApiKey';
 		data.command = 'EXEC sp_ApiExist \''+req.body.apiKey+'\'';
 		data.object = require('./objects/api');
+
+		if (typeof token.apiKey != 'undefined') data.token = token;
 
 		data.json = {};
 		data.json.success = false;
