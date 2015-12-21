@@ -12,7 +12,7 @@ exports.action = function(req, res, data) {
 				}
 			}
 		}
-		if (data.action == 'transaction'){
+		else if (data.action == 'transaction'){
 			if (data.subAction[0] == 'update'){
 				if (typeof req.body.key != 'undefined' && req.body.key != ''
 					 && typeof req.body.transactionDate != 'undefined' && req.body.transactionDate != ''

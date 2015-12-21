@@ -15,6 +15,17 @@ exports.action = function(req, res, data) {
 			else if (data.subAction[0] == 'dummy'){
 			}
 		}
+		else if (data.action == 'token'){
+			var jwt = require('jsonwebtoken');
+			if (data.subAction[0] == 'request'){
+				if (typeof req.body.apiKey != 'undefined' && req.body.apiKey != '' &&
+					typeof req.body.secretKey != 'undefined' && req.body.secretKey != ''
+				) {
+					data.json.return = false;
+					exports.requestToken(req, res, data);
+				}
+			}
+		}
 		else {
 			data.json.error = 'API00xxx';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
@@ -78,6 +89,7 @@ exports.checkApiKey = function(req, res, data) {
 							data.util.responseJson(req, res, data.json);
 						}
 						else {
+							data.secretKey = data.result[1][0].secretKey;
 							exports.callApi(req, res, data);
 						}
 					}
@@ -92,6 +104,25 @@ exports.checkApiKey = function(req, res, data) {
 			}
 		}
 	}
+}
+
+
+exports.requestToken = function(req, res, data) {	
+	if (data.secretKey == req.body.secretKey) {
+		var jwt = require('jsonwebtoken');
+		var json = {
+			apiKey: req.body.apiKey,
+			secretKey: req.body.secretKey,
+		};
+		data.json.token = jwt.sign(json, config.secretKey);
+		data.json.success = true;
+	}
+	else {
+		data.json.error = 'API0012';
+		data.json.errorMessage = 'Invalid Secret Key : ' + req.body.secretKey;
+	}
+	data.json.return = true;
+	data.util.responseJson(req, res, data.json);
 }
 
 exports.callApi = function(req, res, data) {	

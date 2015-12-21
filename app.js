@@ -96,11 +96,14 @@ app.post('*', function(req, res) {
 	if (typeof req.body.token != 'undefined' && req.body.token != '') {
 		var jwt = require('jsonwebtoken');
 		try {
-		  var token = jwt.verify(req.body.token, config.publicKey);
-		  req.body.apiKey = token.apiKey;
+			var token = jwt.verify(req.body.token, config.secretKey);
+			req.body.token = token;
+			req.body.apiKey = token.apiKey;
+			delete token;
 		} catch(err) {
-			json.error = 'API0010';
+			json.error = 'API0011';
 			json.errorMessage = 'Invalid Parameter token';
+			json.stackTrace = err;
 			res.json(json);
 		}
 	}

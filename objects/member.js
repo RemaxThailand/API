@@ -49,11 +49,11 @@ exports.action = function(req, res, data) {
 				}
 			}
 		}
-		else if (data.action == 'info'){				
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+		else if (data.action == 'info'){
+			if ((typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') ||
+				(typeof req.body.token.memberId != 'undefined' && req.body.token.memberId != '')) {
 					data.json.return = false;
-					data.command = 'EXEC sp_MemberInfo \''+req.body.shop+'\',\''+req.body.memberKey+'\'';
+					data.command = 'EXEC sp_MemberInfo \''+(req.body.memberKey || req.body.token.memberId)+'\'';
 					data.util.query(req, res, data);
 			}
 		}
@@ -127,10 +127,6 @@ exports.register = function(req, res, data) {
 		data.json.error = 'MBR0031';
 		data.json.errorMessage = 'Username already exists';
 	}
-	/*else if( data.result[0].result == 'shop does not exist' ) {
-		data.json.error = 'MBR0041';
-		data.json.errorMessage = 'Shop does not exist';
-	}*/
 	else if( data.result[0].result == 'mobile already exists' ) {
 		data.json.error = 'MBR0051';
 		data.json.errorMessage = 'Mobile phone number already exists';
@@ -179,11 +175,7 @@ exports.memberKeyAndBrowserExist = function(req, res, data) {
 
 exports.memberInfo = function(req, res, data) {
 	data.json.return = true;
-	if( data.result[0].result == 'shop does not exist' ) {
-		data.json.error = 'MBR0041';
-		data.json.errorMessage = 'Shop does not exist';
-	}
-	else if(data.result[0].result == 'member does not exist'){
+	if(data.result[0].result == 'member does not exist'){
 		data.json.error = 'MBR0071';
 		data.json.errorMessage = 'Member does not exist';
 	}
