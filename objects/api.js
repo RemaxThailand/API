@@ -16,7 +16,6 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'token'){
-			var jwt = require('jsonwebtoken');
 			if (data.subAction[0] == 'request'){
 				if (typeof req.body.apiKey != 'undefined' && req.body.apiKey != '' &&
 					typeof req.body.secretKey != 'undefined' && req.body.secretKey != ''
@@ -89,7 +88,9 @@ exports.checkApiKey = function(req, res, data) {
 							data.util.responseJson(req, res, data.json);
 						}
 						else {
+							var url = url[2].split('-');
 							data.secretKey = data.result[1][0].secretKey;
+							data.referer = url[0];
 							exports.callApi(req, res, data);
 						}
 					}

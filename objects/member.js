@@ -25,16 +25,15 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'login'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.username != 'undefined' && req.body.username != '' &&
+			if (typeof req.body.username != 'undefined' && req.body.username != '' &&
 				typeof req.body.password != 'undefined' && req.body.password != '') {
 					data.json.return = false;
 					var password = data.util.encrypt(req.body.password, req.body.username.toLowerCase());
-					data.command = 'EXEC sp_MemberLogin \''+req.body.shop+'\', \''+req.body.username+'\', \''+password+'\', \''+((typeof req.body.remember == 'undefined' || req.body.remember == '') ? '0' : req.body.remember)+'\'';
+					data.command = 'EXEC sp_MemberLogin \''+req.body.username+'\', \''+password+'\'';
 					data.util.query(req, res, data);
 			}
 		}
-		else if (data.action == 'exist'){
+		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				
 				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
 					typeof req.body.ip != 'undefined' && req.body.ip != '' &&
@@ -48,13 +47,12 @@ exports.action = function(req, res, data) {
 						data.util.query(req, res, data);
 				}
 			}
-		}
+		}*/
 		else if (data.action == 'info'){
-			if ((typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') ||
-				(typeof req.body.token.memberId != 'undefined' && req.body.token.memberId != '')) {
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 					data.json.return = false;
-					data.command = 'EXEC sp_MemberInfo \''+(req.body.memberKey || req.body.token.memberId)+'\'';
-					data.util.query(req, res, data);
+					data.command = 'EXEC sp_MemberInfo \''+req.body.token.memberKey+'\', \''+data.referer+'\'';
+					data.util.queryMultiple(req, res, data);
 			}
 		}
 		else { 
@@ -150,25 +148,27 @@ exports.login = function(req, res, data) {
 		data.json.error = 'MBR0032';
 		data.json.errorMessage = 'Invalid Username or Password';
 	}
-	else if( data.result[0].result == 'shop does not exist' ) {
-		data.json.error = 'MBR0041';
-		data.json.errorMessage = 'Shop does not exist';
-	}
 	else {
-		data.json.success = true;
-		data.json.result = data.result[0].result
-	}
-	data.util.responseJson(req, res, data.json);
-};
+		var jwt = require('jsonwebtoken');
+		data.token.memberKey = data.result[0].result;
+		data.token.memberId = data.result[0].memberId;
+		data.token.keyInsert = data.result[0].keyInsert;
+		data.token.keyUpdate = data.result[0].keyUpdate;
+		data.token.keyDelete = data.result[0].keyDelete;
 
-exports.memberKeyAndBrowserExist = function(req, res, data) {
-	data.json.return = true;
-	if( data.result[0].result == 'not exists' ) {
-		data.json.error = 'MBR0033';
-		data.json.errorMessage = 'Invalid Member Key';
-	}
-	else {
+		data.json.token = jwt.sign(data.token, config.secretKey);
 		data.json.success = true;
+		if ( typeof req.body.info != 'undefined' && req.body.info != '' ) {
+			try {
+				var token = jwt.verify(req.body.info, ''+data.token.secretKey);
+				data.command = 'EXEC sp_MemberLoginInfoUpdate \''+data.token.memberKey+'\', \''+token.ip+'\', \''+token.browser+'\', \''+token.version+'\', \''+token.platform+'\', \''+token.os+'\', \''+token.deviceType+'\', \''+(( typeof req.body.failedCount != 'undefined' && req.body.failedCount != '' ) ? req.body.failedCount : '0')+'\'';
+				data.util.query(req, res, data);
+			}
+			catch(error) {
+				console.log(error);
+			}
+		}
+		
 	}
 	data.util.responseJson(req, res, data.json);
 };
@@ -181,7 +181,25 @@ exports.memberInfo = function(req, res, data) {
 	}
 	else {
 		data.json.success = true;
-		data.json.result = data.result;
+		data.json.memberInfo = data.result[0][0];
+		
+		var screen = {};
+		for(i=0; i<data.result[1].length; i++) {
+			if ( data.result[1][i].parent == null || data.result[1][i].parent == '' ) {
+				screen[data.result[1][i].screen] = {};
+				screen[data.result[1][i].screen].link = data.result[1][i].link;
+				screen[data.result[1][i].screen].icon = data.result[1][i].icon;
+				screen[data.result[1][i].screen].hasChild = false;
+				screen[data.result[1][i].screen].child = {};
+			}
+			else {
+				screen[data.result[1][i].parent].hasChild = true;
+				screen[data.result[1][i].parent].child[ data.result[1][i].screen ] = {};
+				screen[data.result[1][i].parent].child[ data.result[1][i].screen ] = data.result[1][i].link.toString();
+			}
+		}
+
+		data.json.screen = screen;
 	}
 	data.util.responseJson(req, res, data.json);
 };
