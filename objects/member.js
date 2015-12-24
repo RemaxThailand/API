@@ -182,6 +182,7 @@ exports.memberInfo = function(req, res, data) {
 	else {
 		data.json.success = true;
 		data.json.memberInfo = data.result[0][0];
+		data.json.memberType = data.result[2];
 		
 		var screen = {};
 		for(i=0; i<data.result[1].length; i++) {

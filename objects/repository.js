@@ -29,8 +29,8 @@ exports.update = function(req, res, data) {
 		if(!error){
 			client.getInfo(function(err, result) {
 				if(!error){
-					var shell = require('shelljs');
-					shell.exec('pm2 reload '+req.body.path, {async:true});
+					//var shell = require('shelljs');
+					//shell.exec('pm2 reload '+req.body.path, {async:true});
 					/*var child = shell.exec('pm2 reload api', {async:true});
 					child.stdout.on('data', function(data) {
 						shell.echo(data);});*/
