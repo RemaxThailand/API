@@ -18,7 +18,7 @@ var app = express();
 app.set('port', config.port || 9999);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(favicon(__dirname + '/favicon.ico'));
+app.use(favicon(__dirname + '/favicon.png'));
 app.use(logger('dev'));
 app.use(methodOverride());
 app.use(session({ resave: true,
