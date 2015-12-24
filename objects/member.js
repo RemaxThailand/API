@@ -33,6 +33,16 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 			}
 		}
+		else if (data.action == 'update'){
+			if (data.subAction[0] == 'role'){
+				console.log( 'EXEC sp_MemberUpdateRole \''+req.body.token.memberKey+'\', \''+req.body.role+'\'' );
+				if (typeof req.body.role != 'undefined' && req.body.role != '') {
+					data.json.return = false;
+					data.command = 'EXEC sp_MemberUpdateRole \''+req.body.token.memberKey+'\', \''+req.body.role+'\'';
+					data.util.query(req, res, data);
+				}
+			}
+		}
 		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				
 				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
@@ -84,6 +94,11 @@ exports.process = function(req, res, data) {
 	}
 	else if (data.action == 'info'){
 		exports.memberInfo(req, res, data);
+	}
+	else if (data.action == 'update'){
+		if (data.subAction[0] == 'role'){
+			exports.updateRole(req, res, data);
+		}
 	}
 };
 
@@ -201,6 +216,22 @@ exports.memberInfo = function(req, res, data) {
 		}
 
 		data.json.screen = screen;
+	}
+	data.util.responseJson(req, res, data.json);
+};
+
+exports.updateRole = function(req, res, data) {
+	data.json.return = true;
+	if(data.result[0].result == 'member does not exist'){
+		data.json.error = 'MBR0071';
+		data.json.errorMessage = 'Member does not exist';
+	}
+	else if(data.result[0].result == 'memberType not exist'){
+		data.json.error = 'MBR0072';
+		data.json.errorMessage = 'Member Type does not exist';
+	}
+	else {
+		data.json.success = true;
 	}
 	data.util.responseJson(req, res, data.json);
 };
