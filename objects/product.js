@@ -267,11 +267,11 @@ exports.getItemImage = function(req, res, data) {
 	data.json.success = true;
 	data.util.responseJson(req, res, data.json);
 
-	if (imageList.length > 0) {
+	/*if (imageList.length > 0) {
 		data.json.return = false;
 		data.json.returnResult = true;
 		data.command = 'UPDATE Product SET image = \''+imageList.toString()+'\' WHERE shop = \''+data.result[0].shop+'\' AND sku = \''+data.result[0].sku+'\'';
 		data.util.query(req, res, data);
-	}
+	}*/
 
 };
