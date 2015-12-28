@@ -186,6 +186,7 @@ exports.getItemImage = function(req, res, data) {
 		console.log('filesLGLGGLGLG'+files);
 	}
 	catch(error) {
+		console.log(error);
 	}
 	/*var type = '|jpg|jpeg|png|gif|'; // ชื่อ type รูปภาพ
 	var image = [];
