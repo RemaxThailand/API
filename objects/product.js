@@ -181,9 +181,9 @@ exports.getItemImage = function(req, res, data) {
 	var files = [];
 	try
 	{
-		//files = fs.readdirSync('/var/www/images/product/'+data.result[0].sku+'/');
+		files = fs.readdirSync('/var/www/images/product/'+data.result[0].sku+'/');
 		console.log('api-test');
-		console.log(fs.readdir('/'));
+		console.log(files);
 	}
 	catch(error) {
 	}
