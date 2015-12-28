@@ -182,13 +182,11 @@ exports.getItemImage = function(req, res, data) {
 	try
 	{
 		files = fs.readdirSync('/var/www/resources/img/product/'+data.result[0].sku+'/');
-		console.log('api-test');
-		console.log('filesLGLGGLGLG'+files);
 	}
 	catch(error) {
 		console.log(error);
 	}
-	/*var type = '|jpg|jpeg|png|gif|'; // ชื่อ type รูปภาพ
+	var type = '|jpg|jpeg|png|gif|'; // ชื่อ type รูปภาพ
 	var image = [];
 	var imageDetail = [];
 	for (f = 0; f < files.length; f++) {
@@ -268,7 +266,7 @@ exports.getItemImage = function(req, res, data) {
 	data.json.result = data.result[0];
 
 	data.json.success = true;
-	data.util.responseJson(req, res, data.json);*/
+	data.util.responseJson(req, res, data.json);
 
 	/*if (imageList.length > 0) {
 		data.json.return = false;
