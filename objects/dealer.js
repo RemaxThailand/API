@@ -7,24 +7,22 @@ exports.action = function(req, res, data) {
 	try {
 		if (data.action == 'info'){			
 			data.json.return = false;
-			if(typeof req.body.firstname != 'undefined' && req.body.firstname != ''){
-				exports.getInfoByFirstname(req, res, data);
-			}
-			else if(typeof req.body.lastname != 'undefined' && req.body.lastname != ''){
-				exports.getInfoByLastname(req, res, data);
-			}
-			else if(typeof req.body.firstname != 'undefined' && req.body.firstname != '' && typeof req.body.lastname != 'undefined' && req.body.lastname != ''){
-				exports.getInfoByName(req, res, data);
-			}else{
-				exports.getDealerRegisterInfo(req, res, data);
-			}
-			
+			data.json.returnResult = true;
+			data.command = 'EXEC sp_RegisterDealerInfo \''+req.body.firstname+'\', \''+req.body.lastname+'\', \''+req.body.mobile+'\'';
+			data.util.query(req, res, data);
 		}
 		else if (data.action == 'register'){
-			if (typeof req.body.value != 'undefined' && req.body.value != '') {			
+			if (typeof req.body.firstname != 'undefined' && req.body.firstname != '' &&
+					typeof req.body.lastname != 'undefined' && req.body.lastname != '' &&
+					typeof req.body.time != 'undefined' && req.body.time != '' &&
+					typeof req.body.mobile != 'undefined' && req.body.mobile != '' &&
+					typeof req.body.address != 'undefined' && req.body.address != '') {
+					
 					data.json.return = false;
-					exports.registerDealer(req, res, data);
-			}
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_RegisterDealer \''+req.body.firstname+'\', \''+req.body.lastname+'\', \''+req.body.nickname+'\', \''+req.body.time+'\', \''+req.body.mobile+'\', \''+req.body.address+'\', \''+req.body.images+'\', \''+req.body.comment+'\', \''+req.body.expect+'\', \''+req.body.profile+'\', \''+req.body.province+'\', \''+req.body.reason+'\'';
+					data.util.query(req, res, data);		
+				}
 		}
 		else if (data.action == 'update'){
 			if (typeof req.body.value != 'undefined' && req.body.value != '') {
