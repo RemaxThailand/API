@@ -509,31 +509,17 @@ block content
 						| &#58; หมวดหมู่ และยี่ห้อของสินค้า
 			#category_brand.panel-collapse.collapse(role='tabpanel')
 				.panel-body
-					pre URL : /#{data.screen}/category_brand
+					pre URL : /#{data.screen}/category_and_brand
 					.panel.panel-default
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Shop ID
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning shop
-											|   รหัสร้านค้า
-								.form-group
-									label.col-sm-2.control-label(for='input') Active
-									.col-sm-10
-										input.form-control.active(type='text', placeholder='Active')
-										p.help-block
-											span.font-pre.label.label-default active
-											|   แสดงเฉพาะสินค้ายังขายอยู่หรือไม่ (1 = ขายอยู่, 0 = ไม่ขาย, 2 = ทั้งหมด) Default = 1
-								.form-group
-									label.col-sm-2.control-label(for='input') Visible
-									.col-sm-10
-										input.form-control.visible(type='text', placeholder='Visible')
-										p.help-block
-											span.font-pre.label.label-default visible
-											|   แสดงเฉพาะสินค้าที่ลูกค้าสามารถเห็นได้หรือไม่ (1 = แสดง, 0 = ไม่แสดง, 2 = ทั้งหมด) Default = 1
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit

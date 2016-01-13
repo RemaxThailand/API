@@ -66,10 +66,11 @@ exports.action = function(req, res, data) {
 				data.util.getShop(req, res, data);
 			}
 		}
-		else if (data.action == 'category_brand'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
+		else if (data.action == 'category_and_brand'){
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 				data.json.return = false;
-				data.util.getShop(req, res, data);
+				data.command = 'EXEC sp_ProductCategoryAndBrandInfo \''+req.body.token.memberKey+'\'';
+				data.util.query(req, res, data);
 			}
 		}
 		else if (data.action == 'all'){
@@ -166,10 +167,13 @@ exports.process = function(req, res, data) {
 	if (data.action == 'mkdir') {
 		exports.mkdir(req, res, data);
 	}
-	if (data.action == 'info') {
+	else if (data.action == 'info') {
 		if (req.body.type == 'item') {
 			exports.getItemImage(req, res, data);
 		}
+	}
+	else if (data.action == 'category_and_brand'){
+		exports.categoryAndBrand(req, res, data);
 	}
 	else {
 		data.json.error = 'API0002';
@@ -299,4 +303,40 @@ exports.getItemImage = function(req, res, data) {
 		data.util.query(req, res, data);
 	}
 
+};
+
+exports.categoryAndBrand = function(req, res, data) {
+	if (typeof data.result[0] != 'undefined') {
+		var json = [];
+		var cnt = data.result.length;
+		var category = [];
+		var brand = {};
+		for(i=0; i<cnt; i++) {
+			if (category.indexOf(data.result[i].category) == -1) {
+				var brandArr = [];
+				json.push({ id: data.result[i].category, name: data.result[i].categoryName, url: data.result[i].categoryUrl });
+				//json.push({ id: data.result[i].category, name: data.result[i].categoryName, url: data.result[i].categoryUrl, piority: data.result[i].categoryPriority });
+				category.push(data.result[i].category);
+				brand[data.result[i].category] = [];
+			}
+			brand[data.result[i].category].push( { id: data.result[i].brand, name: data.result[i].brandName } );
+			//brand[data.result[i].category].push( { id: data.result[i].brand, name: data.result[i].brandName, piority: data.result[i].brandPriority } );
+			//if (typeof category[data.result[i].category != 'undefined')
+		}
+		var newJson = [];
+		for(i=0; i<json.length; i++) {
+			newJson.push({ id: json[i].id, name: json[i].name, url: json[i].url, brand: brand[json[i].id]  });
+			//newJson.push({ id: json[i].id, name: json[i].name, url: json[i].url, piority: json[i].piority, brand: brand[json[i].id]  });
+		}
+		data.json.result = newJson;
+		delete json;
+		delete cnt;
+		delete category;
+		delete brand;
+		delete newJson;
+	}
+
+	data.json.return = true;
+	data.json.success = true;
+	data.util.responseJson(req, res, data.json);
 };
