@@ -74,9 +74,11 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'all'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 				data.json.return = false;
-				data.util.getShop(req, res, data);
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ProductInfoList \''+req.body.token.memberKey+'\'';
+				data.util.query(req, res, data);
 			}
 		}
 		else if (data.action == 'mkdir'){
