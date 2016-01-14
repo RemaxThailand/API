@@ -158,7 +158,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.value != 'undefined' && req.body.value != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_Pos_ShopProductUpdate \''+req.body.shop+'\', \''+req.body.orderno+'\',\''+req.body.id+'\', \''+req.body.entity+'\', \''+req.body.value+'\'';
+					data.command = 'EXEC sp_Pos_ns_PurchaseOrderUpdate \''+req.body.shop+'\', \''+req.body.orderno+'\',\''+req.body.id+'\', \''+req.body.entity+'\', \''+req.body.value+'\'';
 					data.util.execute(req, res, data); 
 			}
 		}
