@@ -23,10 +23,18 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'history') {
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
-					data.json.return = false;
-					data.util.getShop(req, res, data);
+			if (data.subAction[0] == 'profile'){
+				if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+					typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+						data.json.return = false;
+						data.util.getShop(req, res, data);
+				}
+			}
+			else if (data.subAction[0] == 'province'){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportOrderHistoryByProvince \''+req.body.token.memberKey+'\'';
+				data.util.query(req, res, data);
 			}
 		}
 		else {
