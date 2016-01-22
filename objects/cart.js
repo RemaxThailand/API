@@ -1,12 +1,12 @@
 exports.action = function(req, res, data) {
-	data.tableName = 'Cart';
 	
 	try {
 		if (data.action == 'info'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
-				data.json.return = false;
-				data.util.getShop(req, res, data);
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_CartInfo \''+req.body.memberKey+'\'';
+					data.util.execute(req, res, data); 
 			}
 		}
 		else if (data.action == 'update'){
