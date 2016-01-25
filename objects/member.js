@@ -65,6 +65,25 @@ exports.action = function(req, res, data) {
 					data.util.queryMultiple(req, res, data);
 			}
 		}
+		else if (data.action == 'address'){
+			if (data.subAction[0] == 'add'){
+				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.firstname != 'undefined' && req.body.firstname != '' &&
+				typeof req.body.lastname != 'undefined' && req.body.lastname != '' &&
+				typeof req.body.mobile != 'undefined' && req.body.mobile != '' &&
+				typeof req.body.address != 'undefined' && req.body.address != '' &&
+				typeof req.body.subDistrict != 'undefined' && req.body.subDistrict != '' &&
+				typeof req.body.district != 'undefined' && req.body.district != '' &&
+				typeof req.body.province != 'undefined' && req.body.province != '' &&
+				typeof req.body.zipcode != 'undefined' && req.body.zipcode != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_MemberAddressUpdate \''+req.body.memberKey+'\' ,\''+req.body.firstname+'\' ,\''+req.body.lastname+'\' ,\''+req.body.contactName+'\' ,\''+req.body.mobile+'\' ,\''+req.body.shopName+'\' ,\''+req.body.address+'\' ,\''+req.body.address2+'\' ,\''+req.body.subDistrict+'\' ,\''+req.body.district+'\' ,\''+req.body.province+'\' ,\''+req.body.zipcode+'\'';
+					data.util.execute(req, res, data); 
+				}
+			}
+			
+		}
 		else { 
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
