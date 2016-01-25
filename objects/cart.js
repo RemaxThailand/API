@@ -28,8 +28,16 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'confirm'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.coupon != 'undefined' && req.body.coupon != '') {
+				    data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_CartConfirm \''+req.body.memberKey+'\' ,\''+req.body.coupon+'\'';
+					data.util.query(req, res, data); 
+			}
+		}
+		else if (data.action == 'addddd'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
 				typeof req.body.firstname != 'undefined' && req.body.firstname != '' &&
 				typeof req.body.lastname != 'undefined' && req.body.lastname != '' &&
 				typeof req.body.mobile != 'undefined' && req.body.mobile != '' &&
@@ -42,7 +50,7 @@ exports.action = function(req, res, data) {
 				data.util.getShop(req, res, data);
 			}
 		}
-		else {
+		else { 
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
 		}

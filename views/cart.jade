@@ -90,16 +90,46 @@ block content
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
 
-
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#confirm', aria-expanded='false')
-						strong Cart Confirmation  
-						| &#58; ยืนยันการสั่งซื้อสินค้าในรถเข็น
+						strong --  
+						| &#58; --
 			#confirm.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/confirm
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Member Key
+									.col-sm-10
+										input.form-control.memberKey(type='text', placeholder='Member Key')
+										p.help-block
+											span.font-pre.label.label-warning memberKey
+											|   memberKey
+								.form-group
+									label.col-sm-2.control-label(for='input') Coupon Code
+									.col-sm-10
+										input.form-control.couponCode(type='text', placeholder='Coupon Code')
+										p.help-block
+											span.font-pre.label.label-default couponCode
+											|   รหัสคูปอง
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#addradd', aria-expanded='false')
+						strong --  
+						| &#58; --
+			#addradd.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/addradd
 					.panel.panel-default
 						.panel-body
 							form.form-horizontal
