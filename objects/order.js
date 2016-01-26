@@ -36,6 +36,12 @@ exports.action = function(req, res, data) {
 				data.command = 'EXEC sp_ReportOrderHistoryByProvince \''+req.body.token.memberKey+'\'';
 				data.util.query(req, res, data);
 			}
+			else if (data.subAction[0] == 'customer'){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.token.memberKey+'\'';
+				data.util.query(req, res, data);
+			}
 		}
 		else {
 			data.json.error = 'API0011';
