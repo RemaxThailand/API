@@ -10,10 +10,10 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'summary'){
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_CartSummary \''+req.body.memberKey+'\'';
+					data.command = 'EXEC sp_CartSummary \''+req.body.token.memberKey+'\'';
 					data.util.query(req, res, data); 
 			}
 		}
