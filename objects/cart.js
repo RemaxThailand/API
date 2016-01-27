@@ -18,12 +18,12 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'update'){
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
 				typeof req.body.quantity != 'undefined' && req.body.quantity != '') {
 				    data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_CartUpdate \''+req.body.memberKey+'\' ,\''+req.body.product+'\' ,\''+req.body.quantity+'\'';
+					data.command = 'EXEC sp_CartUpdate \''+req.body.token.memberKey+'\' ,\''+req.body.product+'\' ,\''+req.body.quantity+'\'';
 					data.util.query(req, res, data); 
 			}
 		}
