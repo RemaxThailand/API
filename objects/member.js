@@ -78,7 +78,14 @@ exports.action = function(req, res, data) {
 				typeof req.body.zipcode != 'undefined' && req.body.zipcode != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_MemberAddressUpdate \''+req.body.memberKey+'\' ,\''+req.body.firstname+'\' ,\''+req.body.lastname+'\' ,\''+req.body.contactName+'\' ,\''+req.body.mobile+'\' ,\''+req.body.shopName+'\' ,\''+req.body.address+'\' ,\''+req.body.address2+'\' ,\''+req.body.subDistrict+'\' ,\''+req.body.district+'\' ,\''+req.body.province+'\' ,\''+req.body.zipcode+'\'';
+					data.command = 'EXEC sp_MemberAddressUpdate \''+req.body.token.memberKey+'\' ,\''+req.body.firstname+'\' ,\''+req.body.lastname+'\' ,\''+req.body.contactName+'\' ,\''+req.body.mobile+'\' ,\''+req.body.shopName+'\' ,\''+req.body.address+'\' ,\''+req.body.address2+'\' ,\''+req.body.subDistrict+'\' ,\''+req.body.district+'\' ,\''+req.body.province+'\' ,\''+req.body.zipcode+'\'';
+					data.util.execute(req, res, data); 
+				}
+			}else if(data.subAction[0] == 'info'){
+				if (typeof req.token.memberKey != 'undefined' && req.token.memberKey != ''){
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_MemberAddressInfo \''+req.body.token.memberKey+'\'';
 					data.util.execute(req, res, data); 
 				}
 			}
