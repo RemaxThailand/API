@@ -2,10 +2,10 @@ exports.action = function(req, res, data) {
 	
 	try {
 		if (data.action == 'info'){
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_CartInfo \''+req.body.memberKey+'\'';
+					data.command = 'EXEC sp_CartInfo \''+req.body.token.memberKey+'\'';
 					data.util.query(req, res, data); 
 			}
 		}
