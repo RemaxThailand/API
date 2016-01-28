@@ -41,7 +41,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 				    data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_CartConfirm \''+req.body.token.memberKey+'\' ,\''+req.body.coupon+'\'';
+					data.command = 'EXEC sp_CartConfirm \''+req.body.token.memberKey+'\' ,\''+req.body.couponCode+'\'';
 					data.util.execute(req, res, data); 
 			}
 		}
