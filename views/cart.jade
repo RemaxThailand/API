@@ -55,9 +55,47 @@ block content
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#add', aria-expanded='false')
+						strong Add Product to Shopping Cart
+						| &#58; เพิ่มสินค้าลงในรถเข็น
+			#add.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/add
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Member Key
+									.col-sm-10
+										input.form-control.memberKey(type='text', placeholder='Member Key')
+										p.help-block
+											span.font-pre.label.label-warning memberKey
+											|   memberKey
+								.form-group
+									label.col-sm-2.control-label(for='input') Product ID
+									.col-sm-10
+										input.form-control.product(type='text', placeholder='Product ID')
+										p.help-block
+											span.font-pre.label.label-warning product
+											|   รหัสสินค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Quantity
+									.col-sm-10
+										input.form-control.quantity(type='text', placeholder='Quantity')
+										p.help-block
+											span.font-pre.label.label-warning quantity
+											|   จำนวนสินค้า เช่น 5, -4
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#update', aria-expanded='false')
-						strong Update Cart  
-						| &#58; แก้ไขข้อมูลสินค้าในรถเข็น
+						strong Update Shopping Cart
+						| &#58; แก้ไขสินค้าลงในรถเข็น
 			#update.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/update
@@ -89,7 +127,7 @@ block content
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
-
+					
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title

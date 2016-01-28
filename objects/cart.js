@@ -17,6 +17,16 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'add'){
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
+				typeof req.body.product != 'undefined' && req.body.product != '' &&
+				typeof req.body.quantity != 'undefined' && req.body.quantity != '') {
+				    data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_CartAdd \''+req.body.token.memberKey+'\' ,\''+req.body.product+'\' ,\''+req.body.quantity+'\'';
+					data.util.query(req, res, data); 
+			}
+		}
 		else if (data.action == 'update'){
 			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
