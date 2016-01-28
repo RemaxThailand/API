@@ -38,26 +38,11 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'confirm'){
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
-				typeof req.body.coupon != 'undefined' && req.body.coupon != '') {
+			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 				    data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_CartConfirm \''+req.body.memberKey+'\' ,\''+req.body.coupon+'\'';
+					data.command = 'EXEC sp_CartConfirm \''+req.body.token.memberKey+'\' ,\''+req.body.coupon+'\'';
 					data.util.execute(req, res, data); 
-			}
-		}
-		else if (data.action == 'addddd'){
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
-				typeof req.body.firstname != 'undefined' && req.body.firstname != '' &&
-				typeof req.body.lastname != 'undefined' && req.body.lastname != '' &&
-				typeof req.body.mobile != 'undefined' && req.body.mobile != '' &&
-				typeof req.body.address != 'undefined' && req.body.address != '' &&
-				typeof req.body.subDistrict != 'undefined' && req.body.subDistrict != '' &&
-				typeof req.body.district != 'undefined' && req.body.district != '' &&
-				typeof req.body.province != 'undefined' && req.body.province != '' &&
-				typeof req.body.zipcode != 'undefined' && req.body.zipcode != '') {
-				data.json.return = false;
-				data.util.getShop(req, res, data);
 			}
 		}
 		else { 

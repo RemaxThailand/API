@@ -17,12 +17,12 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
@@ -41,12 +41,12 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
@@ -65,12 +65,12 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group
 									label.col-sm-2.control-label(for='input') Product ID
 									.col-sm-10
@@ -103,12 +103,12 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group
 									label.col-sm-2.control-label(for='input') Product ID
 									.col-sm-10
@@ -141,12 +141,12 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group
 									label.col-sm-2.control-label(for='input') Coupon Code
 									.col-sm-10
@@ -159,117 +159,3 @@ block content
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
 					
-		.panel.panel-default
-			#headingOne.panel-heading(role='tab')
-				h4.panel-title
-					a(data-toggle='collapse', data-parent='#accordion', href='#addradd', aria-expanded='false')
-						strong --  
-						| &#58; --
-			#addradd.panel-collapse.collapse(role='tabpanel')
-				.panel-body
-					pre URL : /#{data.screen}/addradd
-					.panel.panel-default
-						.panel-body
-							form.form-horizontal
-								.form-group
-									label.col-sm-2.control-label(for='input') Shop ID
-									.col-sm-10
-										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
-										p.help-block
-											span.font-pre.label.label-warning shop
-											|   รหัสร้านค้า
-								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
-									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
-										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   memberKey
-								.form-group
-									label.col-sm-2.control-label(for='input') First Name
-									.col-sm-10
-										input.form-control.firstname(type='text', placeholder='First Name')
-										p.help-block
-											span.font-pre.label.label-warning firstname
-											|   ชื่อ
-								.form-group
-									label.col-sm-2.control-label(for='input') Last Name
-									.col-sm-10
-										input.form-control.lastname(type='text', placeholder='Last Name')
-										p.help-block
-											span.font-pre.label.label-warning lastname
-											|   นามสกุล
-								.form-group
-									label.col-sm-2.control-label(for='input') Contact Name
-									.col-sm-10
-										input.form-control.contactName(type='text', placeholder='Contact Name')
-										p.help-block
-											span.font-pre.label.label-default contactName
-											|   ชื่อผู้ติดต่อ
-								.form-group
-									label.col-sm-2.control-label(for='input') Mobile Phone
-									.col-sm-10
-										input.form-control.mobile(type='text', placeholder='Mobile Phone')
-										p.help-block
-											span.font-pre.label.label-warning mobile
-											|   เบอร์โทรศัพท์มือถือ
-								.form-group
-									label.col-sm-2.control-label(for='input') Shop Name
-									.col-sm-10
-										input.form-control.shopName(type='text', placeholder='Shop Name')
-										p.help-block
-											span.font-pre.label.label-default shopName
-											|   ชื่อร้าน
-								.form-group
-									label.col-sm-2.control-label(for='input') Address
-									.col-sm-10
-										input.form-control.address(type='text', placeholder='Address')
-										p.help-block
-											span.font-pre.label.label-warning address
-											|   ที่อยู่
-								.form-group
-									label.col-sm-2.control-label(for='input') Address 2
-									.col-sm-10
-										input.form-control.address2(type='text', placeholder='Address 2')
-										p.help-block
-											span.font-pre.label.label-default address2
-											|   ที่อยู่ (ต่อ)
-								.form-group
-									label.col-sm-2.control-label(for='input') Sub District
-									.col-sm-10
-										input.form-control.subDistrict(type='text', placeholder='Sub District')
-										p.help-block
-											span.font-pre.label.label-warning subDistrict
-											|   ตำบล
-								.form-group
-									label.col-sm-2.control-label(for='input') District
-									.col-sm-10
-										input.form-control.district(type='text', placeholder='District')
-										p.help-block
-											span.font-pre.label.label-warning district
-											|   อำเภอ
-								.form-group
-									label.col-sm-2.control-label(for='input') Province
-									.col-sm-10
-										input.form-control.province(type='text', placeholder='Province')
-										p.help-block
-											span.font-pre.label.label-warning province
-											|   จังหวัด
-								.form-group
-									label.col-sm-2.control-label(for='input') Zip Code
-									.col-sm-10
-										input.form-control.zipcode(type='text', placeholder='Zip Code')
-										p.help-block
-											span.font-pre.label.label-warning zipcode
-											|   รหัสไปรษณีย์
-								.form-group
-									label.col-sm-2.control-label(for='input') Coupon Code
-									.col-sm-10
-										input.form-control.couponCode(type='text', placeholder='Coupon Code')
-										p.help-block
-											span.font-pre.label.label-default couponCode
-											|   รหัสคูปอง
-								.form-group.margin-bottom-0
-									.col-sm-offset-2.col-sm-10
-										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
-					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
