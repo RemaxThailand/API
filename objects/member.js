@@ -67,7 +67,7 @@ exports.action = function(req, res, data) {
 		}
 		else if (data.action == 'address'){
 			if (data.subAction[0] == 'add'){
-				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				if (typeof req.body.token.memberKey  != 'undefined' && req.body.token.memberKey != '' &&
 				typeof req.body.firstname != 'undefined' && req.body.firstname != '' &&
 				typeof req.body.lastname != 'undefined' && req.body.lastname != '' &&
 				typeof req.body.mobile != 'undefined' && req.body.mobile != '' &&
@@ -82,7 +82,7 @@ exports.action = function(req, res, data) {
 					data.util.execute(req, res, data); 
 				}
 			}else if(data.subAction[0] == 'info'){
-				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != ''){
+				if (typeof req.body.token.memberKey  != 'undefined' && req.body.token.memberKey  != ''){
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_MemberAddressInfo \''+req.body.token.memberKey+'\'';
