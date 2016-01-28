@@ -43,7 +43,7 @@ exports.action = function(req, res, data) {
 				    data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_CartConfirm \''+req.body.memberKey+'\' ,\''+req.body.coupon+'\'';
-					data.util.query(req, res, data); 
+					data.util.execute(req, res, data); 
 			}
 		}
 		else if (data.action == 'addddd'){
