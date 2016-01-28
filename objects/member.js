@@ -86,7 +86,7 @@ exports.action = function(req, res, data) {
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_MemberAddressInfo \''+req.body.token.memberKey+'\'';
-					data.util.execute(req, res, data); 
+					data.util.query(req, res, data); 
 				}
 			}
 			
