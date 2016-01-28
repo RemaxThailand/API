@@ -309,4 +309,71 @@ block content
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
-				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')     
+				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
+
+
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#ChangePriceAdd', aria-expanded='false')
+						strong ChangePrice Insert
+						| &#58; เพิ่มข้อมูลการแก้ไขราคาขายสินค้า
+			#ChangePriceAdd.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/ChangePriceAdd
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   Shop ID
+								.form-group
+									label.col-sm-2.control-label(for='input') Sale No
+									.col-sm-10
+										input.form-control.id(type='text', placeholder='Sale No')
+										p.help-block
+											span.font-pre.label.label-warning id
+											|   Sale No
+								.form-group
+									label.col-sm-2.control-label(for='input') Product
+									.col-sm-10
+										input.form-control.product(type='text', placeholder='Product')
+										p.help-block
+											span.font-pre.label.label-default product
+											|   Product
+								.form-group
+									label.col-sm-2.control-label(for='input') Price
+									.col-sm-10
+										input.form-control.price(type='text', placeholder='Price')
+										p.help-block
+											span.font-pre.label.label-default price
+											|   Price
+								.form-group
+									label.col-sm-2.control-label(for='input') Price Change
+									.col-sm-10
+										input.form-control.change(type='text', placeholder='Price Change')
+										p.help-block
+											span.font-pre.label.label-default change
+											|   Price Change
+								.form-group
+									label.col-sm-2.control-label(for='input') ChangeBy
+									.col-sm-10
+										input.form-control.by(type='text', placeholder='ChangeBy')
+										p.help-block
+											span.font-pre.label.label-default by
+											|   ChangeBy
+								.form-group
+									label.col-sm-2.control-label(for='input') ChangeDate
+									.col-sm-10
+										input.form-control.date(type='text', placeholder='ChangeDate')
+										p.help-block
+											span.font-pre.label.label-default date
+											|   ChangeDate								
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 		

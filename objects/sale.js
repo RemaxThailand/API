@@ -40,6 +40,16 @@ exports.action = function(req, res, data) {
 					data.util.execute(req, res, data);
 			} 
 		}
+		else if (data.action == 'ChangePriceAdd'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+				typeof req.body.saleno != 'undefined' && req.body.saleno != '' &&
+				typeof req.body.product != 'undefined' && req.body.product != '' ) {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_Pos_SellDetailInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.product+'\',\''+req.body.price+'\',\''+req.body.change+'\',\''+req.body.by+'\',\''+req.body.date+'\'';
+					data.util.execute(req, res, data);
+			} 
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
