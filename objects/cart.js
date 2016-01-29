@@ -37,7 +37,7 @@ exports.action = function(req, res, data) {
 					data.util.execute(req, res, data); 
 			}
 		}
-		else if (data.action == 'confirm'){
+		else if (data.action == 'confirm'){ 
 			if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
 				    data.json.return = false;
 					data.json.returnResult = true;
