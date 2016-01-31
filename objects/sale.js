@@ -46,7 +46,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.product != 'undefined' && req.body.product != '' ) {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_Pos_SellDetailInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.product+'\',\''+req.body.price+'\',\''+req.body.change+'\',\''+req.body.by+'\',\''+req.body.date+'\'';
+					data.command = 'EXEC sp_Pos_ChangePriceInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.product+'\',\''+req.body.price+'\',\''+req.body.change+'\',\''+req.body.by+'\',\''+req.body.date+'\'';
 					data.util.execute(req, res, data);
 			} 
 		}
