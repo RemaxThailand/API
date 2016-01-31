@@ -21,6 +21,14 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}			
 		}
+		else if (data.action == 'creditInfo'){			
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' ) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_Pos_CreditCustomerInfo \''+req.body.shop+'\'';
+				data.util.execute(req, res, data)
+			}			
+		}
 		else if (data.action == 'creditAdd'){			
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
 				typeof req.body.creditno != 'undefined' && req.body.creditno != '' &&
