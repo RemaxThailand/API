@@ -24,7 +24,7 @@ exports.action = function(req, res, data) {
 		else if (data.action == 'creditAdd'){			
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
 				typeof req.body.creditno != 'undefined' && req.body.creditno != '' &&
-				typeof req.body.saleno != 'undefined' && req.body.saleno != '' && ) {
+				typeof req.body.saleno != 'undefined' && req.body.saleno != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_Pos_CreditCustomerInsert \''+req.body.shop+'\', \''+req.body.creditno+'\', \''+req.body.saleno+'\', \''+req.body.paidprice+'\', \''+req.body.paidby+'\', \''+req.body.paiddate+'\'';
