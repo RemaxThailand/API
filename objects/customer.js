@@ -26,7 +26,7 @@ exports.action = function(req, res, data) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_Pos_CreditCustomerInfo \''+req.body.shop+'\'';
-				data.util.execute(req, res, data)
+				data.util.query(req, res, data)
 			}			
 		}
 		else if (data.action == 'creditAdd'){			
