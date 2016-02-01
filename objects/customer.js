@@ -1,7 +1,7 @@
 exports.action = function(req, res, data) {
 	
 	try {
-		if (data.action == 'customerInfo'){			
+		if (data.action == 'Info'){			
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
