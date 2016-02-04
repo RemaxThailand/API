@@ -614,38 +614,31 @@ block content
 						| &#58; แก้ไขข้อมูลส่วนตัว
 			#update.panel-collapse.collapse(role='tabpanel')
 				.panel-body
-					pre URL : /#{data.screen}/info/update
+					pre URL : /#{data.screen}/update/info
 					.panel.panel-default
 						.panel-body
 							form.form-horizontal
 								.form-group
-									label.col-sm-2.control-label(for='input') Shop ID
+									label.col-sm-2.control-label(for='input') Token
 									.col-sm-10
-										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										input.form-control.token(type='text', placeholder='Token')
 										p.help-block
-											span.font-pre.label.label-warning shop
-											|   รหัสร้านค้า
+											span.font-pre.label.label-warning token
+											|   รหัส Token
 								.form-group
-									label.col-sm-2.control-label(for='input') Member Key
+									label.col-sm-2.control-label(for='input') Column
 									.col-sm-10
-										input.form-control.memberKey(type='text', placeholder='Member Key')
+										input.form-control.column(type='text', placeholder='Column')
 										p.help-block
-											span.font-pre.label.label-warning memberKey
-											|   Member Key
+											span.font-pre.label.label-warning column
+											|   ชื่อคอลัมน์ที่ต้องการแก้ไข
 								.form-group
-									label.col-sm-2.control-label(for='input') Entity
+									label.col-sm-2.control-label(for='input') Value
 									.col-sm-10
-										input.form-control.entity(type='text', placeholder='Entity')
-										p.help-block
-											span.font-pre.label.label-warning entity
-											|   ชื่อคอลัมน์ที่ต้องการแก้ไข (ถ้ามีมากกว่า 1 ให้คั่นด้วยเครื่องหมาย , เช่น Firstname, Lastname, SelectedMemberType)
-								.form-group
-									label.col-sm-2.control-label(for='input') Entity Value
-									.col-sm-10
-										input.form-control.value(type='text', placeholder='Entity Value')
+										input.form-control.value(type='text', placeholder='Value')
 										p.help-block
 											span.font-pre.label.label-warning value
-											|   ค่าที่ต้องการแก้ไข (ถ้ามีมากกว่า 1 ให้คั่นด้วยเครื่องหมาย , เช่น John, Connor, Member)
+											|   ค่าที่ต้องการแก้ไข
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit

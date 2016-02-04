@@ -42,6 +42,16 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
+			else if (data.subAction[0] == 'info'){
+				if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
+				typeof req.body.column != 'undefined' && req.body.column != '' &&
+				typeof req.body.value != 'undefined' && req.body.value != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_MemberUpdateInfo \''+req.body.token.memberKey+'\', \''+req.body.column+'\', \''+req.body.value+'\'';
+					data.util.query(req, res, data);
+				}
+			}
 		}
 		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				
