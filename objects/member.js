@@ -52,6 +52,19 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
+			else if (data.subAction[0] == 'password'){
+				if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
+				typeof req.body.username != 'undefined' && req.body.username != '' &&
+				typeof req.body.currentPassword != 'undefined' && req.body.currentPassword != '' &&
+				typeof req.body.newPassword != 'undefined' && req.body.newPassword != '') {
+					var currentPassword = data.util.encrypt(req.body.message, (req.body.username == '') ? config.crypto.password : req.body.currentPassword);
+					var newPassword = data.util.encrypt(req.body.message, (req.body.username == '') ? config.crypto.password : req.body.newPassword);
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_MemberUpdatePassword \''+req.body.token.memberKey+'\', \''+currentPassword+'\', \''+newPassword+'\'';
+					data.util.query(req, res, data);
+				}
+			}
 		}
 		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				
