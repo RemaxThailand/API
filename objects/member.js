@@ -54,11 +54,11 @@ exports.action = function(req, res, data) {
 			}
 			else if (data.subAction[0] == 'password'){
 				if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
-				typeof req.body.username != 'undefined' && req.body.username != '' &&
+				typeof req.body.token.username != 'undefined' && req.body.token.username != '' &&
 				typeof req.body.currentPassword != 'undefined' && req.body.currentPassword != '' &&
 				typeof req.body.newPassword != 'undefined' && req.body.newPassword != '') {
-					var currentPassword = data.util.encrypt(req.body.username, (req.body.currentPassword == '') ? config.crypto.password : req.body.currentPassword);
-					var newPassword = data.util.encrypt(req.body.username, (req.body.newPassword == '') ? config.crypto.password : req.body.newPassword);
+					var currentPassword = data.util.encrypt(req.body.token.currentPassword, (req.body.username == '') ? config.crypto.password : req.body.username);
+					var newPassword = data.util.encrypt(req.body.token.newPassword, (req.body.username == '') ? config.crypto.password : req.body.username);
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_MemberUpdatePassword \''+req.body.token.memberKey+'\', \''+currentPassword+'\', \''+newPassword+'\'';
