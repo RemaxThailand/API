@@ -57,8 +57,8 @@ exports.action = function(req, res, data) {
 				typeof req.body.token.username != 'undefined' && req.body.token.username != '' &&
 				typeof req.body.currentPassword != 'undefined' && req.body.currentPassword != '' &&
 				typeof req.body.newPassword != 'undefined' && req.body.newPassword != '') {
-					var currentPassword = data.util.encrypt(req.body.currentPassword, (req.body.token.username == '') ? config.crypto.password : req.body.tokenusername);
-					var newPassword = data.util.encrypt(req.body.newPassword, (req.body.token.username == '') ? config.crypto.password : req.body.token.username);
+					var currentPassword = data.util.encrypt(req.body.currentPassword, req.body.token.username.toLowerCase());
+					var newPassword = data.util.encrypt(req.body.newPassword, req.body.token.username.toLowerCase());
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_MemberUpdatePassword \''+req.body.token.memberKey+'\', \''+currentPassword+'\', \''+newPassword+'\'';
@@ -214,6 +214,7 @@ exports.login = function(req, res, data) {
 	}
 	else {
 		var jwt = require('jsonwebtoken');
+		data.token.username = data.result[0].username;
 		data.token.memberKey = data.result[0].result;
 		data.token.memberId = data.result[0].memberId;
 		data.token.keyInsert = data.result[0].keyInsert;
