@@ -57,8 +57,8 @@ exports.action = function(req, res, data) {
 				typeof req.body.token.username != 'undefined' && req.body.token.username != '' &&
 				typeof req.body.currentPassword != 'undefined' && req.body.currentPassword != '' &&
 				typeof req.body.newPassword != 'undefined' && req.body.newPassword != '') {
-					var currentPassword = data.util.encrypt(req.body.token.currentPassword, (req.body.username == '') ? config.crypto.password : req.body.username);
-					var newPassword = data.util.encrypt(req.body.token.newPassword, (req.body.username == '') ? config.crypto.password : req.body.username);
+					var currentPassword = data.util.encrypt(req.body.currentPassword, (req.body.token.username == '') ? config.crypto.password : req.body.tokenusername);
+					var newPassword = data.util.encrypt(req.body.newPassword, (req.body.token.username == '') ? config.crypto.password : req.body.token.username);
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_MemberUpdatePassword \''+req.body.token.memberKey+'\', \''+currentPassword+'\', \''+newPassword+'\'';
