@@ -10,15 +10,16 @@ exports.action = function(req, res, data) {
 		}
 		else if (data.action == 'returnAdd'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
-				typeof req.body.returnNo != 'undefined' && req.body.returnNo != '' &&
+				typeof req.body.returnNo != 'undefined' && req.body.returnNo != '' &&				
 				typeof req.body.quantity != 'undefined' && req.body.quantity != '' &&
 				typeof req.body.sellNo != 'undefined' && req.body.sellNo != '' &&
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
 				typeof req.body.returnDate != 'undefined' && req.body.returnDate != '' &&
-				typeof req.body.salePrice != 'undefined' && req.body.salePrice != '') {
+				typeof req.body.salePrice != 'undefined' && req.body.salePrice != '' &&  
+				typeof req.body.barcode != 'undefined' && req.body.barcode != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_Pos_ReturnProductInsert \''+req.body.shop+'\',\''+req.body.returnNo+'\',\''+req.body.quantity+'\',\''+req.body.sellNo+'\',\''+req.body.product+'\',\''+req.body.returnDate+'\',\''+req.body.returnBy+'\',\''+req.body.salePrice+'\'';
+					data.command = 'EXEC sp_Pos_ReturnProductInsert \''+req.body.shop+'\',\''+req.body.returnNo+'\',\''+req.body.quantity+'\',\''+req.body.sellNo+'\',\''+req.body.product+'\',\''+req.body.returnDate+'\',\''+req.body.returnBy+'\',\''+req.body.salePrice+'\',\''+req.body.barcode+'\'';
 					data.util.execute(req, res, data);
 			} 
 		}
