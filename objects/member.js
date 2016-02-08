@@ -65,6 +65,18 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
+			
+		}
+		else if (data.action == 'summary'){
+			if (data.subAction[0] == 'alert'){
+				if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '' &&
+					typeof req.body.screen != 'undefined' && req.body.screen != '') {
+						data.json.return = false;
+						data.json.returnResult = true;
+						data.command = 'EXEC sp_MemberSummaryAlert \''+req.body.token.memberKey+'\', \''+req.body.screen+'\'';
+						data.util.query(req, res, data);
+				}
+			}
 		}
 		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				

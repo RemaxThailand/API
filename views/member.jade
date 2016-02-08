@@ -803,3 +803,34 @@ block content
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+		
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#summaryAlert', aria-expanded='false')
+						strong Summary Alert
+						| &#58; แจ้งเตือนแบบแสดงจำนวน
+			#summaryAlert.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/summary/alert
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Token
+									.col-sm-10
+										input.form-control.token(type='text', placeholder='Token')
+										p.help-block
+											span.font-pre.label.label-warning token
+											|   รหัส Token	
+								.form-group
+									label.col-sm-2.control-label(for='input') Screen
+									.col-sm-10
+										input.form-control.screen(type='text', placeholder='Screen')
+										p.help-block
+											span.font-pre.label.label-warning screen
+											|   รหัสผ่านปัจจุบัน
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
