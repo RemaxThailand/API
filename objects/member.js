@@ -78,6 +78,16 @@ exports.action = function(req, res, data) {
 				}
 			}
 		}
+		else if (data.action == 'order'){
+			if (data.subAction[0] == 'history'){
+				if (typeof req.body.token.memberKey != 'undefined' && req.body.token.memberKey != '') {
+						data.json.return = false;
+						data.json.returnResult = true;
+						data.command = 'EXEC sp_MemberOrderHistory \''+req.body.token.memberKey+'\'';
+						data.util.query(req, res, data);
+				}
+			}
+		}
 		/*else if (data.action == 'exist'){
 			if (data.subAction[0] == 'memberKeyAndBrowser'){				
 				if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
