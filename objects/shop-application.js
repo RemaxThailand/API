@@ -31,6 +31,17 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data);
 			}			
 		}
+		else if (data.action == 'license'){			
+			if (data.subAction[0] == 'request'){
+				if (typeof req.body.deviceId != 'undefined' && req.body.deviceId != ''  && 
+					typeof req.body.deviceName != 'undefined' && req.body.deviceName != '' ) {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_ShopApplicationRequest \''+req.body.deviceId+'\', \''+req.body.deviceName+'\'';
+					data.util.query(req, res, data);
+				}
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';

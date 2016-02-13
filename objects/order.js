@@ -43,6 +43,24 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data);
 			}
 		}
+		else if (data.action == 'packing') {
+			if (data.subAction[0] == 'checker'){
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+					data.json.return = false;
+					data.command = 'EXEC sp_PackingChecker \''+req.body.orderNo+'\'';
+					data.util.queryMultiple(req, res, data);
+				}
+			}
+		}
+		else if (data.action == 'barcode') {
+			if (data.subAction[0] == 'checker'){
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+					data.json.return = false;
+					data.command = 'EXEC sp_BarcodeChecker \''+req.body.orderNo+'\'';
+					data.util.queryMultiple(req, res, data);
+				}
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
@@ -58,120 +76,77 @@ exports.action = function(req, res, data) {
 
 
 //## Internal Method ##//
-exports.actionAfterGetShop = function(req, res, data) {
-	if (data.action == 'info') { // ข้อมูลทั่วไป
-		if (req.body.type == 'M'){
-			req.body.memberKey = req.body.key;
-			data.util.getMemberId(req, res, data);
-		}
-		else if (req.body.type == 'A'){
-			exports.getAccessOrderInfo(req, res, data);
+exports.process = function(req, res, data) {
+	if (data.action == 'packing') {
+		if (data.subAction[0] == 'checker'){
+			exports.packingChecker(req, res, data);
 		}
 	}
-	if (data.action == 'history') {
-		data.util.getMemberId(req, res, data);
+	else if (data.action == 'barcode') {
+		if (data.subAction[0] == 'checker'){
+			exports.barcodeChecker(req, res, data);
+		}
 	}
-};
+}
 
-exports.actionAfterGetMemberId = function(req, res, data) {
-	if (data.action == 'info') {
-		exports.getMemberOrderInfo(req, res, data);
-	}
-	else if (data.action == 'history') {
-		exports.getMemberOrderHistory(req, res, data);
-	}
-};
 
-exports.getMemberOrderInfo = function(req, res, data) {
-	data.table.retrieveEntity(data.tableName, data.shop+'-'+data.memberId, req.body.orderNo, function(error, result, response){ // อ่านค่าข้อมูลสินค้าในรถเข็น
-		var json = {};
-		if (!error) { // มีข้อมูล
-			var json = {};
-			data.json.header = JSON.parse(result.Header._);			
-			data.json.header.OrderDate = result.OrderDate._;
-			data.json.header.ExpiryDate = result.ExpiryDate._;
-			data.json.header.MemberID = result.Member._;
-			data.json.address = JSON.parse(result.Address._);
-			delete data.json.address.ID;
-			data.json.detail = JSON.parse(result.Detail._);
-			data.json.active = result.Active._;
-			data.json.isPrint = result.isPrint._;
-			data.json.isPay = result.isPay._;
-			data.json.isPack = result.isPack._;
-			data.json.isShip = result.isShip._;
-			data.json.isExpire = result.isExpire._;
-			data.json.isCancel = result.isCancel._;
-
-			data.json.return = true;
-			data.json.success = true;
-			data.util.responseJson(req, res, data.json);
+exports.packingChecker = function(req, res, data) {
+	data.json.return = true;
+	
+	if (data.result[1] != undefined) {
+		data.json.success = true;
+		data.json.header = data.result[0];
+		data.json.product = data.result[1];
+		/*var json = {};
+		for(i=0; i<data.result[2].length; i++) {
+			json[data.result[2][i].product] = {};
+			json[data.result[2][i].product].realQty = data.result[2][i].qty;
+			json[data.result[2][i].product].realPrice = data.result[2][i].price;
 		}
-		else { // ไม่มีข้อมูล
-			data.json.return = true;
-			data.json.error = 'ODR0002';
-			data.json.errorMessage = 'Order Number ' + req.body.orderNo + ' not found';
-			data.util.responseJson(req, res, data.json);
-		}
-	});
-};
-
-exports.getAccessOrderInfo = function(req, res, data) {
-	var query = new data.azure.TableQuery().select(['PartitionKey', 'Member']).where('RowKey eq ?', req.body.orderNo).and('AccessKey eq ?', req.body.key);
-	data.table.queryEntities('Order',query, null, function(error, result, response) {
-		var hasData = false;
-		for(i=0; i<result.entries.length; i++){
-			if ( result.entries[i].PartitionKey._.indexOf(data.shop) != -1 ){
-				data.memberId = result.entries[i].Member._
-				exports.getMemberOrderInfo(req, res, data);
-				hasData = true;
-				break;
-			}
-		}
-		if (!hasData) {
-			data.json.return = true;
-			data.json.error = 'ODR0003';
-			data.json.errorMessage = 'Invalid Access Key ' + req.body.key;
-			data.util.responseJson(req, res, data.json);
-		}
-	});
-};
-
-
-exports.getMemberOrderHistory = function(req, res, data) {
-	var query = new data.azure.TableQuery().select(['RowKey', 'AccessKey', 'Header', 'ExpiryDate', 'OrderDate', 'isCancel', 'isExpire', 'isPack', 'isPay', 'isPrint', 'isShip'])
-		.where('PartitionKey eq ?', data.shop+'-'+data.memberId);
-	data.table.queryEntities('Order',query, null, function(error, result, response) {
-		if (!error) {
-			if ( result.entries.length != 0 ) {
-				var arr = [];
-				for(i=0; i<result.entries.length; i++){
-					var json = JSON.parse( result.entries[i].Header._ );
-					json.OrderNo = result.entries[i].RowKey._;
-					json.AccessKey = result.entries[i].AccessKey._;
-					json.OrderDate = result.entries[i].OrderDate._;
-					json.ExpiryDate = result.entries[i].ExpiryDate._;
-					json.isCancel = result.entries[i].isCancel._;
-					json.isExpire = result.entries[i].isExpire._;
-					json.isPack = result.entries[i].isPack._;
-					json.isPay = result.entries[i].isPay._;
-					json.isPrint = result.entries[i].isPrint._;
-					json.isShip = result.entries[i].isShip._;
-					arr.push(json);
-				}
-				data.json.result = arr;
-				data.json.return = true;
-				data.json.success = true;
-				data.util.responseJson(req, res, data.json);
+		for(i=0; i<data.result[1].length; i++) {
+			if (json[data.result[1][i].product] == undefined) {
+				json[data.result[1][i].product] = {};
+				json[data.result[1][i].product].realQty = 0;
+				json[data.result[1][i].product].realPrice = 0;
 			}
 			else {
-				data.json.return = true;
-				data.json.error = 'ODR0004';
-				data.json.errorMessage = 'No order history';
-				data.util.responseJson(req, res, data.json);
+				json[data.result[1][i].product].name = data.result[1][i].name;
+				json[data.result[1][i].product].orderQty = data.result[1][i].qty;
+				json[data.result[1][i].product].orderPrice = data.result[1][i].price;
+				json[data.result[1][i].product].sellPrice = data.result[1][i].sellPrice;
 			}
 		}
-		else {
-			data.util.responseError(req, res, error);
+
+		var returnData = [];
+		var keys = Object.keys(json);
+		for(i=0; i<keys.length; i++) {
+			var product = {};
+			product.id = keys[i];
+			product.name = json[keys[i]].name;
+			product.orderQty = json[keys[i]].orderQty;
+			product.realQty = json[keys[i]].realQty;
+			product.orderPrice = json[keys[i]].orderPrice;
+			product.realPrice = json[keys[i]].realPrice;
+			product.sellPrice = json[keys[i]].sellPrice;
+			returnData.push( product );
 		}
-	});
+		//console.log(returnData);
+		data.json.product = returnData;
+		//data.json.result = data.result;*/
+	}
+
+	data.util.responseJson(req, res, data.json);
+};
+
+
+exports.barcodeChecker = function(req, res, data) {
+	data.json.return = true;
+	
+	if (data.result[0] != undefined) {
+		data.json.success = true;
+		data.json.summary = data.result[0];
+		data.json.barcode = data.result[1];
+	}
+
+	data.util.responseJson(req, res, data.json);
 };

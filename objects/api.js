@@ -96,10 +96,7 @@ exports.checkApiKey = function(req, res, data) {
 					}
 				}
 				else { // ถ้า API เป็น Application
-					/*data.json.success = true;
-					data.json.result = data.result;
-					data.util.responseJson(req, res, data.json);
-					*/
+					data.secretKey = data.result[1][0].secretKey;
 					exports.callApi(req, res, data);
 				}
 			}
