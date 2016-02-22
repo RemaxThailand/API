@@ -818,4 +818,89 @@ block content
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
 					
+					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#infoCount', aria-expanded='false')
+						strong Inventory Count Information [Pos]
+						&#58; ข้อมูลตรวจสอบสต็อคสินค้า Noserial แยกตามร้านค้า
+			#infoCount.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/infoCount
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#addCount', aria-expanded='false')
+						strong Inventory Count Add[Pos]
+						&#58; เพิ่มข้อมูลตรวจสอบสต็อคสินค้า Noserial แยกตามร้านค้า
+			#addCount.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/addCount
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|  Shop ID
+								.form-group
+									label.col-sm-2.control-label(for='input') Product
+									.col-sm-10
+										input.form-control.product(type='text', placeholder='Product')
+										p.help-block
+											span.font-pre.label.label-warning product
+											|   Product
+								.form-group
+									label.col-sm-2.control-label(for='input') Quantity
+									.col-sm-10
+										input.form-control.quantity(type='text', placeholder='Quantity')
+										p.help-block
+											span.font-pre.label.label-warning quantity
+											|   Quantity
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')			
 		
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#deleteCount', aria-expanded='false')
+						strong Inventory Count Delete [Pos]
+						&#58; ลบข้อมูลตรวจสอบสต็อคสินค้า Noserial แยกตามร้านค้า
+			#deleteCount.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/deleteCount
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
