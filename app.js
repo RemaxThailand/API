@@ -54,6 +54,12 @@ app.get('*', function(req, res) {
 			var document = require('./objects/document');
 			document.generate(req, res, data);
 		}
+		else if ( data.screen == 'report' ) {
+			var report = require('./objects/report');
+			if(url[1] == 'shop'){
+				report.shop(req, res, url[2], url[3])
+			}
+		}
 		else if ( data.screen == 'barcode' ) {
 			var barcode = require('./objects/barcode');
 			barcode.generate(req, res, url[1]);

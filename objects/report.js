@@ -1,4 +1,4 @@
-exports.dealer = function(req, res, firstname, lastname) {
+exports.shop = function(req, res, firstname, lastname) {
 	firstname = decodeURI(firstname);
 	lastname = decodeURI(lastname);
 	try {
