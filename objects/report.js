@@ -5,7 +5,7 @@ exports.shop = function(req, res, firstname, lastname) {
 
 		var request = require('request');
 
-		request.post({headers: { 'referer': 'https://api.remaxthailand.co.th' }, url: 'https://api.remaxthailand.co.th/register/shop/info',
+		request.post({headers: { 'referer': 'https://api.remaxthailand.co.th' }, url: 'http://127.0.0.1:9991/register/shop/info',
 			form: {
 				apiKey: 'AA69632B-D906-4304-84C6-A039F5985D31',
 				firstname: firstname,
@@ -14,8 +14,7 @@ exports.shop = function(req, res, firstname, lastname) {
 			}
 		},
 		function (error, response, body) {
-			res.json(JSON.parse(body));
-			/*if (!error) {				
+			if (!error) {				
 				var json = JSON.parse(body);
 				json = json.result[0];
 
@@ -30,34 +29,34 @@ exports.shop = function(req, res, firstname, lastname) {
 				doc.font('./fonts/THSarabun.ttf', 32);
 				//doc.y = y; doc.x = x; doc.text('ชื่อผู้สมัคร', {width: 130, align: 'right'} );
 				doc.font('./fonts/THSarabunBold.ttf', 32);
-				doc.y = y; doc.x = x+140; doc.text( 'คุณ' + json.Firstname + '  ' + json.Lastname + ' (' + json.Nickname + ')' );
+				doc.y = y; doc.x = x+140; doc.text( 'คุณ' + json.firstname + '  ' + json.lastname + ' (' + json.nickname + ')' );
 				y += 32;
 
 				doc.font('./fonts/THSarabun.ttf', 18);
 				doc.y = y; doc.x = x; doc.text('เบอร์โทรศัพท์', {width: 130, align: 'right'});
 				doc.font('./fonts/THSarabunBold.ttf', 18);
-				doc.y = y; doc.x = x+140; doc.text( json.Phone.substr(0,3)+'-'+json.Phone.substr(3,4)+'-'+json.Phone.substr(7) );
+				doc.y = y; doc.x = x+140; doc.text( json.mobile.substr(0,3)+'-'+json.mobile.substr(3,4)+'-'+json.mobile.substr(7) );
 				y += 18;
 
 				doc.font('./fonts/THSarabun.ttf', 18);
 				doc.y = y; doc.x = x; doc.text('เวลาที่สะดวกในการติดต่อ', {width: 130, align: 'right'});
 				doc.font('./fonts/THSarabunBold.ttf', 18);
-				doc.y = y; doc.x = x+140; doc.text( json.TimeToContact );
+				doc.y = y; doc.x = x+140; doc.text( json.time );
 				y += 18;
 
-				doc.font('./fonts/THSarabun.ttf', 18);
+				/*doc.font('./fonts/THSarabun.ttf', 18);
 				doc.y = y; doc.x = x; doc.text('สนใจเป็นตัวแทนในจังหวัด', {width: 130, align: 'right'});
 				doc.font('./fonts/THSarabunBold.ttf', 18);
 				doc.y = y; doc.x = x+140; doc.text( json.Province );
-				y += 18;
+				y += 18;*/
 
 				doc.font('./fonts/THSarabun.ttf', 18);
 				doc.y = y; doc.x = x; doc.text('ที่อยู่', {width: 130, align: 'right'});
 				doc.font('./fonts/THSarabunBold.ttf', 18);
-				doc.y = y; doc.x = x+140; doc.text( json.Address );
+				doc.y = y; doc.x = x+140; doc.text( json.address );
 				y += 38;
 
-				doc.font('./fonts/THSarabunBold.ttf', 16);
+				/*doc.font('./fonts/THSarabunBold.ttf', 16);
 				doc.y = y; doc.x = x; doc.text('แนะนำประวัติ หรือกิจการ หรือรูปแบบการจำหน่าย');
 				doc.font('./fonts/THSarabun.ttf', 14);
 				doc.text( '     ' + json.Profile );
@@ -78,14 +77,14 @@ exports.shop = function(req, res, firstname, lastname) {
 				doc.font('./fonts/THSarabunBold.ttf', 16);
 				doc.text('ความคิดเห็น เกี่ยวกับการแข่งขันเพื่อความอยู่รอดในธุรกิจ');
 				doc.font('./fonts/THSarabun.ttf', 14);
-				doc.text( '     ' + json.Comment );
+				doc.text( '     ' + json.Comment );*/
 				doc.moveDown();
 
 				doc.pipe(res); doc.end();
 			} else{
 				data.err = error;
 				res.json(data);
-			}*/
+			}
 		});
 
 	}
