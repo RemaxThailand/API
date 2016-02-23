@@ -57,7 +57,7 @@ app.get('*', function(req, res) {
 		else if ( data.screen == 'report' ) {
 			var report = require('./objects/report');
 			if(url[1] == 'shop'){
-				report.shop(req, res, url[2], url[3])
+				report.shop(req, res, url[2], url[3].replace('.pdf', ''))
 			}
 		}
 		else if ( data.screen == 'barcode' ) {

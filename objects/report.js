@@ -14,7 +14,7 @@ exports.shop = function(req, res, firstname, lastname) {
 			}
 		},
 		function (error, response, body) {
-			console.log(JSON.parse(body));
+			res.json(JSON.parse(body));
 			/*if (!error) {				
 				var json = JSON.parse(body);
 				json = json.result[0];
