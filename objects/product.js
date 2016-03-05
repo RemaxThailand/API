@@ -46,8 +46,9 @@ exports.action = function(req, res, data) {
 				typeof req.body.price != 'undefined' && req.body.price != '') {
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.category+'\', '+req.body.price+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
+					data.util.query(req, res, data); 
 				}
-			data.util.query(req, res, data); 
+			
 		}
 		else if (data.action == 'add'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
