@@ -37,6 +37,10 @@ exports.action = function(req, res, data) {
 						data.json.returnResult = true;
 						data.command = 'EXEC sp_ShopProductByBrandUrl \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
+					else if (req.body.type == 'productInCatalog') {
+						data.json.returnResult = true;
+						data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.shop+'\', \''+req.body.value+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
+					}
 					data.util.query(req, res, data); 
 				}
 			}
