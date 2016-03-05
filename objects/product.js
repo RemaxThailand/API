@@ -45,7 +45,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.category != 'undefined' && req.body.category != '' &&
 				typeof req.body.price != 'undefined' && req.body.price != '') {
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.category+'\', \''+req.body.price+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
+					data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.shop+'\', \''+req.body.category+'\', \''+req.body.price+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
 					data.util.query(req, res, data); 
 				}
 			
