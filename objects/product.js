@@ -5,7 +5,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
 				typeof req.body.type != 'undefined' && req.body.type != '' &&
 				typeof req.body.value != 'undefined' && req.body.value != '') {
-				var type = '|item|byCategoryName|byCategoryUrl4Web|byBrandName|byBrandUrl4Web|productInCatalog|'; // ชื่อ type ที่สามารถเรียกดูข้อมูลได้
+				var type = '|item|byCategoryName|byCategoryUrl4Web|byBrandName|byBrandUrl4Web|'; // ชื่อ type ที่สามารถเรียกดูข้อมูลได้
 				if ( type.indexOf('|'+req.body.type+'|') == -1 ) { // ถ้าชื่อ Entity ไม่ถูกต้อง
 					data.json.return = true;
 					data.json.error = 'PRD0001';
@@ -37,13 +37,13 @@ exports.action = function(req, res, data) {
 						data.json.returnResult = true;
 						data.command = 'EXEC sp_ShopProductByBrandUrl \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
-					else if (req.body.type == 'productInCatalog') {
-						data.json.returnResult = true;
-						data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.shop+'\', \''+req.body.value+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
-					}
 					data.util.query(req, res, data); 
 				}
 			}
+		}
+		else if(data.action == 'infoSelectPrice'){
+			data.json.returnResult = true;
+			data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.category+'\', '+req.body.price+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
 		}
 		else if (data.action == 'add'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&

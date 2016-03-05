@@ -55,7 +55,44 @@ block content
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
-
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#infoSelectPrice', aria-expanded='false')
+						strong Product Information Select Price  
+						| &#58; ข้อมูลสินค้า
+			#infoSelectPrice.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/infoSelectPrice
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Category
+									.col-sm-10
+										input.form-control.category(type='text', placeholder='Category')
+										p.help-block
+											span.font-pre.label.label-warning category
+											|   ประเภทของสินค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Price
+									.col-sm-10
+										input.form-control.price(type='text', placeholder='Price')
+										p.help-block
+											span.font-pre.label.label-warning price
+											|   ช่องราคา
+								.form-group
+									label.col-sm-2.control-label(for='input') Visible
+									.col-sm-10
+										input.form-control.visible(type='text', placeholder='Visible')
+										p.help-block
+											span.font-pre.label.label-default visible
+											|   แสดงเฉพาะสินค้าที่ลูกค้าสามารถเห็นได้หรือไม่ (1 = แสดง, 0 = ไม่แสดง, 2 = ทั้งหมด) Default = 2
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
