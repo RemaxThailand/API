@@ -44,7 +44,7 @@ exports.action = function(req, res, data) {
 		else if(data.action == 'infoSelectPrice'){
 			if (typeof req.body.category != 'undefined' && req.body.category != '' &&
 				typeof req.body.price != 'undefined' && req.body.price != '') {
-					data.json.return = true;
+					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_ProductByCategoryUrl \''+req.body.category+'\', \''+req.body.price+'\', '+( (typeof req.body.visible != 'undefined' && req.body.visible != '') ? '\''+req.body.visible+'\'' : 'NULL' );
 					data.util.query(req, res, data); 
