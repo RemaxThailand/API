@@ -103,7 +103,7 @@ html
 						
 						li(class=(data.screen === 'product' || data.screen === 'category' || data.screen === 'brand' || data.screen === 'warranty' || data.screen === 'claim' || data.screen === 'properties' ? 'treeview active' : 'treeview'))
 							a(href="#")
-								i(class=(data.screen === 'product' || data.screen === 'category' || data.screen === 'brand' || data.screen === 'warranty' || data.screen === 'claim' || data.screen === 'properties' ? 'fa fa-cubes text-aqua' : 'fa fa-cubes'))
+								i(class=(data.screen === 'product' || data.screen === 'category' || data.screen === 'brand' || data.screen === 'warranty' || data.screen === 'claim' || data.screen === 'properties' || data.screen === 'catalog' ? 'fa fa-cubes text-aqua' : 'fa fa-cubes'))
 								span  Product
 								i.fa.fa-angle-left.pull-right
 							ul.treeview-menu
@@ -139,6 +139,10 @@ html
 									a(href="./return")
 										i(class=(data.screen === 'return' ? 'fa fa-circle-o text-yellow' : 'fa fa-circle-o'))
 										|  Return
+								li(class=(data.screen === 'catalog' ? 'active' : ''))
+									a(href="./catalog")
+										i(class=(data.screen === 'catalog' ? 'fa fa-circle-o text-yellow' : 'fa fa-circle-o'))
+										|  Catalog
 										
 						li(class=(data.screen === 'cart' ? 'treeview active' : 'treeview'))
 							a(href="#")
