@@ -15,7 +15,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_CatalogAdd \''+req.body.memberKey+'\', , \''+req.body.product+'\', \''+req.body.sellPrice+'\'';
+				data.command = 'EXEC sp_CatalogAdd \''+req.body.memberKey+'\', \''+req.body.product+'\', \''+req.body.sellPrice+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
