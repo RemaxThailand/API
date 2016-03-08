@@ -19,6 +19,14 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'summary'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogSummary \''+req.body.memberKey+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 
 		else {
 			data.json.error = 'API0011';
