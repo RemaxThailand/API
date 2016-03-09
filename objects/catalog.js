@@ -5,7 +5,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ShopCategory \''+req.body.shop+'\'';
+				data.command = 'EXEC sp_CatalogInfo \''+req.body.shop+'\, \''+req.body.memberKey+'\', \''+req.body.customerName+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
@@ -24,6 +24,14 @@ exports.action = function(req, res, data) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_CatalogSummary \''+req.body.memberKey+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
+		else if (data.action == 'detail'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogDetail \''+req.body.memberKey+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
