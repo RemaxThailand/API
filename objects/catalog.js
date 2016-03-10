@@ -35,6 +35,15 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'confirm'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.customer != 'undefined' && req.body.customer != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogConfirm \''+req.body.memberKey+'\', \''+req.body.customer+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 
 		else {
 			data.json.error = 'API0011';

@@ -84,8 +84,8 @@ block content
 			#headingOne.panel-heading(role='tab') 
 				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#summary', aria-expanded='false')
-						strong Catalog Add  
-						| &#58; เพิ่มข้อมูลแคตตาล็อก
+						strong Catalog Summary  
+						| &#58; สรุปข้อมูลแคตตาล็อก
 			#summary.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/summary
@@ -108,8 +108,8 @@ block content
 			#headingOne.panel-heading(role='tab') 
 				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#detail', aria-expanded='false')
-						strong Catalog Add  
-						| &#58; เพิ่มข้อมูลแคตตาล็อก
+						strong Catalog Detail  
+						| &#58; รายละเอียดข้อมูลแคตตาล็อก
 			#detail.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/detail
@@ -122,6 +122,37 @@ block content
 										input.form-control.memberKey(type='text', placeholder='Member Key')
 										p.help-block
 											span.font-pre.label.label-warning memberKey
+											|   Member Key
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+		
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab') 
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#confirm', aria-expanded='false')
+						strong Catalog Confirm  
+						| &#58; ยืนยันข้อมูลแคตตาล็อก
+			#confirm.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/confirm
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Member Key
+									.col-sm-10
+										input.form-control.memberKey(type='text', placeholder='Member Key')
+										p.help-block
+											span.font-pre.label.label-warning memberKey
+											|   Member Key
+								.form-group
+									label.col-sm-2.control-label(for='input') Customer Name
+									.col-sm-10
+										input.form-control.customer(type='text', placeholder='Customer Name')
+										p.help-block
+											span.font-pre.label.label-warning customer
 											|   Member Key
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
