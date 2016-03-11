@@ -44,6 +44,15 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'deleteList'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.product != 'undefined' && req.body.product != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogDeleteList\''+req.body.memberKey+'\', \''+req.body.product+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 
 		else {
 			data.json.error = 'API0011';
