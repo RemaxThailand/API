@@ -2,10 +2,11 @@ exports.action = function(req, res, data) {
 	
 	try {
 		if (data.action == 'info'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+			typeof req.body.customerName != 'undefined' && req.body.customerName != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_CatalogInfo \''+req.body.shop+'\, \''+req.body.memberKey+'\', \''+req.body.customerName+'\'';
+				data.command = 'EXEC sp_CatalogInfo \''+req.body.memberKey+'\', \''+req.body.customerName+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
@@ -50,6 +51,14 @@ exports.action = function(req, res, data) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_CatalogDeleteList\''+req.body.memberKey+'\', \''+req.body.product+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
+		else if (data.action == 'customer'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogCustomer \''+req.body.memberKey+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
