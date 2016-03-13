@@ -61,6 +61,15 @@ exports.action = function(req, res, data) {
 				}
 			}
 		}
+		else if (data.action == 'cancel'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CancelOrder \''+req.body.memberKey+'\', \''+req.body.orderNo+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
