@@ -70,6 +70,16 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'canceledInfo'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+				typeof req.body.year != 'undefined' && req.body.year != '' &&
+				typeof req.body.month != 'undefined' && req.body.month != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CanceledOrderInfo \''+req.body.memberKey+'\', \''+req.body.year+'\', \''+req.body.month+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
