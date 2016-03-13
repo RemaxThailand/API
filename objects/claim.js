@@ -4,7 +4,7 @@ exports.action = function(req, res, data) {
 			data.json.return = false;
 			data.json.returnResult = true;
 			data.command = 'EXEC sp_ClaimInfo \''+req.body.shop+'\', \''+req.body.id+'\', \''+req.body.barcode+'\', \''+req.body.claimdate_from+'\', \''+req.body.claimdate_to+'\', \''+req.body.status+'\', \''+req.body.firstname+'\', \''+req.body.lineid+'\', \''+req.body.tel+'\'';
-			data.util.query(req, res, data);
+			data.util.queryMultiple(req, res, data);
 		}
 		else if (data.action == 'add'){ 
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
