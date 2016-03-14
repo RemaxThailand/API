@@ -66,7 +66,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_CancelOrder \''+req.body.memberKey+'\', \''+req.body.orderNo+'\'';
+				data.command = 'EXEC sp_CancelOrder \''+req.body.memberKey+'\', \''+req.body.orderNo+'\', \''+req.body.remark+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
