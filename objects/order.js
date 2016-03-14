@@ -76,7 +76,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.month != 'undefined' && req.body.month != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_CanceledOrderInfo \''+req.body.memberKey+'\', \''+req.body.year+'\', \''+req.body.month+'\'';
+				data.command = 'EXEC sp_CanceledOrderInfo \''+req.body.memberKey+'\', \''+(parseInt(req.body.year)%2000)+'\', \''+req.body.month+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
