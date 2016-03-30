@@ -62,11 +62,11 @@ block content
 											span.font-pre.label.label-warning price
 											|   ช่องราคาที่เลือก
 								.form-group
-									label.col-sm-2.control-label(for='input') Price
+									label.col-sm-2.control-label(for='input') Price SRP
 									.col-sm-10
-										input.form-control.priceSRP(type='text', placeholder='Price')
+										input.form-control.priceSRP(type='text', placeholder='Price SRP')
 										p.help-block
-											span.font-pre.label.label-warning price
+											span.font-pre.label.label-warning priceSRP
 											|   ช่องราคา SRP
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
@@ -106,6 +106,13 @@ block content
 										p.help-block
 											span.font-pre.label.label-warning sellPrice
 											|   ราคา
+								.form-group
+									label.col-sm-2.control-label(for='input') Price SRP
+									.col-sm-10
+										input.form-control.priceSRP(type='text', placeholder='Price SRP')
+										p.help-block
+											span.font-pre.label.label-warning priceSRP
+											|   ช่องราคา SRP
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit

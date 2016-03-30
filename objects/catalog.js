@@ -23,10 +23,11 @@ exports.action = function(req, res, data) {
 		else if (data.action == 'add'){
 			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
-				typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '') {
+				typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '' &&
+				typeof req.body.priceSRP != 'undefined' && req.body.priceSRP != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_CatalogAdd \''+req.body.memberKey+'\', \''+req.body.product+'\', \''+req.body.sellPrice+'\'';
+				data.command = 'EXEC sp_CatalogAdd \''+req.body.memberKey+'\', \''+req.body.product+'\', \''+req.body.sellPrice+'\' , \''+req.body.priceSRP+'\'';
 				data.util.query(req, res, data); 
 			}
 		}
