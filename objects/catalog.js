@@ -10,6 +10,16 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'product'){
+			if (typeof req.body.category != 'undefined' && req.body.category != '' &&
+			typeof req.body.price != 'undefined' && req.body.price != '' &&
+			typeof req.body.priceSRP != 'undefined' && req.body.priceSRP != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_CatalogProduct \''+req.body.category+'\', \''+req.body.price+'\', \''+req.body.priceSRP+'\'';
+				data.util.query(req, res, data); 
+			}
+		}
 		else if (data.action == 'add'){
 			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
