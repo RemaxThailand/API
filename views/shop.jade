@@ -32,8 +32,8 @@ block content
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#shopSalesSummary', aria-expanded='false')
-						strong Category Information  
-						| &#58; ข้อมูลหมวดหมู่ของสินค้า
+						strong Daily Sales 
+						| &#58;  ยอดขายรายวัน
 			#shopSalesSummary.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/salesSummary
@@ -52,14 +52,14 @@ block content
 									.col-sm-10
 										input.form-control.date_from(type='text', placeholder=' Date From')
 										p.help-block
-											span.font-pre.label.label-default date_from
+											span.font-pre.label.label-warning date_from
 											|   Date From (format '12/31/2015')
 								.form-group
 									label.col-sm-2.control-label(for='input') Claim Date To
 									.col-sm-10
 										input.form-control.date_to(type='text', placeholder=' Date To')
 										p.help-block
-											span.font-pre.label.label-default date_to
+											span.font-pre.label.label-warning date_to
 											|   Date To (format '12/31/2015')
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
