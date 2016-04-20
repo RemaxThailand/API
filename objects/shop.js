@@ -1,11 +1,21 @@
 exports.action = function(req, res, data) {
 	try{
 		if (data.action == 'salesSummary'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+			typeof req.body.date_from != 'undefined' && req.body.date_from != '' &&
+			typeof req.body.date_to != 'undefined' && req.body.date_to != '' ) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_rpt_Sales_Summary \''+req.body.shop+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\'';
+				data.util.query(req, res, data);
+			}
+		} else if (data.action == 'name'){
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_rpt_Sales_Summary \''+req.body.shop+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\'';
+			data.command = 'EXEC sp_ShopName';
 			data.util.query(req, res, data);
-		} else {
+		} 
+		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
 		}
