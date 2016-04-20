@@ -15,7 +15,7 @@ exports.action = function(req, res, data) {
 			data.command = 'EXEC sp_ShopName';
 			data.util.query(req, res, data);
 		} else if (data.action == 'accumulated'){
-			if (typeof req.body.shop != 'undefined' && req.body.shop != '' 
+			if (typeof req.body.shop != 'undefined' && req.body.shop != ''){ 
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_rpt_Shop_Accumulated \''+req.body.shop+'\'';
