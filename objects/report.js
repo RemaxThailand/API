@@ -32,7 +32,7 @@ exports.action = function(req, res, report, branch) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Branch '+branch, 10, 10)
+								.text('Stock Aging Report : Branch '+'Test', 10, 10)
 
 
 							doc.lineWidth(0.75)
