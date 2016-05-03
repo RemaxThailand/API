@@ -12,10 +12,10 @@ exports.action = function(req, res, report, branch) {
 				//var branch = 1;
 				//var report = 'aging';
 				
-				request.query('EXEC sp_ShopName \''+branch+'\'', function (err, recordset, returnValue) {
+				/*request.query('EXEC sp_ShopName \''+branch+'\'', function (err, recordset, returnValue) {
 					if (!err){shopName = recordset[0].name}
 					else{res.send(err.message)}
-				});
+				});*/
 				var PDFDocument = require('pdfkit');
 				var moment = require('moment');
 				var doc = new PDFDocument({margin: 10, size: 'A4'});
