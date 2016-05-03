@@ -36,7 +36,7 @@ exports.action = function(req, res, report, branch) {
 						if (!err){
 
 							doc.font('./fonts/THSarabunBold.ttf', 18)
-								.text('Stock Aging Report : Shop '+shopName, 10, 10)
+								.text('Stock Aging Report : '+shopName, 10, 10)
 
 
 							doc.lineWidth(0.75)
@@ -85,21 +85,21 @@ exports.action = function(req, res, report, branch) {
 								doc.text(recordset[i]['sku'], { width: 40, align: 'left' })
 								doc.y = y; doc.x = posX[0]+70;
 								doc.text(recordset[i]['productName'], { width: 300, align: 'left' })
-								doc.y = y; doc.x = posX[1];
+								doc.y = y; doc.x = posX[3];
 								doc.text((recordset[i]['cost'] > 0) ? numberWithCommas(recordset[i]['cost'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								//doc.text(recordset[i]['cost'].toFixed(0), { width: 35, align: 'right' })
 								//doc.y = y; doc.x = posX[2];
 								//doc.text((recordset[i]['costPlan'] > 0) ? numberWithCommas(recordset[i]['costPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								//doc.text(recordset[i]['costPlan'].toFixed(0), { width: 35, align: 'right' })
-								doc.y = y; doc.x = posX[3];
-								doc.text((recordset[i]['90'] > 0) ? numberWithCommas(recordset[i]['90'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[4];
-								doc.text((recordset[i]['60'] > 0) ? numberWithCommas(recordset[i]['60'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								doc.text((recordset[i]['90'] > 0) ? numberWithCommas(recordset[i]['90'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[5];
-								doc.text((recordset[i]['30'] > 0) ? numberWithCommas(recordset[i]['30'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								doc.text((recordset[i]['60'] > 0) ? numberWithCommas(recordset[i]['60'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[6];
-								doc.text((recordset[i]['15'] > 0) ? numberWithCommas(recordset[i]['15'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								doc.text((recordset[i]['30'] > 0) ? numberWithCommas(recordset[i]['30'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[7];
+								doc.text((recordset[i]['15'] > 0) ? numberWithCommas(recordset[i]['15'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								doc.y = y; doc.x = posX[8];
 								doc.text((recordset[i]['0'] > 0) ? numberWithCommas(recordset[i]['0'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								//doc.y = y; doc.x = posX[8];
 								//doc.text((recordset[i]['qtyPlan'] > 0) ? numberWithCommas(recordset[i]['qtyPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
@@ -115,26 +115,26 @@ exports.action = function(req, res, report, branch) {
 								sum30 += recordset[i]['cost']*recordset[i]['30'];
 								sum15 += recordset[i]['cost']*recordset[i]['15'];
 								sum0 += recordset[i]['cost']*recordset[i]['0'];
-								sum99 += (recordset[i]['qtyPlan'] != 0 && recordset[i]['costPlan'] != 0) ? recordset[i]['costPlan']*recordset[i]['qtyPlan'] : 0;
+								//sum99 += (recordset[i]['qtyPlan'] != 0 && recordset[i]['costPlan'] != 0) ? recordset[i]['costPlan']*recordset[i]['qtyPlan'] : 0;
 
 								if ( recordset[i+1] == null || groupName != recordset[i+1]['groupName'] ) {
 									if (sum90 != 0 || sum60 != 0 || sum30 != 0 || sum15 != 0 || sum0 != 0 || sum99 != 0) {
 										y += 16;
 										doc.font('./fonts/THSarabunBold.ttf', 10)
-										doc.y = y; doc.x = posX[1];
-										doc.text('มูลค่า', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[3];
-										doc.text((sum90 > 0) ? numberWithCommas(sum90.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text('มูลค่า', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[4];
-										doc.text((sum60 > 0) ? numberWithCommas(sum60.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text((sum90 > 0) ? numberWithCommas(sum90.toFixed(0)) : '-', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[5];
-										doc.text((sum30 > 0) ? numberWithCommas(sum30.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text((sum60 > 0) ? numberWithCommas(sum60.toFixed(0)) : '-', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[6];
-										doc.text((sum15 > 0) ? numberWithCommas(sum15.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text((sum30 > 0) ? numberWithCommas(sum30.toFixed(0)) : '-', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[7];
-										doc.text((sum0 > 0) ? numberWithCommas(sum0.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text((sum15 > 0) ? numberWithCommas(sum15.toFixed(0)) : '-', { width: 35, align: 'right' })
 										doc.y = y; doc.x = posX[8];
-										doc.text((sum99 > 0) ? numberWithCommas(sum99.toFixed(0)) : '-', { width: 35, align: 'right' })
+										doc.text((sum0 > 0) ? numberWithCommas(sum0.toFixed(0)) : '-', { width: 35, align: 'right' })
+										//doc.y = y; doc.x = posX[8];
+										//doc.text((sum99 > 0) ? numberWithCommas(sum99.toFixed(0)) : '-', { width: 35, align: 'right' })
 
 										doc.lineWidth(0.5)
 											.moveTo(posX[1], y+13)
@@ -142,7 +142,7 @@ exports.action = function(req, res, report, branch) {
 											.dash(1, {space: 0})
 											.stroke()
 
-										sum90 = sum60 = sum30 = sum15 = sum0 = sum99 = 0;
+										sum90 = sum60 = sum30 = sum15 = sum0  = 0;
 										y += 3;
 									}
 								}
@@ -383,20 +383,20 @@ function drawHeadLine(doc, groupName, posX, y, width){
 	doc.font('./fonts/THSarabunBold.ttf', 18)
 		.text(groupName, { width: 300, align: 'left' });
 
-	doc.y = y+3; doc.x = posX[1];
+	doc.y = y+3; doc.x = posX[3];
 	doc.font('./fonts/THSarabunBold.ttf', 12)
 		.text('ทุน', { width: width, align: 'right' })
 	//doc.y = y+3; doc.x = posX[2];
 	//doc.text('ทุนใหม่', { width: width, align: 'right' })
-	doc.y = y+3; doc.x = posX[3];
-	doc.text('90', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[4];
-	doc.text('60', { width: width, align: 'right' })
+	doc.text('90', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[5];
-	doc.text('30', { width: width, align: 'right' })
+	doc.text('60', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[6];
-	doc.text('15', { width: width, align: 'right' })
+	doc.text('30', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[7];
+	doc.text('15', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[8];
 	doc.text('ปัจจุบัน', { width: width, align: 'right' })
 	//doc.y = y+3; doc.x = posX[8];
 	//doc.text('Plan', { width: width, align: 'right' })
