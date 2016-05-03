@@ -1,6 +1,6 @@
 var sql = require('mssql');
 var config = require('../config.js');
-var shopName = '666';
+var shopName = 'สาขา เสือป่า';
 exports.action = function(req, res, report, branch) {
 	
 	try {
