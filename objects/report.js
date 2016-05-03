@@ -35,8 +35,8 @@ exports.action = function(req, res, report, branch) {
 					request.query('EXEC sp_ReportAging \''+branch+'\'', function (err, recordset, returnValue) {
 						if (!err){
 
-							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Shop '+shopName, 10, 50)
+							doc.font('./fonts/CALIBRIB.TTF', 16)
+								.text('Stock Aging Report : Shop '+shopName, 10, 10)
 
 
 							doc.lineWidth(0.75)
