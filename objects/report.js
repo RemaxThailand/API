@@ -36,7 +36,7 @@ exports.action = function(req, res, report, branch) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Shop '+shopName, 10, 10)
+								.text('Stock Aging Report : Shop '+shopName, 10, 50)
 
 
 							doc.lineWidth(0.75)
