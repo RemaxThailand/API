@@ -1,6 +1,6 @@
 var sql = require('mssql');
 var config = require('../config.js');
-var shopName = 'สาขา เสือป่า';
+var shopName = '';
 exports.action = function(req, res, report, branch) {
 	
 	try {
@@ -12,10 +12,10 @@ exports.action = function(req, res, report, branch) {
 				//var branch = 1;
 				//var report = 'aging';
 				
-				/*request.query('EXEC sp_ShopName \''+branch+'\'', function (err, recordset, returnValue) {
+				request.query('EXEC sp_ShopName \''+branch+'\'', function (err, recordset, returnValue) {
 					if (!err){shopName = recordset[0].name}
 					else{res.send(err.message)}
-				});*/
+				});
 				var PDFDocument = require('pdfkit');
 				var moment = require('moment');
 				var doc = new PDFDocument({margin: 10, size: 'A4'});
@@ -35,7 +35,7 @@ exports.action = function(req, res, report, branch) {
 					request.query('EXEC sp_ReportAging \''+branch+'\'', function (err, recordset, returnValue) {
 						if (!err){
 
-							doc.font('./fonts/THSarabun.ttf', 18)
+							doc.font('./fonts/THSarabunBold.ttf', 18)
 								.text('Stock Aging Report : Shop '+shopName, 10, 10)
 
 
