@@ -28,7 +28,7 @@ exports.action = function(req, res, report, branch) {
 
 				//### STOCK AGING REPORT ###//
 				if (report == 'aging') {
-					request.query('EXEC sp_ReportAging '+branch, function (err, recordset, returnValue) {
+					request.query('EXEC sp_ReportAging \''+branch'', function (err, recordset, returnValue) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
@@ -149,7 +149,7 @@ exports.action = function(req, res, report, branch) {
 							doc.end();
 
 						}else{
-						   res.send('Error: '+err.message);
+						   res.send(err.message);
 						}
 					});
 				}
