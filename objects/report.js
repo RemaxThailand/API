@@ -32,7 +32,7 @@ exports.action = function(req, res, report, branch) {
 
 				//### STOCK AGING REPORT ###//
 				if (report == 'aging') {
-					request.query('EXEC sp_ReportAging \''+branch+'\', \'''\'', function (err, recordset, returnValue) {
+					request.query('EXEC sp_ReportAging \''+branch+'\', \'''', function (err, recordset, returnValue) {
 						if (!err){
 
 							doc.font('./fonts/THSarabunBold.ttf', 18)
