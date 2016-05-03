@@ -14,7 +14,7 @@ exports.action = function(req, res, report, branch) {
 				var shopName;
 				request.query('EXEC sp_ShopName \''+branch+'\'', function (err, recordset, returnValue) {
 					if (!err){shopName = recordset[0].name
-					res.send(recordset)}
+					res.send(recordset[0])}
 					else{res.send(err.message);}
 				});
 				var PDFDocument = require('pdfkit');
