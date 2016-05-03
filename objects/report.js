@@ -276,6 +276,7 @@ exports.action = function(req, res, report, branch) {
 	}
 
 };
+
 exports.shop = function(req, res, firstname, lastname) {
 	firstname = decodeURI(firstname);
 	lastname = decodeURI(lastname);
