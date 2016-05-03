@@ -2,7 +2,7 @@ var sql = require('mssql');
 var config = require('../config.js');
 
 exports.action = function(req, res, report, branch) {
-
+res.send(branch+' OK')
 	try {
 
 		if (report == 'aging' || report == 'run_rate') {
