@@ -137,9 +137,9 @@ exports.action = function(req, res, report, branch) {
 										//doc.text((sum99 > 0) ? numberWithCommas(sum99.toFixed(0)) : '-', { width: 35, align: 'right' })
 
 										doc.lineWidth(0.5)
-											.moveTo(posX[1], y+13)
+											.moveTo(posX[2], y+13)
 											.lineTo(posX[9], y+13)
-											.dash(1, {space: 1})
+											.dash(1, {space: 0})
 											.stroke()
 
 										sum90 = sum60 = sum30 = sum15 = sum0  = 0;
