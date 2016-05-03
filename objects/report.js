@@ -2,7 +2,7 @@ var sql = require('mssql');
 var config = require('../config.js');
 
 exports.action = function(req, res, report, branch) {
-res.send(branch+' OK')
+	
 	try {
 
 		if (report == 'aging' || report == 'run_rate') {
@@ -162,7 +162,7 @@ res.send(branch+' OK')
 							var posX = [10, 315, 345, 375, 405, 435, 465, 495, 525, 555, 585];
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Run Rate Report : Branch '+branch, 10, 10)
+								.text('Stock Run Rate Report : Branch '+'Test', 10, 10)
 
 							doc.lineWidth(0.75)
 								.moveTo(posX[0], 30)
