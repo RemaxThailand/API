@@ -1,0 +1,140 @@
+extends layout
+
+block content
+
+	#accordion.panel-group(role='tablist', aria-multiselectable='true')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#info', aria-expanded='false')
+						strong Category Information  
+						| &#58; ข้อมูลหมวดหมู่ของสินค้า
+			#info.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/info
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
+	#accordion.panel-group(role='tablist', aria-multiselectable='true')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#name', aria-expanded='false')
+						strong Shop Name
+						| &#58; ชื่อช็อป
+			#name.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/name
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-default shop
+											|   รหัสร้านค้า
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
+	#accordion.panel-group(role='tablist', aria-multiselectable='true')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#shopSalesSummary', aria-expanded='false')
+						strong Daily Sales 
+						| &#58;  ยอดขายรายวัน
+			#shopSalesSummary.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/salesSummary
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Claim Date From
+									.col-sm-10
+										input.form-control.date_from(type='text', placeholder=' Date From')
+										p.help-block
+											span.font-pre.label.label-warning date_from
+											|   Date From (format '12/31/2015')
+								.form-group
+									label.col-sm-2.control-label(for='input') Claim Date To
+									.col-sm-10
+										input.form-control.date_to(type='text', placeholder=' Date To')
+										p.help-block
+											span.font-pre.label.label-warning date_to
+											|   Date To (format '12/31/2015')
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+	#accordion.panel-group(role='tablist', aria-multiselectable='true')
+			.panel.panel-default
+				#headingOne.panel-heading(role='tab')
+					h4.panel-title
+						a(data-toggle='collapse', data-parent='#accordion', href='#accumulated', aria-expanded='false')
+							strong Accumulated  
+							| &#58; ยอดสะสม
+				#accumulated.panel-collapse.collapse(role='tabpanel')
+					.panel-body
+						pre URL : /#{data.screen}/accumulated
+						.panel.panel-default
+							.panel-body
+								form.form-horizontal
+									.form-group
+										label.col-sm-2.control-label(for='input') Shop ID
+										.col-sm-10
+											input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+											p.help-block
+												span.font-pre.label.label-warning shop
+												|   รหัสร้านค้า
+									.form-group.margin-bottom-0
+										.col-sm-offset-2.col-sm-10
+											.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+						.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+	#accordion.panel-group(role='tablist', aria-multiselectable='true')
+			.panel.panel-default
+				#headingOne.panel-heading(role='tab')
+					h4.panel-title
+						a(data-toggle='collapse', data-parent='#accordion', href='#receivable', aria-expanded='false')
+							strong Receivable  
+							| &#58; ยอดลูกหนี้
+				#receivable.panel-collapse.collapse(role='tabpanel')
+					.panel-body
+						pre URL : /#{data.screen}/receivable
+						.panel.panel-default
+							.panel-body
+								form.form-horizontal
+									.form-group
+										label.col-sm-2.control-label(for='input') Shop ID
+										.col-sm-10
+											input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+											p.help-block
+												span.font-pre.label.label-warning shop
+												|   รหัสร้านค้า
+									.form-group.margin-bottom-0
+										.col-sm-offset-2.col-sm-10
+											.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+						.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
