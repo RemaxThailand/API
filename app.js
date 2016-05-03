@@ -50,6 +50,7 @@ app.get('*', function(req, res) {
 	url = url.filter(function(n){ return n !== ''; });
 	if ( url.length >= 1 ) {
 		data.screen = url[0];
+		res.send(url[2])
 		if ( data.screen == 'document' ) {
 			var document = require('./objects/document');
 			document.generate(req, res, data);
