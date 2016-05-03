@@ -149,7 +149,7 @@ exports.action = function(req, res, report, branch) {
 							doc.end();
 
 						}else{
-						   res.send(err.message);
+						   res.send('Error: '+err.message);
 						}
 					});
 				}
