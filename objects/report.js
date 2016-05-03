@@ -84,8 +84,8 @@ exports.action = function(req, res, report, branch) {
 								doc.y = y; doc.x = posX[1];
 								doc.text((recordset[i]['cost'] > 0) ? numberWithCommas(recordset[i]['cost'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								//doc.text(recordset[i]['cost'].toFixed(0), { width: 35, align: 'right' })
-								doc.y = y; doc.x = posX[2];
-								doc.text((recordset[i]['costPlan'] > 0) ? numberWithCommas(recordset[i]['costPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								//doc.y = y; doc.x = posX[2];
+								//doc.text((recordset[i]['costPlan'] > 0) ? numberWithCommas(recordset[i]['costPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								//doc.text(recordset[i]['costPlan'].toFixed(0), { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[3];
 								doc.text((recordset[i]['90'] > 0) ? numberWithCommas(recordset[i]['90'].toFixed(0)) : '-', { width: 35, align: 'right' })
@@ -97,8 +97,8 @@ exports.action = function(req, res, report, branch) {
 								doc.text((recordset[i]['15'] > 0) ? numberWithCommas(recordset[i]['15'].toFixed(0)) : '-', { width: 35, align: 'right' })
 								doc.y = y; doc.x = posX[7];
 								doc.text((recordset[i]['0'] > 0) ? numberWithCommas(recordset[i]['0'].toFixed(0)) : '-', { width: 35, align: 'right' })
-								doc.y = y; doc.x = posX[8];
-								doc.text((recordset[i]['qtyPlan'] > 0) ? numberWithCommas(recordset[i]['qtyPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
+								//doc.y = y; doc.x = posX[8];
+								//doc.text((recordset[i]['qtyPlan'] > 0) ? numberWithCommas(recordset[i]['qtyPlan'].toFixed(0)) : '-', { width: 35, align: 'right' })
 
 								doc.lineWidth(0.25)
 									.moveTo(posX[0], y+15)
@@ -382,8 +382,8 @@ function drawHeadLine(doc, groupName, posX, y, width){
 	doc.y = y+3; doc.x = posX[1];
 	doc.font('./fonts/THSarabunBold.ttf', 12)
 		.text('ทุน', { width: width, align: 'right' })
-	doc.y = y+3; doc.x = posX[2];
-	doc.text('ทุนใหม่', { width: width, align: 'right' })
+	//doc.y = y+3; doc.x = posX[2];
+	//doc.text('ทุนใหม่', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[3];
 	doc.text('90', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[4];
@@ -394,8 +394,8 @@ function drawHeadLine(doc, groupName, posX, y, width){
 	doc.text('15', { width: width, align: 'right' })
 	doc.y = y+3; doc.x = posX[7];
 	doc.text('ปัจจุบัน', { width: width, align: 'right' })
-	doc.y = y+3; doc.x = posX[8];
-	doc.text('Plan', { width: width, align: 'right' })
+	//doc.y = y+3; doc.x = posX[8];
+	//doc.text('Plan', { width: width, align: 'right' })
 
 	doc.lineWidth(0.75)
 		.moveTo(posX[0], y+18)

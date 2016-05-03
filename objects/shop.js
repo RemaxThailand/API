@@ -12,7 +12,7 @@ exports.action = function(req, res, data) {
 		} else if (data.action == 'name'){
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_ShopName';
+			data.command = 'EXEC sp_ShopName \''+req.body.shop+'\'';
 			data.util.query(req, res, data);
 		} else if (data.action == 'accumulated'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != ''){ 
