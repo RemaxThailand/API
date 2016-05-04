@@ -161,12 +161,12 @@ exports.action = function(req, res, report, branch) {
 				//### RUN RATE REPORT ###//
 				else if (report == 'run_rate')
 				{
-					request.query('EXEC sp_ReportRunRate '+branch, function (err, recordset, returnValue) {
+					request.query('EXEC sp_ReportRunRate \''+branch+'\', \''+''+'\'', function (err, recordset, returnValue) {
 						if (!err){
 							var posX = [10, 315, 345, 375, 405, 435, 465, 495, 525, 555, 585];
 
-							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Run Rate Report : Branch '+'Test', 10, 10)
+							doc.font('./fonts/THSarabunBold.ttf', 18)
+								.text('Stock Run Rate Report : '+shopName, 10, 10)
 
 							doc.lineWidth(0.75)
 								.moveTo(posX[0], 30)
