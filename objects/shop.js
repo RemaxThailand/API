@@ -19,7 +19,7 @@ exports.action = function(req, res, data) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_rpt_Shop_Accumulated \''+req.body.shop+'\', \''+req.body.year+'\'';
-				data.util.query(req, res, data);
+				data.util.queryMultiple(req, res, data);
 			}
 		} else if (data.action == 'receivable'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != ''){ 
