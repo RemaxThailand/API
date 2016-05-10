@@ -46,7 +46,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.shop != 'undefined' && req.body.shop != ''){ 
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_SummaryCustomerShop \''+req.body.shop+'\', \''+req.body.year+'\'';
+				data.command = 'EXEC sp_ReportSummaryCustomerShop \''+req.body.shop+'\', \''+req.body.year+'\'';
 				data.util.query(req, res, data);
 			}
 		}
