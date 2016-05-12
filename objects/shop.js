@@ -55,6 +55,7 @@ exports.action = function(req, res, data) {
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportShopStock \''+req.body.shop+'\'';
 				data.util.query(req, res, data);
+			}
 		}
 		else {
 			data.json.error = 'API0011';
