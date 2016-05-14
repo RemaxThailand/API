@@ -60,7 +60,7 @@ exports.action = function(req, res, data) {
 
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\', \''+req.body.type+'\'';
+			data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
 			data.util.query(req, res, data);
 
 		}
