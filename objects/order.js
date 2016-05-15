@@ -41,7 +41,7 @@ exports.action = function(req, res, data) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				//data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.token.memberKey+'\'';
-				data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.token.memberKey+'\'';
+				data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.memberKey+'\'';
 				data.util.query(req, res, data);
 			}
 		}
