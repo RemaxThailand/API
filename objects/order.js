@@ -32,13 +32,15 @@ exports.action = function(req, res, data) {
 			}
 			else if (data.subAction[0] == 'province'){
 				data.json.return = false;
-				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportOrderHistoryByProvince \''+req.body.token.memberKey+'\'';
+				data.json.returnResult = true; 
+				//data.command = 'EXEC sp_ReportOrderHistoryByProvince \''+req.body.token.memberKey+'\'';
+				data.command = 'EXEC sp_ReportOrderHistoryByProvince \''+req.body.memberKey+'\'';
 				data.util.query(req, res, data);
 			}
 			else if (data.subAction[0] == 'customer'){
 				data.json.return = false;
 				data.json.returnResult = true;
+				//data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.token.memberKey+'\'';
 				data.command = 'EXEC sp_ReportOrderHistoryByCustomer \''+req.body.token.memberKey+'\'';
 				data.util.query(req, res, data);
 			}
