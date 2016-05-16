@@ -67,9 +67,14 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.year != 'undefined' && req.body.year != ''){ 
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportShopStock \''+req.body.year+'\'';
+				data.command = 'EXEC sp_rpt_Center_Accumulated \''+req.body.year+'\'';
 				data.util.queryMultiple(req, res, data);
 			}
+		} else if (data.action == 'DataYearInSell'){
+			data.json.return = false;
+			data.json.returnResult = true;
+			data.command = 'EXEC sp_DataYearInSell';
+			data.util.query(req, res, data);			
 		}
 		else { 
 			data.json.error = 'API0011';
