@@ -63,8 +63,15 @@ exports.action = function(req, res, data) {
 			data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
 			data.util.queryMultiple(req, res, data);
 
+		} else if (data.action == 'centerAccumulated'){
+			if (typeof req.body.year != 'undefined' && req.body.year != ''){ 
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportShopStock \''+req.body.year+'\'';
+				data.util.queryMultiple(req, res, data);
+			}
 		}
-		else {
+		else { 
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
 		}
