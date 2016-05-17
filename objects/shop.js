@@ -75,6 +75,13 @@ exports.action = function(req, res, data) {
 			data.json.returnResult = true;
 			data.command = 'EXEC sp_DataYearInSell';
 			data.util.query(req, res, data);			
+		} else if (data.action == 'shopid'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != ''){ 
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ShopIdByMemberKey \''+req.body.memberKey+'\'';
+				data.util.query(req, res, data);
+			}			
 		}
 		else { 
 			data.json.error = 'API0011';
