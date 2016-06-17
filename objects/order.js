@@ -99,6 +99,7 @@ exports.action = function(req, res, data) {
 		else if (data.action == 'list') {
 			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 				data.json.return = false;
+				data.json.returnResult = true;
 				data.command = 'EXEC sp_OrderList \''+req.body.orderNo+'\'';
 				data.util.query(req, res, data);
 			}
