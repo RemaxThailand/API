@@ -190,6 +190,13 @@ block content
 						.panel-body
 							form.form-horizontal
 								.form-group
+									label.col-sm-2.control-label(for='input') Order No
+									.col-sm-10
+										input.form-control.orderNo(type='text', placeholder='Order No')
+										p.help-block
+											span.font-pre.label.label-warning orderNo
+											| orderNo
+								.form-group
 									label.col-sm-2.control-label(for='input') Employee Name
 									.col-sm-10
 										input.form-control.employee(type='text', placeholder='Employee Name')

@@ -98,10 +98,11 @@ exports.action = function(req, res, data) {
 		}
 		else if (data.action == 'list') {
 			if (data.subAction[0] == 'assign'){
-				if (typeof req.body.employee != 'undefined' && req.body.employee != '') {
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
+				typeof req.body.employee != 'undefined' && req.body.employee != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_OrderListAssign \''+req.body.employee+'\'';
+					data.command = 'EXEC sp_OrderListAssign \''+req.body.orderNo+'\',\''+req.body.employee+'\'';
 					data.util.query(req, res, data);
 				}
 			} else if (data.subAction[0] == 'updateQty'){
