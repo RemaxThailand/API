@@ -110,17 +110,17 @@ exports.action = function(req, res, data) {
 				typeof req.body.product != 'undefined' && req.body.product != '' &&
 				typeof req.body.qty != 'undefined' && req.body.qty != '') {
 					data.json.return = false;
-					data.json.returnResult = true;
+					
 					data.command = 'EXEC sp_OrderListUpdateQty \''+req.body.orderNo+'\', \''+req.body.product+'\', \''+req.body.qty+'\'';
-					data.util.query(req, res, data);
+					data.util.execute(req, res, data);
 				}
 				
 			}else if (data.subAction[0] == 'confirm'){
 				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 					data.json.return = false;
-					data.json.returnResult = true;
+					
 					data.command = 'EXEC sp_OrderListConfirm \''+req.body.orderNo+'\'';
-					data.util.query(req, res, data);
+					data.util.execute(req, res, data);
 				}
 				
 			}else {
