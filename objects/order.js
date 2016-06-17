@@ -97,12 +97,40 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'list') {
-			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
-				data.json.return = false;
-				data.json.returnResult = true;
-				data.command = 'EXEC sp_OrderList \''+req.body.orderNo+'\'';
-				data.util.query(req, res, data);
+			if (data.subAction[0] == 'assign'){
+				if (typeof req.body.employee != 'undefined' && req.body.employee != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_OrderListAssign \''+req.body.employee+'\'';
+					data.util.query(req, res, data);
+				}
+			} else if (data.subAction[0] == 'updateQty'){
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
+				typeof req.body.product != 'undefined' && req.body.product != '' &&
+				typeof req.body.qty != 'undefined' && req.body.qty != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_OrderListUpdateQty \''+req.body.orderNo+'\', \''+req.body.product+'\', \''+req.body.qty+'\'';
+					data.util.query(req, res, data);
+				}
+				
+			}else if (data.subAction[0] == 'confirm'){
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_OrderListConfirm \''+req.body.orderNo+'\'';
+					data.util.query(req, res, data);
+				}
+				
+			}else {
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_OrderList \''+req.body.orderNo+'\'';
+					data.util.query(req, res, data);
+				}
 			}
+			
 		}
 		else {
 			data.json.error = 'API0011';

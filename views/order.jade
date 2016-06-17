@@ -159,12 +159,91 @@ block content
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
-					a(data-toggle='collapse', data-parent='#accordion', href='#canceledInfo', aria-expanded='false')
-						strong Order Cancel Info
-						| &#58; ข้อมูลการยกเลิกการสั่งซื้อ
-			#canceledInfo.panel-collapse.collapse(role='tabpanel')
+					a(data-toggle='collapse', data-parent='#accordion', href='#list', aria-expanded='false')
+						strong Order List
+			#list.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /#{data.screen}/list
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Order No
+									.col-sm-10
+										input.form-control.orderNo(type='text', placeholder='Order No')
+										p.help-block
+											span.font-pre.label.label-warning orderNo
+											| orderNo
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#listassign', aria-expanded='false')
+						strong Order List Assign
+			#listassign.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/list/assign
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Employee Name
+									.col-sm-10
+										input.form-control.employee(type='text', placeholder='Employee Name')
+										p.help-block
+											span.font-pre.label.label-warning employee
+											| employee
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#listupdateQty', aria-expanded='false')
+						strong Order List Update Qty
+			#listupdateQty.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/list/updateQty
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Order No
+									.col-sm-10
+										input.form-control.orderNo(type='text', placeholder='Order No')
+										p.help-block
+											span.font-pre.label.label-warning orderNo
+											| orderNo
+								.form-group
+									label.col-sm-2.control-label(for='input') Product ID
+									.col-sm-10
+										input.form-control.product(type='text', placeholder='Product ID')
+										p.help-block
+											span.font-pre.label.label-warning product
+											| Product ID
+								.form-group
+									label.col-sm-2.control-label(for='input') Qty
+									.col-sm-10
+										input.form-control.qty(type='text', placeholder='Qty')
+										p.help-block
+											span.font-pre.label.label-warning qty
+											| Qty
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#listconfirm', aria-expanded='false')
+						strong Order List Confirm
+			#listconfirm.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/list/confirm
 					.panel.panel-default
 						.panel-body
 							form.form-horizontal
