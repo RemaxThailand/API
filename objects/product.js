@@ -189,6 +189,17 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}
 		}
+		else if (data.action == 'image'){
+			if (data.subAction[0] == 'barcode'){
+				if (typeof req.body.barcode != 'undefined' && req.body.barcode != '' ) {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_ProductImageByBarcode \''+req.body.barcode+'\'';
+					data.util.query(req, res, data)
+				}
+			}
+			
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
