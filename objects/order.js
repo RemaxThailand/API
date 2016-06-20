@@ -126,7 +126,7 @@ exports.action = function(req, res, data) {
 			}else if (data.subAction[0] == 'report'){
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_OrderListReport \''+req.body.status+'\'';
+					data.command = 'EXEC sp_OrderListReport \''+req.body.status+'\', \''+req.body.date+'\'';
 					data.util.queryMultiple(req, res, data);		
 			}else {
 				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
