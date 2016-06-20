@@ -123,6 +123,11 @@ exports.action = function(req, res, data) {
 					data.util.execute(req, res, data);
 				}
 				
+			}else if (data.subAction[0] == 'report'){
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_OrderListReport \''+req.body.status+'\'';
+					data.util.queryMultiple(req, res, data);		
 			}else {
 				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 					data.json.return = false;
