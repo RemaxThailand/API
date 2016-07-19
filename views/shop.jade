@@ -125,6 +125,13 @@ block content
 										p.help-block
 											span.font-pre.label.label-warning date_to
 											|   Date To (format '12/31/2015')
+								.form-group
+									label.col-sm-2.control-label(for='input') isPay
+									.col-sm-10
+										input.form-control.isPay(type='text', placeholder='isPay')
+										p.help-block
+											span.font-pre.label.label-warning isPay
+											|   สถานะการชำระเงิน ( 1= จ่ายแล้ว, 0= ยังไม่จ่าย, ค่าว่างคือทั้งหมด) 
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit

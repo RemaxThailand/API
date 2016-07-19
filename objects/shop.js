@@ -15,7 +15,7 @@ exports.action = function(req, res, data) {
 			typeof req.body.date_to != 'undefined' && req.body.date_to != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_rpt_HeadSales_Summary \''+req.body.member+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\'';
+				data.command = 'EXEC sp_rpt_HeadSales_Summary \''+req.body.member+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\', \''+req.body.isPay+'\'';
 				data.util.query(req, res, data);
 			}
 		} else if (data.action == 'name'){
