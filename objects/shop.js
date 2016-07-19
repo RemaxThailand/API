@@ -9,6 +9,15 @@ exports.action = function(req, res, data) {
 				data.command = 'EXEC sp_rpt_Sales_Summary \''+req.body.shop+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\'';
 				data.util.query(req, res, data);
 			}
+		} else if (data.action == 'headSalesSummary'){
+			if (typeof req.body.member != 'undefined' && req.body.member != '' &&
+			typeof req.body.date_from != 'undefined' && req.body.date_from != '' &&
+			typeof req.body.date_to != 'undefined' && req.body.date_to != '' ) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_rpt_HeadSales_Summary \''+req.body.member+'\', \''+req.body.date_from+'\', \''+req.body.date_to+'\'';
+				data.util.query(req, res, data);
+			}
 		} else if (data.action == 'name'){
 			data.json.return = false;
 			data.json.returnResult = true;
