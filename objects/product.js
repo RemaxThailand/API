@@ -5,7 +5,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
 				typeof req.body.type != 'undefined' && req.body.type != '' &&
 				typeof req.body.value != 'undefined' && req.body.value != '') {
-				var type = '|item|byCategoryName|byCategoryUrl4Web|byBrandName|byBrandUrl4Web|byCategoryUrlRandom4|'; // ชื่อ type ที่สามารถเรียกดูข้อมูลได้
+				var type = '|item|byCategoryName|byCategoryUrl4Web|byBrandName|byBrandUrl4Web|'; // ชื่อ type ที่สามารถเรียกดูข้อมูลได้
 				if ( type.indexOf('|'+req.body.type+'|') == -1 ) { // ถ้าชื่อ Entity ไม่ถูกต้อง
 					data.json.return = true;
 					data.json.error = 'PRD0001';
@@ -24,7 +24,7 @@ exports.action = function(req, res, data) {
 						data.json.returnResult = true;
 						data.command = 'EXEC sp_ShopProductByCategoryUrl \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
-					
+
 					else if (req.body.type == 'item') {
 						data.command = 'EXEC sp_ShopProductItem \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
