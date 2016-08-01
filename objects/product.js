@@ -24,10 +24,7 @@ exports.action = function(req, res, data) {
 						data.json.returnResult = true;
 						data.command = 'EXEC sp_ShopProductByCategoryUrl \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
-					else if (req.body.type == 'byCategoryUrlRandom4') {
-						data.json.returnResult = true;
-						data.command = 'EXEC sp_ShopProductByCategoryUrlRandom4 \''+req.body.shop+'\', \''+req.body.value+'\'';
-					}
+					
 					else if (req.body.type == 'item') {
 						data.command = 'EXEC sp_ShopProductItem \''+req.body.shop+'\', \''+req.body.value+'\'';
 					}
