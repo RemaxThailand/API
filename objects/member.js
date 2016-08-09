@@ -134,10 +134,10 @@ exports.action = function(req, res, data) {
                 data.util.query(req, res, data);
             }
         } else if (data.action == 'memberToDealer') {
-            if (typeof req.body.member != 'undefined' && req.body.member && typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '') {
+            if (typeof req.body.member != 'undefined' && req.body.member && typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '' && typeof req.body.memberType != 'undefined' && req.body.memberType != '') {
                 data.json.return = false;
 								data.json.returnResult = true;
-                data.command = 'EXEC sp_MemberToDealer \'' + req.body.member + '\', \'' + req.body.sellPrice + '\'';
+                data.command = 'EXEC sp_MemberToDealer \'' + req.body.member + '\', \'' + req.body.sellPrice + '\', \'' + req.body.memberType + '\'';
                 data.util.execute(req, res, data);
             }
         } else {
