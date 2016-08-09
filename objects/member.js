@@ -133,6 +133,13 @@ exports.action = function(req, res, data) {
                 data.command = 'EXEC sp_MemberSearch \'' + req.body.search + '\'';
                 data.util.query(req, res, data);
             }
+        } else if (data.action == 'memberToDealer') {
+            if (typeof req.body.member != 'undefined' && req.body.member && typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '') {
+                data.json.return = false;
+								data.json.returnResult = true;
+                data.command = 'EXEC sp_MemberToDealer \'' + req.body.member + '\', \'' + req.body.sellPrice + '\'';
+                data.util.execute(req, res, data);
+            }
         } else {
             data.json.error = 'API0011';
             data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
