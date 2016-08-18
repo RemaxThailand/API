@@ -9,11 +9,11 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data)
 			}
 		}
-		else if (data.action == 'Search'){
+		else if (data.action == 'search'){
 			if (typeof req.body.search != 'undefined' && req.body.search != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_Pos_ShopCustomerSearch \''+req.body.search+'\'';
+				data.command = 'EXEC sp_Pos_ShopCustomerSearch \''+req.body.shop+'\','+req.body.search+'\'';
 				data.util.query(req, res, data)
 			}
 		}
