@@ -11,7 +11,7 @@ exports.action = function(req, res, data) {
 					data.json.return = false;
 					data.command = 'EXEC sp_WarrantyInfo \''+req.body.barcode+'\',\''+ 'countCheckRemaxProductOnWeb' +'\'';
 					data.util.queryMultiple(req, res, data);
-			} 
+			}
 		}else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
@@ -29,7 +29,7 @@ exports.process = function(req, res, data) {
 		exports.warrantyInfo(req, res, data);
 	}else if (data.action == 'remax') {
 		exports.productRemax(req, res, data);
-	}else{ 
+	}else{
 		data.json.error = 'API0002';
 		data.json.errorMessage = 'Unknow Action';
 		data.util.responseJson(req, res, data.json);
@@ -60,11 +60,11 @@ exports.productRemax = function(req, res, data) {
 		if (data.result[0][0].exist != '0' ){ // ถ้ามีข้อมูล //
 			data.json.return = true;
 			data.json.success = true;
-			var values = {}; 
+			var values = {};
 			values.productName = data.result[1][0].productName;
 			values.sellDate = data.result[1][0].sellDate;
 			values.noSN = data.result[1][0].noSN;
-			data.json.result = values;
+			data.json.result = 'Hi';
 			data.util.responseJson(req, res, data.json);
 		}else{
 			data.json.return = true;
