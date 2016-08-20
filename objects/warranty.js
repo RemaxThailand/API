@@ -64,7 +64,7 @@ exports.productRemax = function(req, res, data) {
 			values.productName = data.result[1][0].productName;
 			values.sellDate = data.result[1][0].sellDate;
 			values.noSN = data.result[1][0].noSN;
-			data.json.result = 'Hi';
+			data.json.result = values;
 			data.util.responseJson(req, res, data.json);
 		}else{
 			data.json.return = true;
