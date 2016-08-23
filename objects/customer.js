@@ -55,6 +55,14 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data)
 			}
 		}
+		else if (data.action == 'shippingUpdate'){
+			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_OrderAddressUpdate \''+req.body.orderNo+'\', \''+req.body.firstname+'\', \''+req.body.lastname+'\', \''+req.body.contactName+'\', \''+req.body.shopName+'\', \''+req.body.mobile+'\', \''+req.body.address+'\', \''+req.body.address2+'\', \''+req.body.subDistrict+'\', \''+req.body.district+'\', \''+req.body.province+'\', \''+req.body.zipcode+'\'';
+				data.util.execute(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
