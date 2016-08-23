@@ -63,6 +63,14 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}
 		}
+		else if (data.action == 'shippingHeader'){
+			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_OrderShippingHeader \''+req.body.orderNo+'\'';
+				data.util.query(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
