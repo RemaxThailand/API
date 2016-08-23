@@ -142,7 +142,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_OrderCheckUpdate \''+req.body.orderNo+'\', \''+req.body.checkBy+'\'';
+				data.command = 'EXEC sp_OrderCheckUpdate \''+req.body.orderNo+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
