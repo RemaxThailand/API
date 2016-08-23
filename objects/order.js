@@ -72,6 +72,7 @@ exports.action = function(req, res, data) {
 			else if (data.subAction[0] == 'checkedUpdate'){
 				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 					data.json.return = false;
+					data.json.returnResult = true;
 					data.command = 'EXEC sp_OrderCheckUpdate \''+req.body.orderNo+'\'';
 					data.util.execute(req, res, data);
 				}
