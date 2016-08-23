@@ -69,14 +69,6 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
-			else if (data.action == 'checkedUpdate'){
-				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
-					data.json.return = false;
-					data.json.returnResult = true;
-					data.command = 'EXEC sp_OrderCheckUpdate \''+req.body.orderNo+'\'';
-					data.util.execute(req, res, data);
-				}
-			}
 		}
 		else if (data.action == 'cancel'){
 			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
@@ -145,6 +137,14 @@ exports.action = function(req, res, data) {
 				}
 			}
 			
+		}
+		else if (data.action == 'checkedUpdate'){
+			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_OrderAddressUpdate \''+req.body.orderNo+'\'';
+				data.util.execute(req, res, data)
+			}
 		}
 		else {
 			data.json.error = 'API0011';
