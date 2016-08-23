@@ -69,6 +69,13 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
+			else if (data.subAction[0] == 'checkedUpdate'){
+				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+					data.json.return = false;
+					data.command = 'EXEC sp_OrderCheckUpdate \''+req.body.orderNo+'\'';
+					data.util.execute(req, res, data);
+				}
+			}
 		}
 		else if (data.action == 'cancel'){
 			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
