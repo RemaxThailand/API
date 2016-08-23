@@ -69,7 +69,7 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data);
 				}
 			}
-			else if (data.subAction[0] == 'checkedUpdate'){
+			else if (data.action == 'checkedUpdate'){
 				if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
