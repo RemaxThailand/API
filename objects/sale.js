@@ -25,7 +25,7 @@ exports.action = function(req, res, data) {
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_Pos_SellHeaderInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.profit+'\',\''+req.body.totalPrice+'\',\''+req.body.payType+'\',\''+req.body.cash+'\',\''+req.body.credit+'\',\''+req.body.customer+'\',\''+req.body.sex+'\',\''+req.body.age+'\',\''+req.body.comment+'\',\''+req.body.saledate+'\',\''+req.body.saleby+'\'';
 					data.util.execute(req, res, data);
-			} 
+			}
 		}
 		else if (data.action == 'saleDetailAdd'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
@@ -38,7 +38,7 @@ exports.action = function(req, res, data) {
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_Pos_SellDetailInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.product+'\',\''+req.body.price+'\',\''+req.body.cost+'\',\''+req.body.quantity+'\',\''+req.body.comment+'\'';
 					data.util.execute(req, res, data);
-			} 
+			}
 		}
 		else if (data.action == 'changePriceInfo'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
@@ -56,7 +56,7 @@ exports.action = function(req, res, data) {
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_Pos_ChangePriceInsert \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.product+'\',\''+req.body.price+'\',\''+req.body.change+'\',\''+req.body.by+'\',\''+req.body.date+'\'';
 					data.util.execute(req, res, data);
-			} 
+			}
 		}
 		else if (data.action == 'monthly'){
 			if (data.subAction[0] == 'category'){
@@ -70,7 +70,7 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'monthlySaleOfYear'){
-			if (typeof req.body.year != 'undefined' && req.body.year != ''){ 
+			if (typeof req.body.year != 'undefined' && req.body.year != ''){
 				data.json.return = false;
 				data.json.returnResult = false;
 				data.command = 'EXEC sp_ReportMonthlySaleByYear '+req.body.year;
@@ -80,7 +80,7 @@ exports.action = function(req, res, data) {
 		else if (data.action == 'monthlySaleDetail'){
 			if (typeof req.body.year != 'undefined' && req.body.year != '' &&
 				typeof req.body.month != 'undefined' && req.body.month != '' &&
-				typeof req.body.type != 'undefined' && req.body.type != ''){ 
+				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportMonthlySaleDetail '+req.body.year+', '+req.body.month+', \''+req.body.type+'\'';
@@ -89,7 +89,7 @@ exports.action = function(req, res, data) {
 		}
 		else if (data.action == 'monthlySaleHistory'){
 			if (typeof req.body.member != 'undefined' && req.body.member != '' &&
-				typeof req.body.type != 'undefined' && req.body.type != ''){ 
+				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportMonthlySaleHistory '+req.body.member+', \''+req.body.type+'\'';
@@ -100,11 +100,11 @@ exports.action = function(req, res, data) {
 			data.json.return = false;
 			data.json.returnResult = true;
 			data.command = 'EXEC sp_DataMonthInSell';
-			data.util.query(req, res, data);			
+			data.util.query(req, res, data);
 		}
 		else if (data.action == 'dailySaleOfMonth'){
 			if (typeof req.body.year != 'undefined' && req.body.year != '' &&
-				typeof req.body.month != 'undefined' && req.body.month != ''){ 
+				typeof req.body.month != 'undefined' && req.body.month != ''){
 				data.json.return = false;
 				data.json.returnResult = false;
 				data.command = 'EXEC sp_ReportDailySaleByMonth '+req.body.year+','+req.body.month;
@@ -115,7 +115,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.year != 'undefined' && req.body.year != '' &&
 				typeof req.body.month != 'undefined' && req.body.month != '' &&
 				typeof req.body.day != 'undefined' && req.body.day != '' &&
-				typeof req.body.type != 'undefined' && req.body.type != ''){ 
+				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportDailySaleDetail '+req.body.year+', '+req.body.month+', '+req.body.day+', \''+req.body.type+'\'';
@@ -124,7 +124,7 @@ exports.action = function(req, res, data) {
 		}
 		else if (data.action == 'monthlySaleByProduct'){
 			if (typeof req.body.year != 'undefined' && req.body.year != '' &&
-				typeof req.body.month != 'undefined' && req.body.month != ''){ 
+				typeof req.body.month != 'undefined' && req.body.month != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportMonthlySaleByProduct '+req.body.year+', '+req.body.month;
@@ -132,11 +132,24 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'monthlySaleByProductHistory'){
-			if (typeof req.body.product != 'undefined' && req.body.product != ''){ 
+			if (typeof req.body.product != 'undefined' && req.body.product != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ReportMonthlySaleByProductHistory '+req.body.product;
 				data.util.query(req, res, data);
+			}
+		} else if (data.action == 'shop'){
+			if (data.subAction[0] == 'monthly'){
+				if (data.subAction[1] == 'category'){
+					if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+					typeof req.body.category != 'undefined' && req.body.category != '' &&
+						typeof req.body.month != 'undefined' && req.body.month != '' ) {
+							data.json.return = false;
+							data.json.returnResult = true;
+							data.command = 'EXEC sp_DataMonthlyShopSaleByCategory \''+req.body.shop+'\',\''+req.body.category+'\', '+req.body.month;
+							data.util.query(req, res, data);
+					}
+				}
 			}
 		}
 		else {
@@ -183,7 +196,7 @@ exports.process = function(req, res, data) {
 			result.price4[''+i] = {};		result.price4[''+i]['price'] = 0;		result.price4[''+i]['qty'] = 0;		result.price4[''+i]['bill'] = 0;
 			result.price5[''+i] = {};		result.price5[''+i]['price'] = 0;		result.price5[''+i]['qty'] = 0;		result.price5[''+i]['bill'] = 0;
 		}
-		
+
 		for(i=0; i<data.result[0].length; i++){
 			var recordset = data.result[0][i];
 			result.sales[''+recordset.monthNo][recordset.memberType] = recordset.price;
