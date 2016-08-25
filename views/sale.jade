@@ -429,13 +429,7 @@ block content
 										p.help-block
 											span.font-pre.label.label-warning shop
 											|   รหัสร้านค้า
-								.form-group
-									label.col-sm-2.control-label(for='input') Monthly
-									.col-sm-10
-										input.form-control.monthly(type='text', placeholder='Monthly')
-										p.help-block
-											span.font-pre.label.label-warning monthly
-											|   เดือนที่
+								
 								.form-group
 									label.col-sm-2.control-label(for='input') Category
 									.col-sm-10
@@ -443,6 +437,14 @@ block content
 										p.help-block
 											span.font-pre.label.label-warning category
 											|   รหัสประเภทสินค้า
+								
+								.form-group
+									label.col-sm-2.control-label(for='input') Monthly
+									.col-sm-10
+										input.form-control.month(type='text', placeholder='Monthly')
+										p.help-block
+											span.font-pre.label.label-warning month
+											|   เดือนที่
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
