@@ -66,12 +66,17 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data);
 			}
 		} else if (data.action == 'monthlySaleByCategory'){
-
-			data.json.return = false;
-			data.json.returnResult = true;
-			data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
-			data.util.queryMultiple(req, res, data);
-
+			if (data.subAction[0] == 'shop'){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportMonthlyShopSaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
+				data.util.queryMultiple(req, res, data);
+			} else {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
+				data.util.queryMultiple(req, res, data);
+			}
 		} else if (data.action == 'centerAccumulated'){
 			if (typeof req.body.year != 'undefined' && req.body.year != ''){
 				data.json.return = false;
