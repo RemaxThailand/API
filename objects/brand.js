@@ -1,13 +1,21 @@
 exports.action = function(req, res, data) {
 	data.tableName = 'Brand';
-	
+
 	try {
 		if (data.action == 'info'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_ShopBrand \''+req.body.shop+'\'';
-				data.util.query(req, res, data); 
+				data.util.query(req, res, data);
+			}
+		}
+    else if (data.action == 'member'){
+      if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_MemberBrand \''+req.body.memberKey+'\'';
+				data.util.query(req, res, data);
 			}
 		}
 		else if (data.action == 'add'){
