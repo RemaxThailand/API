@@ -96,6 +96,32 @@ exports.action = function(req, res, data) {
 				data.command = 'EXEC sp_ShopIdByMemberKey \''+req.body.memberKey+'\'';
 				data.util.query(req, res, data);
 			}
+		} else if (data.action == 'newsInser'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != ''&&
+			typeof req.body.message != 'undefined' && req.body.message != '' &&
+				typeof req.body.memberKey != 'undefined' && req.body.memberKey != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_NewsInsert \''+req.body.shop+'\',\''+req.body.message+'\'\''+req.body.memberKey+'\'';
+				data.util.query(req, res, data);
+			}
+		} else if (data.action == 'newsUpdate'){
+			if (typeof req.body.id != 'undefined' && req.body.id != ''&&
+				typeof req.body.shop != 'undefined' && req.body.shop != ''&&
+				typeof req.body.message != 'undefined' && req.body.message != '' &&
+				typeof req.body.memberKey != 'undefined' && req.body.memberKey != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_NewsUpdate \''+req.body.id+'\',\''+req.body.shop+'\',\''+req.body.message+'\',\''+req.body.memberKey+'\'';
+				data.util.query(req, res, data);
+			}
+		} else if (data.action == 'newsInfo'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_NewsInfo \''+req.body.shop+'\'';
+				data.util.query(req, res, data);
+			}
 		}
 		else {
 			data.json.error = 'API0011';
