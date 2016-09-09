@@ -44,8 +44,8 @@ app.get('*', function(req, res) {
 	data.titleDescription = '';
 	data.apiKey = config.apiKey;
 	data.shopIdTest = config.shopIdTest ;
-        
-	//var url = req.headers['uri'].split('/');	
+
+	//var url = req.headers['uri'].split('/');
 	var url = req.url.split('/');
 	url = url.filter(function(n){ return n !== ''; });
 	if ( url.length >= 1 ) {
@@ -59,7 +59,7 @@ app.get('*', function(req, res) {
 			if(url[1] == 'shop'){
 				report.shop(req, res, url[2], url[3].replace('.pdf', ''))
 			}else {
-				report.action(req, res, url[1], url[2]);
+				report.action(req, res, url[1], url[2], url[3]);
 			}
 		}
 		else if ( data.screen == 'barcode' ) {
@@ -94,13 +94,13 @@ app.get('*', function(req, res) {
 app.post('*', function(req, res) {
 
 	res.header('Access-Control-Allow-Origin', '*');
-	//res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");	
-				
+	//res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
 	var json = {};
 	json.success = false;
 
 	var token = {};
-	
+
 	if (typeof req.body.token != 'undefined' && req.body.token != '') {
 		var jwt = require('jsonwebtoken');
 		try {
