@@ -297,7 +297,7 @@ exports.action = function(req, res, report, branch, brand) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Branch '+branch+'-'+brand, 10, 10)
+								.text('Stock Aging Report : Branch '+'Ok'+'-'+brand, 10, 10)
 
 							//console.log(recordset[0]['groupName']);
 							doc.lineWidth(0.75)
