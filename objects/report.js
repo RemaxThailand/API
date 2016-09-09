@@ -293,11 +293,11 @@ exports.action = function(req, res, report, branch, brand) {
 
 				//### STOCK AGING REPORT ###//
 				if (report == 'aging-brand') {
-					request.query('EXEC sp_ReportAging \''+branch+'\',\''+brand+'\'', function (err, recordset, returnValue) {
+					request.query('EXEC sp_ReportAgingByBrand \''+branch+'\',\''+brand+'\'', function (err, recordset, returnValue) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Branch '+'Ok'+'-'+brand, 10, 10)
+								.text('Stock Aging Report : Branch '+branch, 10, 10)
 
 							//console.log(recordset[0]['groupName']);
 							doc.lineWidth(0.75)
@@ -427,7 +427,7 @@ exports.action = function(req, res, report, branch, brand) {
 				//### RUN RATE REPORT ###//
 				else if (report == 'run_rate-brand')
 				{
-					request.query('EXEC sp_ReportRunRate \''+branch+'\',\''+brand+'\'', function (err, recordset, returnValue) {
+					request.query('EXEC sp_ReportRunRateByBrand \''+branch+'\',\''+brand+'\'', function (err, recordset, returnValue) {
 						if (!err){
 							var posX = [10, 285, 315, 345, 375, 405, 435, 465, 495, 525, 555, 585];
 
