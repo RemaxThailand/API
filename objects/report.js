@@ -19,7 +19,7 @@ exports.action = function(req, res, report, branch, brand) {
 				var PDFDocument = require('pdfkit');
 				var moment = require('moment');
 				var doc = new PDFDocument({margin: 10, size: 'A4'});
-				
+
 				var d = new Date();
 				var m = moment(d);
 				m.lang('th');
@@ -297,7 +297,7 @@ exports.action = function(req, res, report, branch, brand) {
 						if (!err){
 
 							doc.font('./fonts/CALIBRIB.TTF', 18)
-								.text('Stock Aging Report : Branch '+branch, 10, 10)
+								.text('Stock Aging Report : Branch '+branch+'-'+brand, 10, 10)
 
 							//console.log(recordset[0]['groupName']);
 							doc.lineWidth(0.75)
