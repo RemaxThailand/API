@@ -321,7 +321,7 @@ exports.action = function(req, res, report, branch, brand) {
 
 									if (i+1 < recordset.length) {
 										if ( groupName == recordset[i+1]['groupName'] ) {
-											drawHeadLine(doc, groupName, posX, y, 35);
+											drawHeadLineBrand(doc, groupName, posX, y, 35);
 											y += 18;
 											startY = y;
 										}
@@ -333,7 +333,7 @@ exports.action = function(req, res, report, branch, brand) {
 									y += 5;
 
 									groupName = recordset[i]['groupName'];
-									drawHeadLine(doc, groupName, posX, y, 35);
+									drawHeadLineBrand(doc, groupName, posX, y, 35);
 									y += 18;
 									startY = y;
 
@@ -454,7 +454,7 @@ exports.action = function(req, res, report, branch, brand) {
 
 									if (i+1 < recordset.length) {
 										if ( groupName == recordset[i+1]['groupName'] ) {
-											drawHeadLineRunRate(doc, groupName, posX, y, 30);
+											drawHeadLineRunRateBrand(doc, groupName, posX, y, 30);
 											y += 18;
 											startY = y;
 										}
@@ -466,7 +466,7 @@ exports.action = function(req, res, report, branch, brand) {
 									y += 5;
 
 									groupName = recordset[i]['groupName'];
-									drawHeadLineRunRate(doc, groupName, posX, y, 30);
+									drawHeadLineRunRateBrand(doc, groupName, posX, y, 30);
 									y += 18;
 									startY = y;
 
@@ -708,7 +708,73 @@ function drawHeadLineRunRate(doc, groupName, posX, y, width){
 		.stroke()
 }
 
+function drawHeadLineBrand(doc, groupName, posX, y, width){
 
+	doc.y = y; doc.x = posX[0];
+	doc.font('./fonts/THSarabunBold.ttf', 18)
+		.text(groupName, { width: 300, align: 'left' });
+
+	doc.y = y+3; doc.x = posX[1];
+	doc.font('./fonts/THSarabunBold.ttf', 12)
+		.text('ทุน', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[2];
+	doc.text('ทุนใหม่', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[3];
+	doc.text('90', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[4];
+	doc.text('60', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[5];
+	doc.text('30', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[6];
+	doc.text('15', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[7];
+	doc.text('ปัจจุบัน', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[8];
+	doc.text('Plan', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[9];
+	doc.text('จอง', { width: width, align: 'right' })
+
+	doc.lineWidth(0.75)
+		.moveTo(posX[0], y+18)
+		.lineTo(posX[10], y+18)
+		.dash(1, {space: 0})
+		.stroke()
+}
+
+function drawHeadLineRunRateBrand(doc, groupName, posX, y, width){
+
+	doc.y = y+4; doc.x = posX[0];
+	doc.font('./fonts/CALIBRIB.TTF', 12)
+		.text(groupName, { width: 300, align: 'left' });
+
+	doc.y = y+3; doc.x = posX[1];
+	doc.font('./fonts/THSarabunBold.ttf', 12)
+		.text('ทุน', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[2];
+	doc.text('Stock', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[3];
+	doc.text('วันนี้', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[4];
+	doc.text('-1', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[5];
+	doc.text('-2', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[6];
+	doc.text('-3', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[7];
+	doc.text('-4', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[8];
+	doc.text('-5', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[9];
+	doc.text('Plan', { width: width, align: 'right' })
+	doc.y = y+3; doc.x = posX[10];
+	doc.text('จอง', { width: width, align: 'right' })
+
+	doc.lineWidth(0.75)
+		.moveTo(posX[0], y+18)
+		.lineTo(posX[11], y+18)
+		.dash(1, {space: 0})
+		.stroke()
+}
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
