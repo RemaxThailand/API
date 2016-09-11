@@ -276,7 +276,9 @@ exports.action = function(req, res, report, branch, brand) {
 				var request = new sql.Request(connection);
 				//var branch = 1;
 				//var report = 'aging';
-
+				if(brand = null || typeof brand = undefined){
+					brand = '';
+				}
 				var PDFDocument = require('pdfkit');
 				var moment = require('moment');
 				var doc = new PDFDocument({margin: 10, size: 'A4'});
