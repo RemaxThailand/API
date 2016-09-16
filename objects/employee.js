@@ -55,6 +55,18 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}
 		}
+		else if (data.action == 'AddScreen'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+				typeof req.body.system != 'undefined' && req.body.system != '' &&
+				typeof req.body.screen != 'undefined' && req.body.screen != '' &&
+				typeof req.body.permission != 'undefined' && req.body.permission != '' &&
+				typeof req.body.employeetype != 'undefined' && req.body.employeetype != '' ) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_Pos_ShopEmployeeTypeInsert \''+req.body.shop+'\', \''+req.body.system+'\', \''+req.body.screen+'\', \''+req.body.permission+'\', \''+req.body.employeetype+'\', \''+req.body.adddate+'\', \''+req.body.addby+'\'';
+				data.util.execute(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
