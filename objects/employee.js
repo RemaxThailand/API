@@ -69,7 +69,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.id != 'undefined' && req.body.id != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_Pos_ShopEmployeeTypeInsert \''+req.body.shop+'\', \''+req.body.id+'\'';
+				data.command = 'EXEC sp_Pos_ShopEmployeeTypeDelete \''+req.body.shop+'\', \''+req.body.id+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
