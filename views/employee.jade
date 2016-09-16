@@ -239,13 +239,44 @@ block content
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
 					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#Delete', aria-expanded='false')
+						strong Employee Delete
+						| &#58;  ลบข้อมูลพนักงาน
+			#Delete.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /employee/Delete
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Employee ID
+									.col-sm-10
+										input.form-control.employeeId(type='text', placeholder='Employee ID')
+										p.help-block
+											span.font-pre.label.label-warning employeeId
+											|   รหัสพนักงาน
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
+					
 					
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
 					a(data-toggle='collapse', data-parent='#accordion', href='#AddType', aria-expanded='false')
 						strong EmployeeType Add 
-						| &#58; เพิ่มข้อมูลพนักงาน
+						| &#58; เพิ่มข้อมูลประเภทพนักงาน
 			#AddType.panel-collapse.collapse(role='tabpanel')
 				.panel-body
 					pre URL : /employee/AddType
@@ -315,6 +346,37 @@ block content
 										p.help-block
 											span.font-pre.label.label-default updateby
 											|   ปรับปรุงข้อมูลโดย
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
+		
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#DeleteType', aria-expanded='false')
+						strong EmployeeType Add 
+						| &#58; ลบข้อมูลประเภทพนักงาน
+			#DeleteType.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /employee/DeleteType
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') EmployeeType ID
+									.col-sm-10
+										input.form-control.id(type='text', placeholder='EmployeeType ID')
+										p.help-block
+											span.font-pre.label.label-warning id
+											|   รหัสประเภทพนักงาน
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
