@@ -42,7 +42,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.employeeId != 'undefined' && req.body.employeeId != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_Pos_ShopEmployeeInsert \''+req.body.shop+'\', \''+req.body.employeeId+'\', \''+req.body.employeeType+'\', \''+req.body.firstname+'\', \''+req.body.lastname+'\', \''+req.body.nickname+'\', \''+req.body.mobile+'\', \''+req.body.code+'\', \''+req.body.username+'\', \''+req.body.password+'\', \''+req.body.status+'\', \''+req.body.loginDate+'\', \''+req.body.loginCount+'\', \''+req.body.addBy+'\', \''+req.body.updateBy+'\'';
+				data.command = 'EXEC sp_Pos_ShopEmployeeInsert \''+req.body.shop+'\', \''+req.body.employeeId+'\', \''+req.body.employeeType+'\', \''+req.body.firstname+'\', \''+req.body.lastname+'\', \''+req.body.nickname+'\', \''+req.body.mobile+'\', \''+req.body.code+'\', \''+req.body.username+'\', \''+req.body.password+'\', \''+req.body.status+'\', \''+req.body.logindate+'\', \''+req.body.logincount+'\', \''+req.body.addby+'\', \''+req.body.updateby+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
