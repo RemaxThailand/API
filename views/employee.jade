@@ -115,3 +115,126 @@ block content
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
+				
+				
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#Add', aria-expanded='false')
+						strong Employee Add
+						| &#58; เพิ่มข้อมูลพนักงาน
+			#Add.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /employee/Add
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Employee ID
+									.col-sm-10
+										input.form-control.employeeid(type='text', placeholder='Employee ID')
+										p.help-block
+											span.font-pre.label.label-warning employeeid
+											|   รหัสพนักงาน
+								.form-group
+									label.col-sm-2.control-label(for='input') Employee Type
+									.col-sm-10
+										input.form-control.employeeType(type='text', placeholder='Employee Type')
+										p.help-block
+											span.font-pre.label.label-warning employeeType
+											|  ประเภทพนักงาน
+								.form-group
+									label.col-sm-2.control-label(for='input') Firstname
+									.col-sm-10
+										input.form-control.firstname(type='text', placeholder='Firstname')
+										p.help-block
+											span.font-pre.label.label-warning firstname
+											|   ชื่อลพนักงาน
+								.form-group
+									label.col-sm-2.control-label(for='input') Lastname
+									.col-sm-10
+										input.form-control.lastname(type='text', placeholder='Lastname')
+										p.help-block
+											span.font-pre.label.label-warning lastname
+											|  นามสกุล
+								.form-group
+									label.col-sm-2.control-label(for='input') Nickname
+									.col-sm-10
+										input.form-control.nickname(type='text', placeholder='Nickname')
+										p.help-block
+											span.font-pre.label.label-default nickname
+											|  ชื่อเล่น
+								.form-group
+									label.col-sm-2.control-label(for='input') Mobile
+									.col-sm-10
+										input.form-control.mobile(type='text', placeholder='Mobile')
+										p.help-block
+											span.font-pre.label.label-default mobile
+											|   เบอร์โทรศัพท์
+								.form-group
+									label.col-sm-2.control-label(for='input') Code
+									.col-sm-10
+										input.form-control.code(type='text', placeholder='Code')
+										p.help-block
+											span.font-pre.label.label-default code
+											|  รหัสเปลี่ยนสำหรับราคาขาย
+								.form-group
+									label.col-sm-2.control-label(for='input')  Username
+									.col-sm-10
+										input.form-control.username(type='text', placeholder='Username')
+										p.help-block
+											span.font-pre.label.label-default username
+											|   ชื่อผู้ใช้
+								.form-group
+									label.col-sm-2.control-label(for='input') Password
+									.col-sm-10
+										input.form-control.password(type='text', placeholder='Password')
+										p.help-block
+											span.font-pre.label.label-default password
+											|  รหัสผ่าน
+								.form-group
+									label.col-sm-2.control-label(for='input') Status
+									.col-sm-10
+										input.form-control.status(type='text', placeholder='Status')
+										p.help-block
+											span.font-pre.label.label-default status
+											|   สถานะ
+								.form-group
+									label.col-sm-2.control-label(for='input') Login Date
+									.col-sm-10
+										input.form-control.logindate(type='text', placeholder='Login Date')
+										p.help-block
+											span.font-pre.label.label-default logindate
+											|   วันที่เข้าใช้งานล่าสุด
+								.form-group
+									label.col-sm-2.control-label(for='input') Login Count
+									.col-sm-10
+										input.form-control.logincount(type='text', placeholder='Login Count')
+										p.help-block
+											span.font-pre.label.label-default logincount
+											|  จำนวนครั้งเข้าใช้งาน
+								.form-group
+									label.col-sm-2.control-label(for='input') Add By
+									.col-sm-10
+										input.form-control.addby(type='text', placeholder='Add By')
+										p.help-block
+											span.font-pre.label.label-default addby
+											|   เพิ่มข้อมูลโดย
+								.form-group
+									label.col-sm-2.control-label(for='input') Update By
+									.col-sm-10
+										input.form-control.updateby(type='text', placeholder='Update By')
+										p.help-block
+											span.font-pre.label.label-default updateby
+											| ปรับปรุงข้อมูลโดย
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert') 
