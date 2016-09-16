@@ -10,10 +10,11 @@ exports.action = function(req, res, data) {
                     data.util.query(req, res, data);
                 }
             } else if (data.subAction[0] == 'paid') {
-                if (typeof req.body.shop != 'undefined' && req.body.shop != '') {
+                if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+                    typeof req.body.month != 'undefined' && req.body.month != '') {
                     data.json.return = false;
                     data.json.returnResult = true;
-                    data.command = 'EXEC sp_ReceivablePaid \'' + req.body.shop + '\'';
+                    data.command = 'EXEC sp_ReceivablePaid \'' + req.body.shop + '\',\'' + req.body.month + '\'';
                     data.util.query(req, res, data);
                 }
             } else if (data.subAction[0] == 'pay') {
