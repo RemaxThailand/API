@@ -51,7 +51,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.id != 'undefined' && req.body.id != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_Pos_ShopEmployeeInsert \''+req.body.shop+'\', \''+req.body.id+'\', \''+req.body.name+'\', \''+req.body.level+'\', \''+req.body.active+'\', \''+req.body.adddate+'\', \''+req.body.addby+'\', \''+req.body.updatedate+'\', \''+req.body.updateby+'\'';
+				data.command = 'EXEC sp_Pos_ShopEmployeeTypeInsert \''+req.body.shop+'\', \''+req.body.id+'\', \''+req.body.name+'\', \''+req.body.level+'\', \''+req.body.active+'\', \''+req.body.adddate+'\', \''+req.body.addby+'\', \''+req.body.updatedate+'\', \''+req.body.updateby+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
