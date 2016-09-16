@@ -63,7 +63,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.employeetype != 'undefined' && req.body.employeetype != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_Pos_ShopEmployeeTypeInsert \''+req.body.shop+'\', \''+req.body.system+'\', \''+req.body.screen+'\', \''+req.body.permission+'\', \''+req.body.employeetype+'\', \''+req.body.adddate+'\', \''+req.body.addby+'\'';
+				data.command = 'EXEC sp_Pos_ShopEmployeeScreenMappingInsert \''+req.body.shop+'\', \''+req.body.system+'\', \''+req.body.screen+'\', \''+req.body.permission+'\', \''+req.body.employeetype+'\', \''+req.body.adddate+'\', \''+req.body.addby+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
