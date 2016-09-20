@@ -345,6 +345,66 @@ block content
 										p.help-block
 											span.font-pre.label.label-default paiddate
 											|  วันที่ชำระ
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')     
+				
+					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#credit', aria-expanded='false')
+						strong Credit Customer Add
+						| &#58; เพิ่มข้อมูลลูกหนี้
+			#credit.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /customer/credit
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Shop ID
+									.col-sm-10
+										input.form-control.shop(type='text', placeholder='Shop ID', value="#{data.shopIdTest}")
+										p.help-block
+											span.font-pre.label.label-warning shop
+											|   รหัสร้านค้า
+								.form-group
+									label.col-sm-2.control-label(for='input') Credit No
+									.col-sm-10
+										input.form-control.creditno(type='text', placeholder='Credit No')
+										p.help-block
+											span.font-pre.label.label-warning creditno
+											|   เลขที่ลูกหนี้
+								.form-group
+									label.col-sm-2.control-label(for='input') Sale No
+									.col-sm-10
+										input.form-control.saleno(type='text', placeholder='Sale No')
+										p.help-block
+											span.font-pre.label.label-warning saleno
+											|    เลขที่ขาย
+								.form-group
+									label.col-sm-2.control-label(for='input') Paid Price
+									.col-sm-10
+										input.form-control.paidprice(type='text', placeholder='Paid Price')
+										p.help-block
+											span.font-pre.label.label-default paidprice
+											|   จำนวนเงินชำระ
+								.form-group
+									label.col-sm-2.control-label(for='input') Paid By
+									.col-sm-10
+										input.form-control.paidby(type='text', placeholder='Paid By')
+										p.help-block
+											span.font-pre.label.label-default paidby
+											|  รับชำระจาก
+								.form-group
+									label.col-sm-2.control-label(for='input') Paid Date
+									.col-sm-10
+										input.form-control.paiddate(type='text', placeholder='Paid Date')
+										p.help-block
+											span.font-pre.label.label-default paiddate
+											|  วันที่ชำระ
 								.form-group
 									label.col-sm-2.control-label(for='input') Due Date
 									.col-sm-10
@@ -355,5 +415,4 @@ block content
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
-				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')                    
-					
+				.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')            
