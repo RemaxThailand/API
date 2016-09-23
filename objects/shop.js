@@ -75,7 +75,7 @@ exports.action = function(req, res, data) {
 					typeof req.body.date != 'undefined' && req.body.date != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportReceived \''+req.body.shop+'\', \''+req.body.date+'\'';
+				data.command = 'EXEC sp_ReportShopReceived \''+req.body.shop+'\', \''+req.body.date+'\'';
 				data.util.queryMultiple(req, res, data);
 			}
 		} else if (data.action == 'monthlySaleByCategory'){
