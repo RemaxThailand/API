@@ -27,6 +27,17 @@ exports.action = function(req, res, data) {
 					data.util.execute(req, res, data);
 			}
 		}
+		else if (data.action == 'sale'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+				typeof req.body.saleno != 'undefined' && req.body.saleno != '' &&
+				typeof req.body.totalPrice != 'undefined' && req.body.totalPrice != '' &&
+				typeof req.body.saledate != 'undefined' && req.body.saledate != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_Pos_SellHeader \''+req.body.shop+'\',\''+req.body.saleno+'\',\''+req.body.profit+'\',\''+req.body.totalPrice+'\',\''+req.body.payType+'\',\''+req.body.cash+'\',\''+req.body.credit+'\',\''+req.body.customer+'\',\''+req.body.sex+'\',\''+req.body.age+'\',\''+req.body.comment+'\',\''+req.body.saledate+'\',\''+req.body.saleby+'\',,\''+req.body.discountcash+'\',,\''+req.body.discountpercent+'\'';
+					data.util.execute(req, res, data);
+			}
+		}
 		else if (data.action == 'saleDetailAdd'){
 			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
 				typeof req.body.saleno != 'undefined' && req.body.saleno != '' &&
