@@ -70,6 +70,14 @@ exports.action = function(req, res, data) {
 				data.command = 'EXEC sp_ReportShopStock \''+req.body.shop+'\', \''+req.body.category+'\'';
 				data.util.query(req, res, data);
 			}
+		} else if (data.action == 'shopReceived'){
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+					typeof req.body.date != 'undefined' && req.body.date != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportReceived \''+req.body.shop+'\', \''+req.body.date+'\'';
+				data.util.queryMultiple(req, res, data);
+			}
 		} else if (data.action == 'monthlySaleByCategory'){
 			if (data.subAction[0] == 'shop'){
 				data.json.return = false;
