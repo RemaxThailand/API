@@ -158,7 +158,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_OrderChecker \''+req.body.orderNo+'\''';
+				data.command = 'EXEC sp_OrderChecker \''+req.body.orderNo+'\'';
 				data.util.execute(req, res, data)
 			}
 		}
