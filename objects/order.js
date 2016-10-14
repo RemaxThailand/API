@@ -154,6 +154,14 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}
 		}
+		else if (data.action == 'orderChecker'){
+			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_OrderChecker \''+req.body.orderNo+'\''';
+				data.util.execute(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
