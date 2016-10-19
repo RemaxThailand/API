@@ -294,8 +294,6 @@ block content
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
 					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
-		
-		
 		.panel.panel-default
 			#headingOne.panel-heading(role='tab')
 				h4.panel-title
@@ -314,6 +312,57 @@ block content
 										p.help-block
 											span.font-pre.label.label-warning orderNo
 											| orderNo
+								.form-group.margin-bottom-0
+									.col-sm-offset-2.col-sm-10
+										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
+					.result.hidden.alert.margin-top-10.margin-bottom-0.font-pre(role='alert')
+					
+		.panel.panel-default
+			#headingOne.panel-heading(role='tab')
+				h4.panel-title
+					a(data-toggle='collapse', data-parent='#accordion', href='#listupdateQty', aria-expanded='false')
+						strong Order List Update Qty
+			#listupdateQty.panel-collapse.collapse(role='tabpanel')
+				.panel-body
+					pre URL : /#{data.screen}/list/updateQty
+					.panel.panel-default
+						.panel-body
+							form.form-horizontal
+								.form-group
+									label.col-sm-2.control-label(for='input') Order No
+									.col-sm-10
+										input.form-control.orderNo(type='text', placeholder='Order No')
+										p.help-block
+											span.font-pre.label.label-warning orderNo
+											| orderNo
+								.form-group
+									label.col-sm-2.control-label(for='input') Comment
+									.col-sm-10
+										input.form-control.comment(type='text', placeholder='Comment')
+										p.help-block
+											span.font-pre.label.label-default comment
+											| Comment
+								.form-group
+									label.col-sm-2.control-label(for='input') Sale
+									.col-sm-10
+										input.form-control.sale(type='text', placeholder='Sale')
+										p.help-block
+											span.font-pre.label.label-warning sale
+											| Sale
+								.form-group
+									label.col-sm-2.control-label(for='input') Shipping
+									.col-sm-10
+										input.form-control.shipping(type='text', placeholder='Shipping')
+										p.help-block
+											span.font-pre.label.label-warning shipping
+											| Shipping
+								.form-group
+									label.col-sm-2.control-label(for='input') Payment
+									.col-sm-10
+										input.form-control.payment(type='text', placeholder='Payment')
+										p.help-block
+											span.font-pre.label.label-warning payment
+											| Payment
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit

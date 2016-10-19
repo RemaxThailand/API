@@ -162,6 +162,14 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data)
 			}
 		}
+		else if (data.action == 'orderHeader'){
+			if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_OrderHeaderUpdate \''+req.body.orderNo+'\', \''+req.body.comment+'\', \''+req.body.sale+'\', \''+req.body.shipping+'\', \''+req.body.payment+'\'';
+				data.util.query(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
