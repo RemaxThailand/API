@@ -135,6 +135,20 @@ exports.action = function(req, res, data) {
 				data.command = 'EXEC sp_NewsInfo \''+req.body.shop+'\'';
 				data.util.query(req, res, data);
 			}
+		} else if (data.action == 'detail'){			
+			data.json.return = false;
+			data.json.returnResult = true;
+			data.command = 'EXEC sp_ShopDetail \''+req.body.shopCode+'\'';
+			data.util.query(req, res, data);
+			
+		} else if (data.action == 'detailUpdate'){
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
+			typeof req.body.shop != 'undefined' && req.body.shop != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ShopDetailUpdate \''+req.body.memberKey+'\',\''+req.body.shop+'\',\''+req.body.detail+'\',\''+req.body.address+'\',\''+req.body.address2+'\',\''+req.body.subDistrict+'\',\''+req.body.district+'\',\''+req.body.province+'\',\''+req.body.zipcode+'\',\''+req.body.mobile+'\',\''+req.body.iframeGoogleMaps+'\'';
+				data.util.execute(req, res, data);
+			}
 		}
 		else {
 			data.json.error = 'API0011';
