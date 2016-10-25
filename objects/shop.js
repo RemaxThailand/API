@@ -138,7 +138,7 @@ exports.action = function(req, res, data) {
 		} else if (data.action == 'detail'){			
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_ShopDetail \''+req.body.shopCode+'\'';
+			data.command = 'EXEC sp_ShopDetail \''+req.body.shop+'\'';
 			data.util.query(req, res, data);
 			
 		} else if (data.action == 'detailUpdate'){
