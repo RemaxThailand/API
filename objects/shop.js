@@ -146,7 +146,7 @@ exports.action = function(req, res, data) {
 			typeof req.body.shop != 'undefined' && req.body.shop != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ShopDetailUpdate \''+req.body.memberKey+'\',\''+req.body.shop+'\',\''+req.body.detail+'\',\''+req.body.address+'\',\''+req.body.address2+'\',\''+req.body.subDistrict+'\',\''+req.body.district+'\',\''+req.body.province+'\',\''+req.body.zipcode+'\',\''+req.body.mobile+'\',\''+req.body.iframeGoogleMaps+'\'';
+				data.command = 'EXEC sp_ShopDetailUpdate \''+req.body.memberKey+'\',\''+req.body.shop+'\',\''+req.body.detail+'\',\''+req.body.address+'\',\''+req.body.address2+'\',\''+req.body.subDistrict+'\',\''+req.body.district+'\',\''+req.body.province+'\',\''+req.body.zipcode+'\',\''+req.body.mobile+'\',\''+req.body.image+'\',\''+req.body.iframeGoogleMaps+'\'';
 				data.util.execute(req, res, data);
 			}
 		}
