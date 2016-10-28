@@ -158,7 +158,20 @@ html
 									a(href="./order")
 										i(class=(data.screen === 'order' ? 'fa fa-circle-o text-yellow' : 'fa fa-circle-o'))
 										|  Order
-										
+						
+						
+						li(class=(data.screen === 'account' ? 'treeview active' : 'treeview'))
+							a(href="#")
+								i(class=(data.screen === 'account' ? 'fa fa-bitcoin text-aqua' : 'fa fa-bitcoin'))
+								span  Account
+								i.fa.fa-angle-left.pull-right
+							ul.treeview-menu
+								li(class=(data.screen === 'account' ? 'active' : ''))
+									a(href="./account")
+										i(class=(data.screen === 'account' ? 'fa fa-circle-o text-yellow' : 'fa fa-circle-o'))
+										|  Account		
+
+						
 						li(class=(data.screen === 'warehouse-queue' ? 'treeview active' : 'treeview'))
 							a(href="#")
 								i(class=(data.screen === 'warehouse-queue' ? 'fa fa-server text-aqua' : 'fa fa-server'))
