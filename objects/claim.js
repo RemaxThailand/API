@@ -69,6 +69,15 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data); 
 			}
 		}
+		else if (data.action == 'report_daily'){	
+			if (typeof req.body.shop != 'undefined' && req.body.shop != '' &&
+			typeof req.body.date != 'undefined' && req.body.date != '') {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportClaim \''+req.body.shop+'\', \''+req.body.date+'\'';
+				data.util.queryMultiple(req, res, data); 
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
