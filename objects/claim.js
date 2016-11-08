@@ -20,7 +20,6 @@ exports.action = function(req, res, data) {
 				typeof req.body.subDistrict != 'undefined' && req.body.sub_district != '' &&
 				typeof req.body.zipcode != 'undefined' && req.body.zipcode != '' &&
 				typeof req.body.tel != 'undefined' && req.body.tel != '' &&
-				typeof req.body.images != 'undefined' && req.body.images != '' &&
 				typeof req.body.lastShop != 'undefined' && req.body.lastShop != ''&&
 				typeof req.body.sellNo != 'undefined' && req.body.sellNo != '' &&
 				typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '' &&
