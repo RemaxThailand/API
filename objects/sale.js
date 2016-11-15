@@ -75,7 +75,7 @@ exports.action = function(req, res, data) {
 					typeof req.body.month != 'undefined' && req.body.month != '' ) {
 						data.json.return = false;
 						data.json.returnResult = true;
-						data.command = 'EXEC sp_DataMonthlySaleByCategory \''+req.body.category+'\', '+req.body.month;
+						data.command = 'EXEC sp_DataMonthlySaleByCategory \''+req.body.category+'\', \''+req.body.month+'\', \''+req.body.brand+'\'';
 						data.util.query(req, res, data);
 				}
 			}
@@ -84,7 +84,7 @@ exports.action = function(req, res, data) {
 			if (typeof req.body.year != 'undefined' && req.body.year != ''){
 				data.json.return = false;
 				data.json.returnResult = false;
-				data.command = 'EXEC sp_ReportMonthlySaleByYear '+req.body.year;
+				data.command = 'EXEC sp_ReportMonthlySaleByYear \''+req.body.year+'\', \''+req.body.brand+'\'';
 				data.util.queryMultiple(req, res, data);
 			}
 		}
@@ -94,7 +94,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportMonthlySaleDetail '+req.body.year+', '+req.body.month+', \''+req.body.type+'\'';
+				data.command = 'EXEC sp_ReportMonthlySaleDetail \''+req.body.year+'\', \''+req.body.month+'\', \''+req.body.type+'\', \''+req.body.brand+'\'';
 				data.util.query(req, res, data);
 			}
 		}
@@ -103,7 +103,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportMonthlySaleHistory '+req.body.member+', \''+req.body.type+'\'';
+				data.command = 'EXEC sp_ReportMonthlySaleHistory \''+req.body.member+'\', \''+req.body.type+'\', \''+req.body.type+'\', \''+req.body.brand+'\'';
 				data.util.query(req, res, data);
 			}
 		}
@@ -118,7 +118,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.month != 'undefined' && req.body.month != ''){
 				data.json.return = false;
 				data.json.returnResult = false;
-				data.command = 'EXEC sp_ReportDailySaleByMonth '+req.body.year+','+req.body.month;
+				data.command = 'EXEC sp_ReportDailySaleByMonth \''+req.body.year+'\',\''+req.body.month+'\', \''+req.body.brand+'\'';
 				data.util.queryMultiple(req, res, data);
 			}
 		}
@@ -129,7 +129,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportDailySaleDetail '+req.body.year+', '+req.body.month+', '+req.body.day+', \''+req.body.type+'\'';
+				data.command = 'EXEC sp_ReportDailySaleDetail \''+req.body.year+'\', \''+req.body.month+'\', \''+req.body.day+'\', \''+req.body.type+'\', \''+req.body.brand+'\'';
 				data.util.query(req, res, data);
 			}
 		}

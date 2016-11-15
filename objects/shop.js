@@ -87,7 +87,7 @@ exports.action = function(req, res, data) {
 			} else {
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\'';
+				data.command = 'EXEC sp_ReportMonthlySaleByCategory \''+req.body.shop+'\', \''+req.body.month+'\', \''+req.body.brand+'\'';
 				data.util.queryMultiple(req, res, data);
 			}
 		} else if (data.action == 'centerAccumulated'){
