@@ -103,7 +103,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.type != 'undefined' && req.body.type != ''){
 				data.json.return = false;
 				data.json.returnResult = true;
-				data.command = 'EXEC sp_ReportMonthlySaleHistory \''+req.body.member+'\', \''+req.body.type+'\', \''+req.body.type+'\', \''+req.body.brand+'\'';
+				data.command = 'EXEC sp_ReportMonthlySaleHistory \''+req.body.member+'\', \''+req.body.type+'\', \''+req.body.brand+'\'';
 				data.util.query(req, res, data);
 			}
 		}
