@@ -480,7 +480,7 @@ exports.action = function(req, res, report, branch, brand) {
 								doc.y = y; doc.x = posX[0]+25;
 								doc.text(recordset[i]['sku'], { width: 40, align: 'left' })
 								doc.y = y; doc.x = posX[0]+70;
-								doc.text(recordset[i]['name']+recordset[i]['percentClaim'] != 0 ? +' ('+recordset[i]['percentClaim']+'%)'+ :'', { width: 300, align: 'left' })
+								doc.text(recordset[i]['name'] + (recordset[i]['percentClaim'] != 0) ? ' ('+recordset[i]['percentClaim']+'%)' : '', { width: 300, align: 'left' })
 								doc.y = y; doc.x = posX[1];
 								doc.text((recordset[i]['cost'] > 0) ? numberWithCommas(recordset[i]['cost'].toFixed(2)) : '-', { width: 30, align: 'right' })
 								doc.y = y; doc.x = posX[2];
