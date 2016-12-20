@@ -32,7 +32,7 @@ exports.action = function(req, res, data) {
 		else if (data.action == 'IdByName'){
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_ProvinceIDByName \''+lang+'\',\''+req.body.name+'\'';
+			data.command = 'EXEC sp_ProvinceIDByName \''+lang+'\',\''+req.body.province+'\',\''+req.body.district+'\'';
 			data.util.query(req, res, data)
 			
 		}
