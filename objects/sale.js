@@ -86,6 +86,7 @@ exports.action = function(req, res, data) {
 				data.json.returnResult = false;
 				data.command = 'EXEC sp_ReportMonthlySaleByYear \''+req.body.year+'\', \''+req.body.brand+'\'';
 				data.util.queryMultiple(req, res, data);
+				console.log(data.command);
 			}
 		}
 		else if (data.action == 'monthlySaleDetail'){
