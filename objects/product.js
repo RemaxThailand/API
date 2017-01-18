@@ -222,7 +222,7 @@ exports.action = function(req, res, data) {
 				typeof req.body.value != 'undefined' && req.body.value != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_Pos_ShopReceivedUpdate \''+req.body.shop+'\', \''+req.body.id+'\', \''+req.body.entity+'\', \''+req.body.value+'\'';
+					data.command = 'EXEC sp_Pos_ShopReceivedProduct \''+req.body.shop+'\', \''+req.body.id+'\', \''+req.body.entity+'\', \''+req.body.value+'\'';
 					data.util.execute(req, res, data); 
 			}
 		}
