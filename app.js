@@ -58,7 +58,9 @@ app.get('*', function(req, res) {
 			var report = require('./objects/report');
 			if(url[1] == 'shop'){
 				report.shop(req, res, url[2], url[3].replace('.pdf', ''))
-			}else {
+			} else if(url[1] == 'neoinvoice') {
+				report.generate(req, res, url[1], url[2]);
+			} else {
 				report.action(req, res, url[1], url[2], url[3]);
 			}
 		}

@@ -552,7 +552,7 @@ exports.action = function(req, res, report, branch, brand) {
 
 };
 
-exports.generate = function(req, res, report, branch, orderNo) {
+exports.generate = function(req, res, report, orderNo) {
 
 	try {
 
