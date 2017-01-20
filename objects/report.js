@@ -570,7 +570,7 @@ exports.generate = function(req, res, report, orderNo) {
 				request.query('EXEC sp_DataOrderDetailInvoice \''+orderNo+'\'', function (err, recordset, returnValue) {
 					if (!err){
 
-						doc.image('./public/images/report/'+report+((recordset[1].length > 46) ? '0' : '')+'.png', 0, 0, {width:600});
+						doc.image('./public/images/report/'+report+((recordset[1].length > 42) ? '0' : '')+'.png', 0, 0, {width:600});
 						rq = require('request');
 
 						rq({
@@ -616,7 +616,8 @@ exports.generate = function(req, res, report, orderNo) {
 
 								var y = 158;
 								var page = 1;
-								var maxY = 785;
+								var maxY = 760;
+								//var maxY = 785;
 								doc.font('./fonts/ANGSAU.TTF', 14);
 								for (i=0; i<recordset[1].length; i++) {
 									if ( page == 1){
