@@ -616,7 +616,7 @@ exports.generate = function(req, res, report, orderNo) {
 
 								var y = 158;
 								var page = 1;
-								var maxY = 760;
+								var maxY = 700;
 								//var maxY = 785;
 								doc.font('./fonts/ANGSAU.TTF', 14);
 								for (i=0; i<recordset[1].length; i++) {
