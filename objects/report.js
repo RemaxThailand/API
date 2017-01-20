@@ -576,7 +576,7 @@ exports.generate = function(req, res, report, orderNo) {
 						rq({
 							url: 'https://24fin-api.azurewebsites.net/barcode/'+orderNo,
 							encoding: null
-						}, function(err, response, body) {
+						}, function(err, response, body) { 
 							if (err) throw err;
 
 							doc.image(body, 436, 107, {width:140});
