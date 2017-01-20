@@ -635,7 +635,7 @@ exports.generate = function(req, res, report, orderNo) {
 											y = 35;
 											page++;
 										}
-									}
+									}		
 									y += 12;
 									doc.y = y;	doc.x = 25;	doc.text(recordset[1][i]['sku']);
 									doc.y = y;	doc.x = 89;	doc.text(recordset[1][i]['name']);
