@@ -570,7 +570,7 @@ exports.generate = function(req, res, report, orderNo) {
 				request.query('EXEC sp_DataOrderDetailInvoice \''+orderNo+'\'', function (err, recordset, returnValue) {
 					if (!err){
 
-						doc.image('./public/images/report/'+report+((recordset[1].length > 42) ? '0' : '')+'.png', 0, 0, {width:600});
+						doc.image('./public/images/report/'+report+((recordset[1].length > 41) ? '0' : '')+'.png', 0, 0, {width:600});
 						rq = require('request');
 
 						rq({
