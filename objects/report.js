@@ -643,7 +643,7 @@ exports.generate = function(req, res, report, orderNo) {
 									doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
 									doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
 								}
-								doc.font('./fonts/THSarabun.ttf', 14);
+								doc.font('./fonts/THSarabun.ttf', 14); 
 									doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
 								doc.font('./fonts/CALIBRIB.TTF', 14);
 									doc.y = 807; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice']), { width:50, align: 'right' });
