@@ -655,6 +655,10 @@ exports.generate = function(req, res, report, orderNo) {
 									return;
 								});
 							});
+						}else{
+							
+							doc.end();
+							return;
 						}
 					}else{
 					   res.send(err.message);
