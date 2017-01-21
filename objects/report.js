@@ -619,33 +619,33 @@ exports.generate = function(req, res, report, orderNo) {
 								var maxY = 700;
 								//var maxY = 785;
 								doc.font('./fonts/ANGSAU.TTF', 14);
-								if(recordset[1].length>0){
-									for (i=0; i<recordset[1].length; i++) {
-										if ( page == 1){
-											if ( y > maxY ) {
-												doc.addPage();
-												doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
-												y = 35;
-												page++;
-											}
+								
+								for (i=0; i<recordset[1].length; i++) {
+									if ( page == 1){
+										if ( y > maxY ) {
+											doc.addPage();
+											doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
+											y = 35;
+											page++;
 										}
-										else {
-											if ( y > maxY ) {
-												doc.addPage();
-												doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png', 0, 0, {width:600});
-												doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
-												y = 35;
-												page++;
-											}
-										}		
-										y += 12;
-										doc.y = y;	doc.x = 25;	doc.text(recordset[1][i]['sku']);
-										doc.y = y;	doc.x = 89;	doc.text(recordset[1][i]['name']);
-										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
-										doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
-										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
 									}
+									else {
+										if ( y > maxY ) {
+											doc.addPage();
+											doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png', 0, 0, {width:600});
+											doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
+											y = 35;
+											page++;
+										}
+									}		
+									y += 12;
+									doc.y = y;	doc.x = 25;		doc.text(recordset[1][i]['sku']);
+									doc.y = y;	doc.x = 89;		doc.text(recordset[1][i]['name']);
+									doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
+									doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
+									doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
 								}
+								
 								doc.font('./fonts/THSarabun.ttf', 14); 
 									doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
 								doc.font('./fonts/CALIBRIB.TTF', 14);
