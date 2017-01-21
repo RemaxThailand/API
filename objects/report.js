@@ -569,92 +569,93 @@ exports.generate = function(req, res, report, orderNo) {
 				//### ORDER FOR REPORT ###//
 				request.query('EXEC sp_DataOrderDetailInvoice \''+orderNo+'\'', function (err, recordset, returnValue) {
 					if (!err){
-
-						doc.image('./public/images/report/'+report+((recordset[1].length > 42) ? '0' : '')+'.png', 0, 0, {width:600});
-						rq = require('request');
-
-						rq({
-							url: 'https://24fin-api.azurewebsites.net/barcode/'+orderNo,
-							encoding: null
-						}, function(err, response, body) { 
-							if (err) throw err;
-
-							doc.image(body, 436, 107, {width:140});
+						
+						if(recordset[1].length>0){
+							doc.image('./public/images/report/'+report+((recordset[1].length > 42) ? '0' : '')+'.png', 0, 0, {width:600});
+							rq = require('request');
 
 							rq({
-								url: 'https://24fin-api.azurewebsites.net/barcode/'+recordset[0][0]['member'],
+								url: 'https://24fin-api.azurewebsites.net/barcode/'+orderNo,
 								encoding: null
-							}, function(err, response, body) {
+							}, function(err, response, body) { 
 								if (err) throw err;
 
-								doc.image(body, 25, 47, {width:110});
+								doc.image(body, 436, 107, {width:140});
+
+								rq({
+									url: 'https://24fin-api.azurewebsites.net/barcode/'+recordset[0][0]['member'],
+									encoding: null
+								}, function(err, response, body) {
+									if (err) throw err;
+
+									doc.image(body, 25, 47, {width:110});
 
 
-								var d = new Date(recordset[0][0]['addDate']);
-								var m = moment(d);
-								m.lang('th');
-								m.utcOffset(0);
-								//m.add(3600*7, 'seconds'); // GMT +7
+									var d = new Date(recordset[0][0]['addDate']);
+									var m = moment(d);
+									m.lang('th');
+									m.utcOffset(0);
+									//m.add(3600*7, 'seconds'); // GMT +7
 
-								doc.y = 57;
-								doc.x = 433;
-								doc.font('./fonts/THSarabunBold.ttf', 16)
-									.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
+									doc.y = 57;
+									doc.x = 433;
+									doc.font('./fonts/THSarabunBold.ttf', 16)
+										.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
 
-								doc.y = 88.7; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
-								doc.y = 29; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
+									doc.y = 88.7; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
+									doc.y = 29; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
 
 
-								doc.y = 24; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 16).text(recordset[0][0]['name']+((recordset[0][0]['contactName'] != '') ? ' ('+recordset[0][0]['contactName']+')' : ''))
+									doc.y = 24; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 16).text(recordset[0][0]['name']+((recordset[0][0]['contactName'] != '') ? ' ('+recordset[0][0]['contactName']+')' : ''))
 
-								doc.y = 44; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 18).text(recordset[0][0]['shopName']);
+									doc.y = 44; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 18).text(recordset[0][0]['shopName']);
 
-								doc.y = 70; doc.x = 67;				doc.font('./fonts/THSarabun.ttf', 14).text(recordset[0][0]['address']+' '+recordset[0][0]['address2']);
-								var isBkk = recordset[0][0]['province'] == 'กรุงเทพมหานคร';
-								doc.y = 90; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
-								doc.y = 110.5; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
+									doc.y = 70; doc.x = 67;				doc.font('./fonts/THSarabun.ttf', 14).text(recordset[0][0]['address']+' '+recordset[0][0]['address2']);
+									var isBkk = recordset[0][0]['province'] == 'กรุงเทพมหานคร';
+									doc.y = 90; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
+									doc.y = 110.5; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
 
-								var y = 158;
-								var page = 1;
-								var maxY = 700;
-								//var maxY = 785;
-								doc.font('./fonts/ANGSAU.TTF', 14);
-								for (i=0; i<recordset[1].length; i++) {
-									if ( page == 1){
-										if ( y > maxY ) {
-											doc.addPage();
-											doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
-											y = 35;
-											page++;
+									var y = 158;
+									var page = 1;
+									var maxY = 700;
+									//var maxY = 785;
+									doc.font('./fonts/ANGSAU.TTF', 14);
+									for (i=0; i<recordset[1].length; i++) {
+										if ( page == 1){
+											if ( y > maxY ) {
+												doc.addPage();
+												doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
+												y = 35;
+												page++;
+											}
 										}
+										else {
+											if ( y > maxY ) {
+												doc.addPage();
+												doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png', 0, 0, {width:600});
+												doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
+												y = 35;
+												page++;
+											}
+										}		
+										y += 12;
+										doc.y = y;	doc.x = 25;	doc.text(recordset[1][i]['sku']);
+										doc.y = y;	doc.x = 89;	doc.text(recordset[1][i]['name']);
+										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
+										doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
+										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
 									}
-									else {
-										if ( y > maxY ) {
-											doc.addPage();
-											doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png', 0, 0, {width:600});
-											doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
-											y = 35;
-											page++;
-										}
-									}		
-									y += 12;
-									doc.y = y;	doc.x = 25;	doc.text(recordset[1][i]['sku']);
-									doc.y = y;	doc.x = 89;	doc.text(recordset[1][i]['name']);
-									doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
-									doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
-									doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
-								}
-								doc.font('./fonts/THSarabun.ttf', 14); 
-									doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
-								doc.font('./fonts/CALIBRIB.TTF', 14);
-									doc.y = 733.5; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice']), { width:50, align: 'right' });
+									doc.font('./fonts/THSarabun.ttf', 14); 
+										doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
+									doc.font('./fonts/CALIBRIB.TTF', 14);
+										doc.y = 733.5; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice']), { width:50, align: 'right' });
 
-								doc.pipe(res);
-								doc.end();
-								return;
+									doc.pipe(res);
+									doc.end();
+									return;
+								});
 							});
-						});
-
+						}
 					}else{
 					   res.send(err.message);
 					}
