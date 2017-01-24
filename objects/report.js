@@ -627,8 +627,8 @@ exports.generate = function(req, res, report, orderNo) {
 									if ( page == 1){
 										if ( y > maxY ) {
 											doc.addPage();
-											if(recordset[1].length>166){
-												doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
+											if(recordset[1].length > 166){
+												doc.image('./public/images/report/'+report+'1.png', 0, 0, {width:600});
 											}else{
 												doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
 											}
