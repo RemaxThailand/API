@@ -633,7 +633,7 @@ exports.generate = function(req, res, report, orderNo) {
 										if ( y > maxY ) {
 											doc.addPage();
 											doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png', 0, 0, {width:600});
-											doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
+											//doc.y = 10;	doc.x = 10;	doc.text('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'.png');
 											y = 35;
 											page++;
 										}
