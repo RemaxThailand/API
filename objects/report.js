@@ -616,15 +616,15 @@ exports.generate = function(req, res, report, orderNo) {
 
 								var y = 158;
 								var page = 1;
-								var maxY = 700;
-								//var maxY = 785;
+								//var maxY = 700;
+								var maxY = 785;
 								doc.font('./fonts/ANGSAU.TTF', 14);
 								
 								for (i=0; i<recordset[1].length; i++) {
 									if ( page == 1){
 										if ( y > maxY ) {
 											doc.addPage();
-											doc.image('./public/images/report/'+report+'1.png', 0, 0, {width:600});
+											doc.image('./public/images/report/'+report+'2.png', 0, 0, {width:600});
 											y = 35;
 											page++;
 										}
