@@ -46,8 +46,8 @@ exports.action = function(req, res, data) {
                     data.json.return = false;
                     data.json.returnResult = true;
                     data.command = 'EXEC sp_NeoCreditAdd \'' + req.body.memberKey + '\',\'' + req.body.orderNo + '\',\'' + req.body.creditDay + '\',\'' + req.body.remark + '\'';
-                    data.util.execute(req, res, data);
-                }
+                    data.util.execute(req, res, data); 
+                } //add
             } else if (data.subAction[0] == 'credit-update') {
                 if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
                     typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
