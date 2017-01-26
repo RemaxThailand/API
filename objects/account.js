@@ -42,8 +42,7 @@ exports.action = function(req, res, data) {
             } else if (data.subAction[0] == 'credit-add') {
                 if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
                     typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
-                    typeof req.body.creditDay != 'undefined' && req.body.creditDay != '' &&
-                    typeof req.body.remark != 'undefined' && req.body.remark != '') {
+                    typeof req.body.creditDay != 'undefined' && req.body.creditDay != '') {
                     data.json.return = false;
                     data.json.returnResult = true;
                     data.command = 'EXEC sp_NeoCreditAdd \'' + req.body.memberKey + '\',\'' + req.body.orderNo + '\',\'' + req.body.creditDay + '\',\'' + req.body.remark + '\'';
@@ -52,8 +51,7 @@ exports.action = function(req, res, data) {
             } else if (data.subAction[0] == 'credit-update') {
                 if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
                     typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
-                    typeof req.body.paidPrice != 'undefined' && req.body.paidPrice != '' &&
-                    typeof req.body.remark != 'undefined' && req.body.remark != '') {
+                    typeof req.body.paidPrice != 'undefined' && req.body.paidPrice != '') {
                     data.json.return = false;
                     data.json.returnResult = true;
                     data.command = 'EXEC sp_NeoCreditUpdate \'' + req.body.memberKey + '\',\'' + req.body.orderNo + '\',\'' + req.body.paidPrice + '\',\'' + req.body.remark + '\'';
