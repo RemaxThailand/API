@@ -32,7 +32,6 @@ exports.action = function(req, res, data) {
         } else if(data.action == 'neolution'){
             if (data.subAction[0] == 'credit-info') {
                if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
-                    typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
                     typeof req.body.paid != 'undefined' && req.body.paid != '') {
                     data.json.return = false;
                     data.json.returnResult = true;
