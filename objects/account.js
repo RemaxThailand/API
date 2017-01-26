@@ -36,7 +36,7 @@ exports.action = function(req, res, data) {
                     data.json.return = false;
                     data.json.returnResult = true;
                     data.command = 'EXEC sp_NeoCreditInfo \'' + req.body.memberKey + '\',\'' + req.body.orderNo + '\',\'' + req.body.paid + '\'';
-                    data.util.query(req, res, data);
+                    data.util.queryMultiple(req, res, data);
                 }
             } else if (data.subAction[0] == 'credit-add') {
                 if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '' &&
