@@ -1006,26 +1006,19 @@ block content
 											span.font-pre.label.label-warning shop
 											|   รหัสร้านค้า
 								.form-group
-									label.col-sm-2.control-label(for='input') Barcode ID
+									label.col-sm-2.control-label(for='input') OrderNo
 									.col-sm-10
-										input.form-control.id(type='text', placeholder='Barcode ID')
+										input.form-control.order(type='text', placeholder='OrderNo')
 										p.help-block
-											span.font-pre.label.label-warning id
-											|   รหัสสินค้า
+											span.font-pre.label.label-warning order
+											|   เลขที่ใบสั่งซื้อ
 								.form-group
-									label.col-sm-2.control-label(for='input') Entity
+									label.col-sm-2.control-label(for='input') Received By
 									.col-sm-10
-										input.form-control.entity(type='text', placeholder='Entity')
+										input.form-control.by(type='text', placeholder='Received By')
 										p.help-block
-											span.font-pre.label.label-warning entity
-											|   ชื่อคอลัมน์ที่ต้องการแก้ไข (ถ้ามีมากกว่า 1 ให้คั่นด้วยเครื่องหมาย , เช่น SellNo,SellBy)
-								.form-group
-									label.col-sm-2.control-label(for='input') Entity Value
-									.col-sm-10
-										input.form-control.value(type='text', placeholder='Entity Value')
-										p.help-block
-											span.font-pre.label.label-warning value
-											|   ค่าที่ต้องการแก้ไข (ถ้ามีมากกว่า 1 ให้คั่นด้วยเครื่องหมาย , เช่น  15091522,0000)
+											span.font-pre.label.label-warning by
+											|   ผู้รับเข้าสินค้า
 								.form-group.margin-bottom-0
 									.col-sm-offset-2.col-sm-10
 										.btn.btn-sm.btn-primary.btn-submit(data-loading-text='Loading...', autocomplete='off') Submit
