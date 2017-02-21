@@ -204,21 +204,25 @@ exports.process = function(req, res, data) {
 			result.sales[''+i]['chain'] = 0;
 			result.sales[''+i]['shop'] = 0;
 			result.sales[''+i]['premium'] = 0;
+			result.sales[''+i]['event'] = 0;
 			result.profit[''+i] = {};
 			result.profit[''+i]['member'] = 0;
 			result.profit[''+i]['chain'] = 0;
 			result.profit[''+i]['shop'] = 0;
 			result.profit[''+i]['premium'] = 0;
+			result.profit[''+i]['event'] = 0;
 			result.qty[''+i] = {};
 			result.qty[''+i]['member'] = 0;
 			result.qty[''+i]['chain'] = 0;
 			result.qty[''+i]['shop'] = 0;
 			result.qty[''+i]['premium'] = 0;
+			result.qty[''+i]['event'] = 0;
 			result.bill[''+i] = {};
 			result.bill[''+i]['member'] = 0;
 			result.bill[''+i]['chain'] = 0;
 			result.bill[''+i]['shop'] = 0;
 			result.bill[''+i]['premium'] = 0;
+			result.bill[''+i]['event'] = 0;
 			result.price1[''+i] = {};		result.price1[''+i]['price'] = 0;		result.price1[''+i]['qty'] = 0;		result.price1[''+i]['bill'] = 0;
 			result.price2[''+i] = {};		result.price2[''+i]['price'] = 0;		result.price2[''+i]['qty'] = 0;		result.price2[''+i]['bill'] = 0;
 			result.price3[''+i] = {};		result.price3[''+i]['price'] = 0;		result.price3[''+i]['qty'] = 0;		result.price3[''+i]['bill'] = 0;
@@ -263,16 +267,19 @@ exports.process = function(req, res, data) {
 			result.sales[''+i]['chain'] = 0;
 			result.sales[''+i]['shop'] = 0;
 			result.sales[''+i]['premium'] = 0;
+			result.sales[''+i]['event'] = 0;
 			result.qty[''+i] = {};
 			result.qty[''+i]['member'] = 0;
 			result.qty[''+i]['chain'] = 0;
 			result.qty[''+i]['shop'] = 0;
 			result.qty[''+i]['premium'] = 0;
+			result.qty[''+i]['event'] = 0;
 			result.bill[''+i] = {};
 			result.bill[''+i]['member'] = 0;
 			result.bill[''+i]['chain'] = 0;
 			result.bill[''+i]['shop'] = 0;
 			result.bill[''+i]['premium'] = 0;
+			result.bill[''+i]['event'] = 0;
 		}
 		for(i=0; i<data.result[0].length; i++){
 			var recordset = data.result[0][i];
