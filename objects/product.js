@@ -225,6 +225,15 @@ exports.action = function(req, res, data) {
 				data.util.execute(req, res, data)
 			}
 		}
+		else if (data.action == 'summaryStock'){
+			if (typeof req.body.date != 'undefined' && req.body.date != '' &&
+				typeof req.body.brand != 'undefined' && req.body.brand != '' ) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_SummaryStock \''+req.body.date+'\', \''+req.body.brand+'\'';
+				data.util.query(req, res, data)
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
