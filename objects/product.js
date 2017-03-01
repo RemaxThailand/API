@@ -226,8 +226,7 @@ exports.action = function(req, res, data) {
 			}
 		}
 		else if (data.action == 'summaryStock'){
-			if (typeof req.body.date != 'undefined' && req.body.date != '' &&
-				typeof req.body.brand != 'undefined' && req.body.brand != '' ) {
+			if (typeof req.body.date != 'undefined' && req.body.date != '' ) {
 				data.json.return = false;
 				data.json.returnResult = true;
 				data.command = 'EXEC sp_SummaryStock \''+req.body.date+'\', \''+req.body.brand+'\'';
