@@ -181,6 +181,14 @@ exports.action = function(req, res, data) {
 				data.util.query(req, res, data);
 			}
 		}
+		else if (data.action == 'monthlySaleOfYear_table'){
+			if (typeof req.body.year != 'undefined' && req.body.year != ''){
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'EXEC sp_ReportMonthlySale \''+req.body.year+'\',\''+req.body.brand+'\'';
+				data.util.query(req, res, data);
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
