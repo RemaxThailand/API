@@ -23,10 +23,11 @@ exports.action = function(req, res, data) {
 				typeof req.body.lastShop != 'undefined' && req.body.lastShop != ''&&
 				typeof req.body.sellNo != 'undefined' && req.body.sellNo != '' &&
 				typeof req.body.sellPrice != 'undefined' && req.body.sellPrice != '' &&
-				typeof req.body.sellDate != 'undefined' && req.body.sellDate != '') {
+				typeof req.body.sellDate != 'undefined' && req.body.sellDate != '') &&
+				typeof req.body.returnType != 'undefined' && req.body.returnType != '') {
 					data.json.return = false;
 					data.json.returnResult = true;
-					data.command = 'EXEC sp_ClaimAdd \''+req.body.from+'\',\''+req.body.shop+'\',\''+req.body.barcode+'\',\''+req.body.product+'\',\''+req.body.description+'\',\''+req.body.firstname+'\',\''+req.body.lastname+'\',\''+req.body.nickname+'\',\''+req.body.address+'\',\''+req.body.address2+'\',\''+req.body.province+'\',\''+req.body.district+'\',\''+req.body.subDistrict+'\',\''+req.body.zipcode+'\',\''+req.body.tel+'\',\''+req.body.email+'\',\''+req.body.images+'\',\''+req.body.lastShop+'\',\''+req.body.firstname+'\',\''+req.body.firstname+'\', \''+req.body.sellNo+'\',\''+req.body.sellPrice+'\',\''+req.body.usernameClaim+'\',\''+req.body.customerLineId+'\',\''+req.body.claimType+'\',\''+req.body.sellDate+'\'';
+					data.command = 'EXEC sp_ClaimAdd \''+req.body.from+'\',\''+req.body.shop+'\',\''+req.body.barcode+'\',\''+req.body.product+'\',\''+req.body.description+'\',\''+req.body.firstname+'\',\''+req.body.lastname+'\',\''+req.body.nickname+'\',\''+req.body.address+'\',\''+req.body.address2+'\',\''+req.body.province+'\',\''+req.body.district+'\',\''+req.body.subDistrict+'\',\''+req.body.zipcode+'\',\''+req.body.tel+'\',\''+req.body.email+'\',\''+req.body.images+'\',\''+req.body.lastShop+'\',\''+req.body.firstname+'\',\''+req.body.firstname+'\', \''+req.body.sellNo+'\',\''+req.body.sellPrice+'\',\''+req.body.usernameClaim+'\',\''+req.body.customerLineId+'\',\''+req.body.claimType+'\',\''+req.body.sellDate+'\',\''+req.body.returnType+'\'';
 					data.util.query(req, res, data); 
 			} 
 		}
