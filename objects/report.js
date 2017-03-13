@@ -552,7 +552,7 @@ exports.action = function(req, res, report, branch, brand) {
 
 };
 
-exports.generate = function(req, res, report, orderNo) {
+exports.generate = function(req, res, report, orderNo, vat) {
 
 	try {
 
@@ -567,7 +567,7 @@ exports.generate = function(req, res, report, orderNo) {
 				var doc = new PDFDocument({margin: 10, size: 'A4'});
 
 				//### ORDER FOR REPORT ###//
-				request.query('EXEC sp_DataOrderDetailInvoice \''+orderNo+'\''+0+'', function (err, recordset, returnValue) {
+				request.query('EXEC sp_DataOrderDetailInvoice \''+orderNo+'\',\''+vat+'\'', function (err, recordset, returnValue) {
 					if (!err){
 												
 						doc.image('./public/images/report/'+report+((recordset[1].length > 42) ? '0' : '')+'.png', 0, 0, {width:600});
