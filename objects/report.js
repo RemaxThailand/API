@@ -574,7 +574,7 @@ exports.generate = function(req, res, report, orderNo) {
 						rq = require('request'); 
 
 						rq({
-							url: 'https://24fin-api.azurewebsites.net/barcode/'+orderNo,
+							url: 'https://24fin-api.azurewebsites.net/barcode/'+orderNo+'/0',
 							encoding: null
 						}, function(err, response, body) { 
 							if (err) throw err;
