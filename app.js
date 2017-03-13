@@ -59,7 +59,7 @@ app.get('*', function(req, res) {
 			if(url[1] == 'shop'){
 				report.shop(req, res, url[2], url[3].replace('.pdf', ''))
 			} else if(url[1] == 'neoinvoice') {
-				report.generate(req, res, url[1], url[2]);
+				report.generate(req, res, url[1], url[2], url[3]);
 			} else {
 				report.action(req, res, url[1], url[2], url[3]);
 			}
