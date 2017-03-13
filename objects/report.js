@@ -658,6 +658,10 @@ exports.generate = function(req, res, report, orderNo, vat) {
 									doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
 								doc.font('./fonts/CALIBRIB.TTF', 14);
 									doc.y = 733.5; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice']), { width:50, align: 'right' });
+								doc.font('./fonts/CALIBRIB.TTF', 14);
+									doc.y = 771; doc.x = 523;	doc.text((recordset[0][0]['vat'] == 0) ? '-' : numberWithCommas(recordset[0][0]['vat']), { width:50, align: 'right' });
+								doc.font('./fonts/CALIBRIB.TTF', 14);
+									doc.y = 807; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPriceAV']), { width:50, align: 'right' });
 
 								doc.pipe(res);
 								doc.end();
