@@ -67,11 +67,6 @@ exports.index = function(req, res, data){
 		data.title = 'Source Control - ' + data.title;
 		data.titleDescription += ' ';
 	}
-	else if (data.screen == 'report') {
-		data.title = 'Report';
-		data.titleDescription += ' ';
-	}
-
 
 	res.render(data.screen, { data: data });
 
