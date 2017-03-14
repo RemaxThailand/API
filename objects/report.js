@@ -661,7 +661,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 								doc.font('./fonts/CALIBRIB.TTF', 10);
 									doc.y = 773; doc.x = 523;	doc.text((recordset[0][0]['vat'] == 0) ? '-' : numberWithCommas(recordset[0][0]['vat']), { width:50, align: 'right' });
 								doc.font('./fonts/CALIBRIB.TTF', 10);
-									doc.y = 810; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPriceAV']), { width:50, align: 'right' });
+									doc.y = 810; doc.x = 523;	doc.text(recordset[0][0]['totalPriceAV'], { width:50, align: 'right' });
 
 								doc.pipe(res);
 								doc.end();
