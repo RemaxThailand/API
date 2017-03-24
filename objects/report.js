@@ -657,7 +657,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 								doc.font('./fonts/THSarabun.ttf', 14); 
 									doc.y = 733.5;	doc.x = 90;	doc.text(numberWithCommas(recordset[0][0]['textPrice']), { width:250,align: 'center' });
 								doc.font('./fonts/CALIBRIB.TTF', 10);
-									doc.y = 735; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice']), { width:50, align: 'right' });
+									doc.y = 735; doc.x = 523;	doc.text(numberWithCommas(recordset[0][0]['totalPrice'].toFixed(2)), { width:50, align: 'right' });
 								doc.font('./fonts/CALIBRIB.TTF', 10);
 									doc.y = 773; doc.x = 523;	doc.text((recordset[0][0]['vat'] == 0) ? '-' : numberWithCommas(recordset[0][0]['vat'].toFixed(2)), { width:50, align: 'right' });
 								doc.font('./fonts/CALIBRIB.TTF', 10);
