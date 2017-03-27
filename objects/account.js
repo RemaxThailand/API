@@ -56,6 +56,14 @@ exports.action = function(req, res, data) {
                     data.command = 'EXEC sp_NeoCreditUpdate \'' + req.body.memberKey + '\',\'' + req.body.orderNo + '\',\'' + req.body.paidPrice + '\',\'' + req.body.remark + '\'';
                     data.util.execute(req, res, data);
                 }
+            } else if (data.subAction[0] == 'invoicePrice') {
+                if (typeof req.body.orderNo != 'undefined' && req.body.orderNo != '' &&
+                    typeof req.body.vat != 'undefined' && req.body.vat != '') {
+                    data.json.return = false;
+                    data.json.returnResult = true;
+                    data.command = 'EXEC sp_DataOrderTotalPriceInvoice \'' + req.body.orderNo + '\',\'' + req.body.vat + '\'';
+                    data.util.query(req, res, data);
+                }
             }
         } else {
             data.json.error = 'API0011';
