@@ -678,7 +678,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 							}, function(err, response, body) { 
 								if (err) throw err;
 
-								doc.image(body, 436, 107, {width:140});
+								doc.image(body, 436, 60, {width:140});
 
 								rq({
 									url: 'https://24fin-api.azurewebsites.net/barcode/'+recordset[0][0]['member'],
@@ -700,7 +700,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									doc.font('./fonts/THSarabunBold.ttf', 16)
 										.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
 
-									doc.y = 58; doc.x = 514;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
+									doc.y = 57.5; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
 									doc.y = 29; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
 
 
