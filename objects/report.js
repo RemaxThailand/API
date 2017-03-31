@@ -701,7 +701,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
 
 									doc.y = 57.5; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
-									doc.y = 29+50; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
+									doc.y = 29+80; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
 
 
 									doc.y = 24; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 16).text(recordset[0][0]['name']+((recordset[0][0]['contactName'] != '') ? ' ('+recordset[0][0]['contactName']+')' : ''))
