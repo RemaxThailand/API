@@ -695,8 +695,8 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									m.utcOffset(0);
 									//m.add(3600*7, 'seconds'); // GMT +7
 
-									doc.y = 25;
-									doc.x = 433;
+									doc.y = 27;
+									doc.x = 434;
 									doc.font('./fonts/THSarabunBold.ttf', 16)
 										.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
 
