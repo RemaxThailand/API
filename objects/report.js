@@ -678,7 +678,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 							}, function(err, response, body) { 
 								if (err) throw err;
 
-								doc.image(body, 436, 70, {width:140});
+								doc.image(body, 436, 116, {width:140});
 								doc.y = 5; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 32).text('บริษัท นีโอลูชั่น เทคโนโลยี คอร์ปอเรชั่น จำกัด');
 								doc.y = 40; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 16).text('44 ซอยเอกชัย 63 ถนนเอกชัย แขวงบางบอน เขตบางบอน กรุงเทพมหานคร 10150');
 								doc.y = 60; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 16).text('Tel: 02-898-2875, Fax: 02-898-2858');
@@ -706,7 +706,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									
 									var yPlus = 82.5;
 									
-									doc.y = 57.5; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
+									doc.y = 102.5; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
 									doc.y = 29 + yPlus; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
 
 
