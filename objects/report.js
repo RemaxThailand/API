@@ -679,6 +679,10 @@ exports.generate = function(req, res, report, vat, orderNo) {
 								if (err) throw err;
 
 								doc.image(body, 436, 70, {width:140});
+								doc.y = 5; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 32).text('บริษัท นีโอลูชั่น เทคโนโลยี คอร์ปอเรชั่น จำกัด');
+								doc.y = 40; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 16).text('44 ซอยเอกชัย 63 ถนนเอกชัย แขวงบางบอน เขตบางบอน กรุงเทพมหานคร 10150');
+								doc.y = 60; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 16).text('Tel: 02-898-2875, Fax: 02-898-2858');
+								doc.y = 80; doc.x = 16;		doc.font('./fonts/THSarabunBold.ttf', 16).text('เลขประจำตัวผู้เสียภาษี 0105548046089');
 
 								rq({
 									url: 'https://24fin-api.azurewebsites.net/barcode/'+recordset[0][0]['member'],
@@ -686,7 +690,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 								}, function(err, response, body) {
 									if (err) throw err;
 
-									doc.image(body, 25, 47, {width:110});
+									doc.image(body, 25, 47 + 82.5, {width:110});
 
 
 									var d = new Date(recordset[0][0]['addDate']);
@@ -699,21 +703,23 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									doc.x = 434;
 									doc.font('./fonts/THSarabunBold.ttf', 16)
 										.text('วันที่ ' + m.format('DD MMMM')+' '+(parseInt(m.format('YYYY'))+543)+' '+m.format('HH:mm'))
-
+									
+									var yPlus = 82.5;
+									
 									doc.y = 57.5; doc.x = 513;		doc.font('./fonts/CALIBRIB.TTF', 12).text(orderNo);
-									doc.y = 29+82.5; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
+									doc.y = 29 + yPlus; doc.x = 67;				doc.font('./fonts/CALIBRI.TTF', 12).text(recordset[0][0]['member']);
 
 
-									doc.y = 24; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 16).text(recordset[0][0]['name']+((recordset[0][0]['contactName'] != '') ? ' ('+recordset[0][0]['contactName']+')' : ''))
+									doc.y = 24 + yPlus; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 16).text(recordset[0][0]['name']+((recordset[0][0]['contactName'] != '') ? ' ('+recordset[0][0]['contactName']+')' : ''))
 
-									doc.y = 44; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 18).text(recordset[0][0]['shopName']);
+									doc.y = 44 + yPlus; doc.x = 150;			doc.font('./fonts/THSarabunBold.ttf', 18).text(recordset[0][0]['shopName']);
 
-									doc.y = 70; doc.x = 67;				doc.font('./fonts/THSarabun.ttf', 14).text(recordset[0][0]['address']+' '+recordset[0][0]['address2']);
+									doc.y = 70 + yPlus; doc.x = 67;				doc.font('./fonts/THSarabun.ttf', 14).text(recordset[0][0]['address']+' '+recordset[0][0]['address2']);
 									var isBkk = recordset[0][0]['province'] == 'กรุงเทพมหานคร';
-									doc.y = 90; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
-									doc.y = 110.5; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
+									doc.y = 90 + yPlus; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
+									doc.y = 110.5 + yPlus; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
 
-									var y = 158;
+									var y = 158 + yPlus;
 									var page = 1;
 									if(recordset[1].length == 47){
 										var maxY = 700;
