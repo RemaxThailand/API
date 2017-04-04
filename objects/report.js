@@ -543,6 +543,272 @@ exports.action = function(req, res, report, branch, brand) {
 
 			 });
 		}
+		else if (report == 'fingerscan') {
+			
+			var connection = new sql.Connection(config.mssql, function (err) {
+				var request = new sql.Request(connection);
+				request.multiple = true;
+				request.query('EXEC Remax..sp_EmployeeData \''+branch+'\',\''+brand+'\'', function (err, recordset, returnValue) {
+					if (!err){
+						var xl = require('excel4node');
+						var wb = new xl.Workbook();
+						//var ws = wb.addWorksheet(recordset[0]['header']);
+						var ws = wb.addWorksheet('ข้อมูลจากเครื่อง');
+						var headerStyle = wb.createStyle({
+							font: { bold: true }, 
+							alignment: { horizontal: 'center', vertical: 'center' }
+						});
+						var headerRightStyle = wb.createStyle({
+							alignment: { horizontal: 'right', vertical: 'center', shrinkToFit: true }
+						});
+						var dataStyle = wb.createStyle({
+							alignment: { horizontal: 'center', shrinkToFit: true }
+						});
+						var redStyle = wb.createStyle({
+							font: { bold: true, color: 'FF0000' }, 
+							alignment: { horizontal: 'center', shrinkToFit: true }
+						});
+						var greenStyle = wb.createStyle({
+							font: { bold: true, color: '009900' }, 
+							alignment: { horizontal: 'center', shrinkToFit: true }
+						});
+						var orangeStyle = wb.createStyle({
+							font: { bold: true, color: 'FF9900' }, 
+							alignment: { horizontal: 'center', shrinkToFit: true }
+						});
+						var pinkStyle = wb.createStyle({
+							font: { bold: true, color: 'FF33CC' }, 
+							alignment: { horizontal: 'center', shrinkToFit: true }
+						});
+						var headerTopStyle = wb.createStyle({
+							font: { bold: true }, 
+							alignment: { horizontal: 'center' },
+							border: { left: { style:'thin'}, right: { style:'thin'}, top: { style:'thin'}, bottom: { style:'thin'} }
+						});
+						var calendarDayStyle = wb.createStyle({
+							alignment: { horizontal: 'center' },
+							border: { left: { style:'thin'}, right: { style:'thin'}, top: { style:'thin'} }
+						});
+						var calendarTextStyle = wb.createStyle({
+							font: { bold: true, color: 'FF0000' }, 
+							alignment: { horizontal: 'center' },
+							border: { left: { style:'thin'}, right: { style:'thin'}, bottom: { style:'thin'} }
+						});
+
+						var row = 1;
+						var column = 1;
+
+						ws.cell(row,1, row++, 7, true).string('ข้อมูลเวลาเข้า-ออกงานของพนักงาน วันที่ '+recordset[0][0]['header']).style(headerStyle);
+						row++;
+						ws.cell(row,column,row+1,column++, true).string("ชื่อพนักงาน").style(headerStyle);
+						ws.cell(row,column,row+1,column++, true).string("วันที่").style(headerStyle);
+						ws.cell(row,column++,row,column++, true).string("เวลา").style(headerStyle);
+						ws.cell(row,column++,row,column++, true).string("เวลาทำงาน").style(headerStyle);
+						ws.cell(row,column,row+1,column++, true).string("หมายเหตุ").style(headerStyle);
+						row++;
+						column = 3;
+						ws.cell(row,column++).string("เข้า").style(headerStyle);
+						ws.cell(row,column++).string("ออก").style(headerStyle);
+						ws.cell(row,column++).string("นาที").style(headerStyle);
+						ws.cell(row,column++).string("ชั่วโมง").style(headerStyle);
+						row++;
+
+						var holiday = {};
+						for (i=0; i<recordset[2].length; i++){
+							holiday[recordset[2][i]['dayNo']] = {
+								name: recordset[2][i]['name'],
+								isHoliday: recordset[2][i]['isHoliday']
+							}
+						}
+
+						var activeName = '';
+						var eRow = 1;
+						var eCol = 1;
+						var eTotal = {
+							minutes: 0,
+							late: 0,
+							absence: 0,
+							scan: 0,
+							noTimeOut: 0
+						}
+						var textPos = {};
+						var ws2;
+						for (i=0; i<recordset[1].length; i++){
+							if (activeName != recordset[1][i]['name']) {
+								if (activeName != '') {
+									eRow = 3;
+									eCol = 3;
+									ws2.cell(eRow++,eCol).string(''+eTotal.scan).style(eTotal.scan <= 0 ? redStyle : greenStyle);
+									ws2.cell(eRow++,eCol).string(''+(eTotal.absence > 0 ? eTotal.absence : '-')).style(eTotal.absence > 0 ? redStyle : greenStyle);
+									ws2.cell(eRow++,eCol).string(''+(eTotal.late > 0 ? eTotal.late : '-')).style(eTotal.late > 0 ? pinkStyle : greenStyle);
+									ws2.cell(eRow++,eCol).string(''+(eTotal.noTimeOut > 0 ? eTotal.noTimeOut : '-')).style(eTotal.noTimeOut > 0 ? orangeStyle : greenStyle);
+									var h = Math.floor(eTotal.minutes/60)-1;
+									var m = eTotal.minutes%60;
+									ws2.cell(eRow,eCol++).string((h > 1 ? h+' ชั่วโมง ' : '')+(m > 0 ? m+' นาที' : ''));
+								}
+								activeName = recordset[1][i]['name'];
+								eTotal.scan = 0;
+								eTotal.absence = 0;
+								eTotal.late = 0;
+								eTotal.minutes = 0;
+								eTotal.noTimeOut = 0;
+
+								ws2 = wb.addWorksheet(activeName);
+								eRow = 1;
+								eCol = 1;
+								ws2.cell(eRow++,eCol).string(recordset[1][i]['name']).style(wb.createStyle({ font: { bold: true } }));
+								eRow++;
+								ws2.cell(eRow,eCol,eRow++,eCol+1, true).string("ทำงาน (วัน)").style(headerRightStyle);
+								ws2.cell(eRow,eCol,eRow++,eCol+1, true).string("ขาด (วัน)").style(headerRightStyle);
+								ws2.cell(eRow,eCol,eRow++,eCol+1, true).string("สาย (วัน)").style(headerRightStyle);
+								ws2.cell(eRow,eCol,eRow++,eCol+1, true).string("ไม่ลงเวลาออก (วัน)").style(headerRightStyle);
+								ws2.cell(eRow,eCol,eRow++,eCol+1, true).string("เวลาทำงาน").style(headerRightStyle);
+								eRow++;
+								eCol = 1;
+								ws2.cell(eRow,eCol++).string("จ.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("อ.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("พ.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("พฤ.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("ศ.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("ส.").style(headerTopStyle);
+								ws2.cell(eRow,eCol++).string("อา.").style(headerTopStyle);
+								eRow++;
+								eCol = recordset[0][0]['startDayInMonth'] == 1 ? 7 : recordset[0][0]['startDayInMonth']-1;
+								var dRow = eRow;
+								var dCol = eCol;
+								for (d=1; d<=recordset[0][0]['totalDayInMonth']; d++) {
+									if (textPos[d] == undefined){
+										textPos[d] = {
+											row: dRow+1,
+											col : dCol
+										}
+									}
+
+									if (holiday[d] == undefined || holiday[d].isHoliday){
+										ws2.cell(dRow,dCol).number(d).style(calendarDayStyle);
+									}
+									else {
+										if (!holiday[d].isHoliday)
+											ws2.cell(dRow,dCol).string(d+' '+holiday[d].name).style(wb.createStyle({
+												font: { color:'0066FF' },
+												alignment: { horizontal: 'center', shrinkToFit: true },
+												border: { left: { style:'thin'}, right: { style:'thin'}, top: { style:'thin'} },
+											}));
+									}
+
+
+									if(dCol < 6) {
+										eTotal.absence++;
+										ws2.cell(dRow+1,dCol).string('ขาด').style(calendarTextStyle);
+									}
+									else {
+										ws2.cell(dRow+1,dCol).string('-').style(calendarTextStyle);
+									}
+
+									if (holiday[d] != undefined && holiday[d].isHoliday) {
+										if (dCol < 6) eTotal.absence--;
+										ws2.cell(dRow+1,dCol).string(holiday[d].name).style(wb.createStyle({
+											font: { color:'0066FF' },
+											alignment: { shrinkToFit: true },
+										}));
+									}
+									dCol++;
+
+									if (dCol == 8) {
+										dCol = 1;
+										dRow += 2;
+									}
+								}
+							}
+
+							
+							eTotal.scan++;
+							column = 1;
+							ws.cell(row,column++).string(recordset[1][i]['name']).style(dataStyle);
+							ws.cell(row,column++).number(recordset[1][i]['dayNo']).style(dataStyle);
+							var timeIn = parseInt((''+recordset[1][i]['timeIn']).replace(':',''));
+							var status = '';
+							var text = '';
+							if ( timeIn > 940 ) {
+								status = 'สาย';
+								text = 'สาย '+recordset[1][i]['timeIn'];
+								eTotal.late++;
+							}
+							ws.cell(row,column++).string(recordset[1][i]['timeIn']).style(timeIn > 940 ? redStyle : (timeIn < 930 ? greenStyle : orangeStyle));
+							ws.cell(row,column++).string( recordset[1][i]['timeCount'] == 1 ? '-' : recordset[1][i]['timeOut']).style(dataStyle);
+							if (recordset[1][i]['timeCount'] > 1) {
+								eTotal.minutes += recordset[1][i]['totalMinutes'];
+								var h = Math.floor(recordset[1][i]['totalMinutes']/60)-1;
+								var m = recordset[1][i]['totalMinutes']%60;
+								ws.cell(row,column++).number(recordset[1][i]['totalMinutes']).style(h < 8 ? redStyle : dataStyle);
+								ws.cell(row,column++).string( (h > 1 ? h+' ชั่วโมง ' : '')
+									+(m > 0 ? m+' นาที' : '')).style(h < 8 ? redStyle : dataStyle);
+								status += h < 8 ? ((status == '' ? '' : ' และ')+'ทำงานไม่ครบ 8 ชั่วโมง') : '';
+							}
+							else {
+								ws.cell(row,column++).string('-').style(dataStyle);
+								ws.cell(row,column++).string('-').style(dataStyle);
+								status += (status == '' ? '' : ' และ')+'ไม่ลงเวลาออก';
+								eTotal.noTimeOut++;
+								if (text == '') text = 'ไม่ลงเวลาออก';
+							}
+
+							
+							if (status != '') {
+								ws.cell(row,column++).string(status).style(wb.createStyle({
+									font: { color: 'FF9900' }, 
+									alignment: { shrinkToFit: true }
+								}));
+							}
+							if (text != '') {
+								ws2.cell(textPos[recordset[1][i]['dayNo']].row,textPos[recordset[1][i]['dayNo']].col).string(text).style(text.indexOf('สาย') >= 0 ? pinkStyle : orangeStyle);
+							}
+							else {
+								ws2.cell(textPos[recordset[1][i]['dayNo']].row,textPos[recordset[1][i]['dayNo']].col).string("ปกติ").style(greenStyle);
+							}
+							if (eCol == 8) {
+								eCol = 1;
+								eRow++;
+							}
+
+							row++;
+							if (textPos[recordset[1][i]['dayNo']].col < 6) eTotal.absence--;
+
+						}
+
+						//---
+						if(recordset[1].length > 0){
+							eRow = 3;
+							eCol = 3;
+							ws2.cell(eRow++,eCol).string(''+eTotal.scan).style(eTotal.scan <= 0 ? redStyle : greenStyle);
+							ws2.cell(eRow++,eCol).string(''+(eTotal.absence > 0 ? eTotal.absence : '-')).style(eTotal.absence > 0 ? redStyle : greenStyle);
+							ws2.cell(eRow++,eCol).string(''+(eTotal.late > 0 ? eTotal.late : '-')).style(eTotal.late > 0 ? pinkStyle : greenStyle);
+							ws2.cell(eRow++,eCol).string(''+(eTotal.noTimeOut > 0 ? eTotal.noTimeOut : '-')).style(eTotal.noTimeOut > 0 ? orangeStyle : greenStyle);
+							var h = Math.floor(eTotal.minutes/60)-1;
+							var m = eTotal.minutes%60;
+							ws2.cell(eRow,eCol++).string((h > 1 ? h+' ชั่วโมง ' : '')+(m > 0 ? m+' นาที' : ''));
+						}
+						//---
+
+						ws.row(4).freeze();
+						ws.column(1).setWidth(13);
+						ws.column(2).setWidth(5);
+						ws.column(3).setWidth(7);
+						ws.column(4).setWidth(7);
+						ws.column(5).setWidth(7);
+						ws.column(6).setWidth(18);
+						ws.column(7).setWidth(27);
+
+						res.setHeader('Content-disposition', 'attachment; filename="'+recordset[0][0]['header']+'.xlsx"');
+						res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+						wb.write(brand+'-'+branch+'.xlsx', res);
+					}
+					else {
+						res.json(err);
+					}
+				});
+			});
+		}
 
 	}
 	catch(err) {
