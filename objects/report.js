@@ -990,9 +990,9 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									var page = 1;
 
 									if(recordset[1].length == 47){
-										var maxY = 700 - yPlus;
+										var maxY = 700 - 82;
 									}else{
-										var maxY = 785 - yPlus;
+										var maxY = 785;
 									}															
 									doc.font('./fonts/ANGSAU.TTF', 14);
 									
@@ -1000,7 +1000,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										if ( page == 1){
 											if ( y > maxY ) {
 												doc.addPage();
-												if(recordset[1].length > 116){ 
+												if(recordset[1].length > 82){ 
 													doc.image('./public/images/report/'+report+'1_vat.png', 0, 0, {width:600});
 												}else{
 													doc.image('./public/images/report/'+report+'2_vat.png', 0, 0, {width:600});
@@ -1011,9 +1011,14 @@ exports.generate = function(req, res, report, vat, orderNo) {
 											}
 										}
 										else {
-											if ( y > maxY ) {
+											if ( y > maxY) {
 												doc.addPage();
-												doc.image('./public/images/report/'+report+(((recordset[1].length - i) > 63) ? '1' : '2')+'_vat.png', 0, 0, {width:600});
+												if(recordset[1].length > 200 ){ 
+													doc.image('./public/images/report/'+report+'1_vat.png', 0, 0, {width:600});
+												}else{
+													doc.image('./public/images/report/'+report+'2_vat.png', 0, 0, {width:600});
+												}
+
 												y = 35;
 												page++;
 											}
