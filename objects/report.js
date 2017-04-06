@@ -984,8 +984,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									var isBkk = recordset[0][0]['province'] == 'กรุงเทพมหานคร';
 									doc.y = 90 + yPlus; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
 									doc.y = 110.5 + yPlus; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
-									//doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(((recordset[0][0]['taxNo']) == '-') ? '' : 'เลขประจำตัวผู้เสียภาษี '+recordset[0][0]['taxNo']);
-									doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(recordset[1].length);
+									doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(((recordset[0][0]['taxNo']) == '-') ? '' : 'เลขประจำตัวผู้เสียภาษี '+recordset[0][0]['taxNo']);
 
 									var y = 158 + 83;
 									var page = 1;
