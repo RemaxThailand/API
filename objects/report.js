@@ -984,15 +984,16 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									var isBkk = recordset[0][0]['province'] == 'กรุงเทพมหานคร';
 									doc.y = 90 + yPlus; doc.x = 67;				doc.text(((isBkk) ? 'แขวง' : 'ตำบล')+recordset[0][0]['subDistrict']+' '+((isBkk) ? 'เขต' : 'อำเภอ')+recordset[0][0]['district']+' '+((isBkk) ? '' : 'จังหวัด')+recordset[0][0]['province']+' รหัสไปรษณีย์ '+recordset[0][0]['zipcode']);
 									doc.y = 110.5 + yPlus; doc.x = 67;		doc.text(recordset[0][0]['mobile'].substr(0,3)+'-'+recordset[0][0]['mobile'].substr(3,4)+'-'+recordset[0][0]['mobile'].substr(7,3));
-									doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(((recordset[0][0]['taxNo']) == '-') ? '' : 'เลขประจำตัวผู้เสียภาษี 0105548046089');
+									//doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(((recordset[0][0]['taxNo']) == '-') ? '' : 'เลขประจำตัวผู้เสียภาษี '+recordset[0][0]['taxNo']);
+									doc.y = 110.5 + yPlus; doc.x = 250;		doc.text(recordset[1].length);
 
-									var y = 158 + yPlus;
+									var y = 158 + 83;
 									var page = 1;
 
-									if(recordset[1].length == 47){
-										var maxY = 700 - 82;
+									if(recordset[1].length == 39){
+										var maxY = 700 - 83;
 									}else{
-										var maxY = 785;
+										var maxY = 785 - 83;
 									}															
 									doc.font('./fonts/ANGSAU.TTF', 14);
 									
@@ -1000,7 +1001,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										if ( page == 1){
 											if ( y > maxY ) {
 												doc.addPage();
-												if(recordset[1].length > 82){ 
+												if(recordset[1].length > 83){ 
 													doc.image('./public/images/report/'+report+'1_vat.png', 0, 0, {width:600});
 												}else{
 													doc.image('./public/images/report/'+report+'2_vat.png', 0, 0, {width:600});
