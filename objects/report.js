@@ -992,7 +992,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 									if(recordset[1].length == 39){
 										var maxY = 700 - 83;
 									}else{
-										var maxY = 785 - 83;
+										var maxY = 785 + 10;
 									}															
 									doc.font('./fonts/ANGSAU.TTF', 14);
 									
@@ -1013,7 +1013,7 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										else {
 											if ( y > maxY) {
 												doc.addPage();
-												if(recordset[1].length > 200 ){ 
+												if(recordset[1].length > 200){ 
 													doc.image('./public/images/report/'+report+'1_vat.png', 0, 0, {width:600});
 												}else{
 													doc.image('./public/images/report/'+report+'2_vat.png', 0, 0, {width:600});
