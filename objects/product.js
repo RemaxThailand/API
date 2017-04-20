@@ -255,6 +255,7 @@ exports.action = function(req, res, data) {
 
 //## Internal Method ##//
 exports.process = function(req, res, data) {
+	exports.getItemImage(req, res, data);
 	if (data.action == 'mkdir') {
 		exports.mkdir(req, res, data);
 	}
@@ -262,7 +263,7 @@ exports.process = function(req, res, data) {
 		/*if (req.body.type == 'item') {
 			exports.getItemImage(req, res, data);
 		}*/
-		exports.getItemImage(req, res, data);
+		
 	}
 	else if (data.action == 'category_and_brand'){
 		exports.categoryAndBrand(req, res, data);
