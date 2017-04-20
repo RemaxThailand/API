@@ -255,7 +255,9 @@ exports.action = function(req, res, data) {
 
 //## Internal Method ##//
 exports.process = function(req, res, data) {
+
 	exports.getItemImage(req, res, data);
+
 	if (data.action == 'mkdir') {
 		exports.mkdir(req, res, data);
 	}
@@ -388,7 +390,7 @@ exports.getItemImage = function(req, res, data) {
 
 	data.json.success = true;
 	data.util.responseJson(req, res, data.json);
-
+	console.log(imageList.toString());
 	if (imageList.length > 0) {
 		data.json.return = false;
 		data.json.returnResult = true;
