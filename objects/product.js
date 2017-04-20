@@ -259,9 +259,10 @@ exports.process = function(req, res, data) {
 		exports.mkdir(req, res, data);
 	}
 	else if (data.action == 'info') {
-		if (req.body.type == 'item') {
+		/*if (req.body.type == 'item') {
 			exports.getItemImage(req, res, data);
-		}
+		}*/
+		exports.getItemImage(req, res, data);
 	}
 	else if (data.action == 'category_and_brand'){
 		exports.categoryAndBrand(req, res, data);
