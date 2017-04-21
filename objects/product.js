@@ -239,6 +239,38 @@ exports.action = function(req, res, data) {
 			data.command = 'EXEC sp_ProductImageIsNullInfo \''+req.body.shop+'\'';
 			data.util.query(req, res, data)		
 		}
+		else if (data.action == 'updateImage'){	
+			var fs = require('fs');
+			var files = [];
+			var imageList = [];
+			try
+			{
+				files = fs.readdirSync('/var/www/resources/img/product/'+req.body.sku+'/');
+			}
+			catch(error) {
+				console.log(error);
+			}
+			var type = '|jpg|jpeg|png|gif|'; // ชื่อ type รูปภาพ
+			var image = [];
+			for (f = 0; f < files.length; f++) {
+				var sp = files[f].toLowerCase().split('.');
+				if ( type.indexOf('|'+sp[sp.length-1]+'|') != -1 ) {
+					if ( data.util.isNumeric(parseInt(sp[0])) ) {
+						image.push( files[f] );
+						imageList.push(files[f]);
+					}
+					else if ( files[f].toLowerCase().substr(0,1) == 'd' ) {
+						imageList.push(files[f]);
+					}
+				}
+			}	
+			if (imageList.length > 0) {
+				data.json.return = false;
+				data.json.returnResult = true;
+				data.command = 'UPDATE Product SET image = \''+imageList.toString()+'\' WHERE shop = 88888888 AND sku = \''+req.body.sku+'\'';
+				data.util.query(req, res, data);
+			}
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
@@ -256,15 +288,13 @@ exports.action = function(req, res, data) {
 //## Internal Method ##//
 exports.process = function(req, res, data) {
 
-	exports.getItemImage(req, res, data);
-
 	if (data.action == 'mkdir') {
 		exports.mkdir(req, res, data);
 	}
 	else if (data.action == 'info') {
-		/*if (req.body.type == 'item') {
+		if (req.body.type == 'item') {
 			exports.getItemImage(req, res, data);
-		}*/
+		}
 		
 	}
 	else if (data.action == 'category_and_brand'){
@@ -390,7 +420,7 @@ exports.getItemImage = function(req, res, data) {
 
 	data.json.success = true;
 	data.util.responseJson(req, res, data.json);
-	console.log(imageList.toString());
+
 	if (imageList.length > 0) {
 		data.json.return = false;
 		data.json.returnResult = true;
