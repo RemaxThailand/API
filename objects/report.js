@@ -915,9 +915,9 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										y += 12;
 										doc.y = y;	doc.x = 25;		doc.text(recordset[1][i]['sku']);
 										doc.y = y;	doc.x = 89;		doc.text(recordset[1][i]['name']);
-										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
+										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price'].toFixed(2)), { width:35, align: 'right' });
 										doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
-										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
+										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice'].toFixed(2)), { width:43, align: 'right' });
 									}
 									
 									doc.font('./fonts/THSarabun.ttf', 14); 
@@ -1026,9 +1026,9 @@ exports.generate = function(req, res, report, vat, orderNo) {
 										y += 12;
 										doc.y = y;	doc.x = 25;		doc.text(recordset[1][i]['sku']);
 										doc.y = y;	doc.x = 89;		doc.text(recordset[1][i]['name']);
-										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price']), { width:35, align: 'right' });
+										doc.y = y;	doc.x = 420;	doc.text(numberWithCommas(recordset[1][i]['price'].toFixed(2)), { width:35, align: 'right' });
 										doc.y = y;	doc.x = 475;	doc.text(numberWithCommas(recordset[1][i]['qty']), { width:26, align: 'right' });
-										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice']), { width:43, align: 'right' });
+										doc.y = y;	doc.x = 525;	doc.text(numberWithCommas(recordset[1][i]['totalPrice'].toFixed(2)), { width:43, align: 'right' });
 									}
 									
 									doc.font('./fonts/THSarabun.ttf', 14); 
