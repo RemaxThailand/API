@@ -12,7 +12,7 @@ exports.action = function(req, res, data) {
 					data.json.return = false;
 					data.json.returnResult = true;
 					data.command = 'EXEC sp_TransportOrderAdd \''+req.body.memberKey+'\',\''+req.body.orderNo+'\'';
-					data.util.excute(req, res, data); 
+					data.util.execute(req, res, data); 
 			} 
 		}
 		else {
@@ -25,3 +25,4 @@ exports.action = function(req, res, data) {
 		data.util.responseError(req, res, error);
 	}
 };
+
