@@ -23,6 +23,22 @@ exports.action = function(req, res, data) {
 					data.util.query(req, res, data); 
 			} 
 		}
+		else if (data.action == 'confirmSend'){ 
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_TransportOrderConfirmSend \''+req.body.memberKey+'\',\''+req.body.orderNo+'\'';
+					data.util.execute(req, res, data); 
+			} 
+		}
+		else if (data.action == 'cancelAssign'){ 
+			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
+					data.json.return = false;
+					data.json.returnResult = true;
+					data.command = 'EXEC sp_TransportOrderCancelAssign \''+req.body.memberKey+'\',\''+req.body.orderNo+'\'';
+					data.util.execute(req, res, data); 
+			} 
+		}
 		else {
 			data.json.error = 'API0011';
 			data.json.errorMessage = 'Action ' + data.action.toUpperCase() + ' is not implemented';
