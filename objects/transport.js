@@ -16,12 +16,12 @@ exports.action = function(req, res, data) {
 			} 
 		}
 		else if (data.action == 'assign'){ 
-			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
-					data.json.return = false;
-					data.json.returnResult = true;
-					data.command = 'EXEC sp_TransportOrderAssign \''+req.body.memberKey+'\'';
-					data.util.query(req, res, data); 
-			} 
+			
+			data.json.return = false;
+			data.json.returnResult = true;
+			data.command = 'EXEC sp_TransportOrderAssign \''+req.body.memberKey+'\'';
+			data.util.query(req, res, data); 
+			 
 		}
 		else if (data.action == 'confirmSend'){ 
 			if (typeof req.body.memberKey != 'undefined' && req.body.memberKey != '') {
