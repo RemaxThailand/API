@@ -3,7 +3,7 @@ exports.action = function(req, res, data) {
 		if (data.action == 'info'){
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_TransportOrderWaiting ';
+			data.command = 'EXEC sp_TransportOrderWaiting \''+req.body.orderNo+'\'';
 			data.util.query(req, res, data);
 		}
 		else if (data.action == 'add'){ 
