@@ -19,7 +19,7 @@ exports.action = function(req, res, data) {
 			
 			data.json.return = false;
 			data.json.returnResult = true;
-			data.command = 'EXEC sp_TransportOrderAssign \''+req.body.memberKey+'\'';
+			data.command = 'EXEC sp_TransportOrderAssign \''+req.body.memberKey+'\',\''+req.body.orderNo+'\'';
 			data.util.query(req, res, data); 
 			 
 		}

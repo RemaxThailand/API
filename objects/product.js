@@ -245,7 +245,7 @@ exports.action = function(req, res, data) {
 			var imageList = [];
 			try
 			{
-				files = fs.readdirSync('/var/www/resources/img/product/'+req.body.sku+'/');
+				files = fs.readdirSync('/data/mount/resources/img/Remax/product/'+req.body.sku+'/');
 			}
 			catch(error) {
 				console.log(error);
@@ -334,7 +334,7 @@ exports.getItemImage = function(req, res, data) {
 	var files = [];
 	try
 	{
-		files = fs.readdirSync('/var/www/resources/img/product/'+data.result[0].sku+'/');
+		files = fs.readdirSync('/data/mount/resources/img/Remax/product/'+data.result[0].sku+'/');
 	}
 	catch(error) {
 		console.log(error);

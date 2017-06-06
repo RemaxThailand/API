@@ -10,20 +10,20 @@ exports.generate = function(req, res, url) {
 	}
 
 	if ( typeof req.headers.referer == 'undefined' ) {
-		res.redirect('//img.powerdd.com/watermark/'+((brand == 'source') ? 'remax' : brand)+'.png');
+		res.redirect('//img.remaxthailand.co.th/watermark/'+((brand == 'source') ? 'remax' : brand)+'.png');
 	}
 	else {
 		var ref = req.headers.referer.split('/');
 		if ( ref[2].indexOf('powerdd.com') == -1 && ref[2].indexOf('remaxthailand.co.th') == -1 && ref[2].indexOf('remaxthail.net') == -1 && ref[2].indexOf('azurewebsites.net') == -1) {
-			res.redirect('//img.powerdd.com/watermark/'+((brand == 'source') ? 'remax' : brand)+'-text.png');
+			res.redirect('//img.remaxthailand.co.th/watermark/'+((brand == 'source') ? 'remax' : brand)+'-text.png');
 		}
 		else if ( brand == 'source' ) {
-			res.redirect('//img.powerdd.com/'+url[2]+'/'+url[3]+'/'+url[4]+'/'+ ( (url.length == 8) ? url[7] : url[5] ) );
+			res.redirect('//img.remaxthailand.co.th/'+url[2]+'/'+url[3]+'/'+url[4]+'/'+ ( (url.length == 8) ? url[7] : url[5] ) );
 		}
 		else {
 			var gm = require('gm');
 			var name = (url.length == 7) ? url[6] : url[4];
-			var img = gm('/var/www/images/'+url[2]+'/'+url[3]+'/'+ name );
+			var img = gm('/data/mount/resources/img/Remax/'+url[2]+'/'+url[3]+'/'+ name );
 			img.size(function(err, value){
 				var box = value.width > value.height ? value.height/4 : value.width/4;
 				var textWidth = box*4/3;
@@ -41,7 +41,7 @@ exports.generate = function(req, res, url) {
 						}
 					}
 				}
-				img.draw(['image Over '+(value.width-box)+','+(value.height-box)+' '+box+','+box+' /var/www/images/watermark/'+brand+'.png'])
+				img.draw(['image Over '+(value.width-box)+','+(value.height-box)+' '+box+','+box+' /data/mount/resources/img/Remax/watermark/'+brand+'.png'])
 
 				if(url.length == 7) img.resize(url[4], url[5]);
 
